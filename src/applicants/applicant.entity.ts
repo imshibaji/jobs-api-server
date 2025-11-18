@@ -1,19 +1,49 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('applicants')
 export class Applicant {
     @PrimaryGeneratedColumn()
-    id: number;
+    id?: number;
 
     @Column()
     name: string;
 
     @Column()
-    email: string;
+    image?: string;
+
+    @Column()
+    address?: string;
+
+    @Column()
+    city?: string;
+
+    @Column()
+    state?: string;
+
+    @Column()
+    country?: string;
+
+    @Column()
+    dob?: string;
+
+    @Column()
+    gender: string;
 
     @Column()
     phoneNumber: string;
 
     @Column()
-    resume: string;
+    email: string;
+
+    @Column()
+    resume?: string;
+
+    @Column()
+    isDeleted?: boolean;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    updatedAt: Date;
 }

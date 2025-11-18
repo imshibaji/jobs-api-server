@@ -1,26 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
+import { Repository } from 'typeorm';
+import { Applicant } from './applicant.entity';
 
 @Injectable()
 export class ApplicantsService {
+
+  constructor(
+    @Inject('APPLICANT_REPOSITORY')
+    private applicantRepository: Repository<Applicant>
+  ) {}
+
   create(createApplicantDto: CreateApplicantDto) {
-    return 'This action adds a new applicant';
+    return this.applicantRepository.save(createApplicantDto);
   }
 
   findAll() {
-    return `This action returns all applicants`;
+    return this.applicantRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} applicant`;
+    return this.applicantRepository.findOneBy({ id });
   }
 
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
-    return `This action updates a #${id} applicant`;
+    return this.applicantRepository.update(id, updateApplicantDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} applicant`;
+    return this.applicantRepository.delete(id);
   }
 }

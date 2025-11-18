@@ -29,6 +29,21 @@ export class User{
     @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user', nullable: true })
     role?: string;
 
+    @Column({ nullable: true })
+    instragramId?: string;
+
+    @Column({ nullable: true })
+    facebookId?: string;
+
+    @Column({ nullable: true })
+    youtubeId?: string;
+
+    @Column({ nullable: true })
+    linkedinId?: string;
+
+    @Column({ nullable: true })
+    githubId?: string;
+
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true })
     createdAt?: Date;
 

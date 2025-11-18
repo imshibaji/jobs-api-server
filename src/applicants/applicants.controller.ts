@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ApplicantsService } from './applicants.service';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
+import { Public } from 'src/auth/auth.decorator';
 
+@Public()
 @Controller('applicants')
 export class ApplicantsController {
   constructor(private readonly applicantsService: ApplicantsService) {}

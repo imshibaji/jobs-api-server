@@ -1,8 +1,8 @@
 {
   "name": "server",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "This is the server application of the project.",
+  "author": "Shibaji Debnath",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -84,10 +84,6 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "./coverage",
-    "testEnvironment": "node",
-    "roots": [
-      "<rootDir>/src/",
-      "<rootDir>/libs/"
-    ]
+    "testEnvironment": "node"
   }
 }
