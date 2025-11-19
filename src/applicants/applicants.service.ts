@@ -25,7 +25,7 @@ export class ApplicantsService {
   }
 
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
-    return this.applicantRepository.update(id, updateApplicantDto);
+    return this.applicantRepository.update(id, {...updateApplicantDto, updatedAt: new Date() });
   }
 
   remove(id: number) {

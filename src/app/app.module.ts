@@ -6,14 +6,20 @@ import { DatabaseModule } from 'src/database/database.module';
 import { UsersModule } from 'src/users/users.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { ApplicantsModule } from 'src/applicants/applicants.module';
+import { SkillsModule } from 'src/skills/skills.module';
+import { ExperiencesModule } from 'src/experiences/experiences.module';
+import { EducationModule } from 'src/education/education.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     DatabaseModule,
     AuthModule,
-    ApplicantsModule,
     UsersModule,
+    ApplicantsModule,
+    SkillsModule,
+    ExperiencesModule,
+    EducationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

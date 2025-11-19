@@ -33,4 +33,7 @@ export class CreateApplicantDto {
 
     @ApiProperty({ example: 'https://example.com/resume.pdf' })
     resume: string;
+
+    @ApiProperty({ example: false })
+    isDeleted: boolean;
 }
