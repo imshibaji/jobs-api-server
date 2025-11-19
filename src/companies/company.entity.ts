@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('applicants')
-export class Applicant {
+@Entity('companies')
+export class Company {
     @PrimaryGeneratedColumn()
     id?: number;
 
@@ -24,19 +24,13 @@ export class Applicant {
     country?: string;
 
     @Column()
-    dob?: string;
-
-    @Column()
-    gender: string;
-
-    @Column()
     phoneNumber: string;
 
     @Column()
     email: string;
 
     @Column()
-    resume?: string;
+    website?: string;
 
     @Column()
     isDeleted?: boolean;

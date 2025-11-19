@@ -9,6 +9,9 @@ import { ApplicantsModule } from 'src/applicants/applicants.module';
 import { SkillsModule } from 'src/skills/skills.module';
 import { ExperiencesModule } from 'src/experiences/experiences.module';
 import { EducationModule } from 'src/education/education.module';
+import { CompaniesModule } from 'src/companies/companies.module';
+import { JobsModule } from 'src/jobs/jobs.module';
+import { ApplicationsModule } from 'src/applications/applications.module';
 
 @Module({
   imports: [
@@ -20,6 +23,9 @@ import { EducationModule } from 'src/education/education.module';
     SkillsModule,
     ExperiencesModule,
     EducationModule,
+    CompaniesModule,
+    JobsModule,
+    ApplicationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
