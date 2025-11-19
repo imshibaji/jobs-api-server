@@ -19,6 +19,21 @@ export class SignUpDto {
 
     @ApiProperty({ type: String, required: false, enum: Role, default: Role.User, description: 'user role, either admin or user' })
     role?: Role;
+
+    @ApiProperty({ type: String, required: false, description: 'user instagram ID' })
+    instagramId?: string;
+
+    @ApiProperty({ type: String, required: false, description: 'user facebook ID' })
+    facebookId?: string;
+
+    @ApiProperty({ type: String, required: false, description: 'user youtube ID' })
+    youtubeId?: string;
+
+    @ApiProperty({ type: String, required: false, description: 'user linkedin ID' })
+    linkedinId?: string;
+
+    @ApiProperty({ type: String, required: false, description: 'user github ID' })
+    githubId?: string;
 }
 
 export class LoginDto {
@@ -29,8 +44,19 @@ export class LoginDto {
 }
 
 export class JwtPayload {
-  username: string;
   sub: number;
+  user: {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    image: string;
+    role: string;
+    instagramId?: string;
+    facebookId?: string;
+    youtubeId?: string;
+    linkedinId?: string;
+    githubId?: string;
+  };
 }
 
 export class JwtToken {

@@ -12,6 +12,10 @@ import { EducationModule } from 'src/education/education.module';
 import { CompaniesModule } from 'src/companies/companies.module';
 import { JobsModule } from 'src/jobs/jobs.module';
 import { ApplicationsModule } from 'src/applications/applications.module';
+import { ArticlesModule } from 'src/articles/articles.module';
+import { TagsModule } from 'src/tags/tags.module';
+import { ChannelsModule } from 'src/channels/channels.module';
+import { UploadController } from './upload.controller';
 
 @Module({
   imports: [
@@ -26,8 +30,11 @@ import { ApplicationsModule } from 'src/applications/applications.module';
     CompaniesModule,
     JobsModule,
     ApplicationsModule,
+    ArticlesModule,
+    TagsModule,
+    ChannelsModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, UploadController],
   providers: [AppService],
 })
 export class AppModule {}

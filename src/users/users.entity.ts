@@ -30,7 +30,7 @@ export class User{
     role?: string;
 
     @Column({ nullable: true })
-    instragramId?: string;
+    instagramId?: string;
 
     @Column({ nullable: true })
     facebookId?: string;
@@ -43,6 +43,9 @@ export class User{
 
     @Column({ nullable: true })
     githubId?: string;
+
+    @Column({ default: false })
+    isOnline: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true })
     createdAt?: Date;

@@ -7,8 +7,8 @@ import { Public } from 'src/auth/auth.decorator';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/hello')
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('/info')
+  getInfo(): object {
+    return this.appService.getInfo();
   }
 }
