@@ -1,17 +1,20 @@
 import { Injectable, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody } from '@nestjs/swagger';
 
 @Injectable()
 export class AppService {
+  constructor(private readonly configService: ConfigService) {}
+
   getInfo(): Object {
     return {
-      appName: process.env.APP_NAME,
-      appVersion: process.env.APP_VERSION,
-      appEnvironment: process.env.APP_ENVIRONMENT,
-      appPort: process.env.APP_PORT,
-      appBaseUrl: process.env.APP_URL,
-      appSecretKey: process.env.APP_SECRET_KEY,
+      appName: this.configService.get('APP_NAME'),
+      appVersion: this.configService.get('APP_VERSION'),
+      appEnvironment: this.configService.get('APP_ENVIRONMENT'),
+      appPort: this.configService.get('APP_PORT'),
+      appBaseUrl: this.configService.get('APP_BASE_URL'),
+      appSecretKey: this.configService.get('APP_SECRET_KEY'),
     };
   }
 

@@ -47,11 +47,11 @@ export class AuthController {
     @ApiBody({ type: LoginDto, description: 'User login credentials', examples: {
         example1: {
             summary: 'Example credentials',
-            value: '{"username":"user1@example.com","password":"password123"}',
+            value: '{"username":"admin@abc.com","password":"password"}',
         },
         example2: {
             summary: 'Another example credentials',
-            value: '{"username":"user2@example.com","password":"mySecret456"}',
+            value: '{"username":"user@abc.com","password":"password"}',
         },
     } })
     @Post('login')
