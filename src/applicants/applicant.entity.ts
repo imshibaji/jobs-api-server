@@ -42,7 +42,7 @@ export class Applicant {
     isDeleted?: boolean;
 
     @Column()
-    userId: number;
+    userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;

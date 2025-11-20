@@ -20,7 +20,7 @@ import { UploadController } from './upload.controller';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    DatabaseModule,
+    // DatabaseModule,
     AuthModule,
     UsersModule,
     ApplicantsModule,

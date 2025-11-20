@@ -36,4 +36,7 @@ export class CreateApplicantDto {
 
     @ApiProperty({ example: false })
     isDeleted: boolean;
+
+    @ApiProperty({ example: 1 })
+    userId: number;
 }
