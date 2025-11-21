@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Base } from "./base.dto";
 
-export class EmailDto {
+export class EmailDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'email address', example: '3oFbV@example.com' })
     to: string;
 
@@ -31,15 +32,12 @@ export class EmailDto {
     @ApiProperty({ type: String, required: false, description: 'email attachment', example: 'https://example.com/attachment.pdf' })
     attachment?: string;
 
-    @ApiProperty({ type: Date, required: false, description: 'email date time', example: '12-12-2025 12:00:00' })
-    dateTime?: string;
-
     @ApiProperty({ type: String, required: false, description: 'email template', example: 'default' })
     template?: string;
 
     @ApiProperty({ type: String, required: false, description: 'email template language', example: 'default' })
     language?: string;
-
-    @ApiProperty({ type: String, required: false, description: 'email template type', example: 'email' })
-    type?: string;
+    
+    @ApiProperty({ type: String, required: false, description: 'Template type', example: 'email' })
+    type: string = 'email';
 }

@@ -8,6 +8,7 @@ import { BullModule } from '@nestjs/bull';
 import { channelsProvider } from './channels.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ScheduleProcessor } from './services/schedule.processor';
+import { ExecuteService } from './services/execute.service';
 
 @Module({
   imports: [
@@ -32,7 +33,10 @@ import { ScheduleProcessor } from './services/schedule.processor';
   controllers: [ChannelsController],
   providers: [
     ...channelsProvider, 
-    ChannelsService, EmailService, ScheduleProcessor
+    ChannelsService,
+    EmailService, 
+    ScheduleProcessor,
+    ExecuteService
   ]
 })
 export class ChannelsModule {}

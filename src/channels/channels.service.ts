@@ -9,6 +9,8 @@ import { type Queue } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
 import { Channel } from './channel.entity';
 import * as moment from 'moment-timezone';
+import { WebhookDto } from './dto/webhook.dto';
+import { ExecuteService } from './services/execute.service';
 
 
 @Injectable()
@@ -19,6 +21,7 @@ export class ChannelsService {
         @Inject('CHANNEL_REPOSITORY')
         private messageRepo: Repository<Channel>,
         @InjectQueue('scheduler') private queue: Queue,
+        private executeService: ExecuteService
     ) {}
 
     notify() {
@@ -30,32 +33,47 @@ export class ChannelsService {
         );
     }
 
-    async sendEmail(email: EmailDto) {
-        this.eventEmitter.emit('notify', email);
-        return email;
-    }
-
     async sendSms(message: MessageDto) {
-        this.eventEmitter.emit('notify', message);
-        return message;
-    }
-
-    async sendPushNotification(message: PushNotificationDto) {
-        this.eventEmitter.emit('notify', message);
-        return message;
+        const output = await this.scheduled(message);
+        if(!output.isScheduled){
+            await this.executeService.executePayload(message);
+        }
+        return output;
     }
 
     async sendWhatsApp(message: MessageDto) {
-        this.eventEmitter.emit('notify', message);
-        return message;
+        const output = await this.scheduled(message);
+        if(!output.isScheduled){
+            await this.executeService.executePayload(message);
+        }
+        return output;
     }
 
-    async sendWebhook(message: PushNotificationDto) {
-        this.eventEmitter.emit('notify', message);
-        return message;
+    async sendEmail(message: EmailDto) {
+        const output = await this.scheduled(message);
+        if(!output.isScheduled){
+            await this.executeService.executePayload(message);
+        }
+        return output;
     }
 
-    async scheduleMessage(payload: MessageDto | PushNotificationDto | EmailDto) {
+    async sendPushNotification(message: PushNotificationDto) {
+        const output = await this.scheduled(message);
+        if(!output.isScheduled){
+            await this.executeService.executePayload(message);
+        }
+        return output;
+    }
+
+    async sendWebhook(message: WebhookDto) {
+        const output = await this.scheduled(message);
+        if(!output.isScheduled){
+            await this.executeService.executePayload(message);
+        }
+        return output;
+    }
+
+    private async scheduled(payload: MessageDto | PushNotificationDto | EmailDto | WebhookDto | any) {
 
         // 1. Parse the date strictly in the User's Timezone
         // moment.tz(date, timezone) creates a moment object set to that specific zone
@@ -84,12 +102,27 @@ export class ChannelsService {
                 { messageId: savedMessage.id }, // Payload (keep it small, just the ID)
                 { delay: delay, removeOnComplete: true } // <--- THE MAGIC PART
             );
+
+            // 3. Emit to Live Feed (SSE)
+            const message = { status: 'scheduled', timeNow: now.toLocaleString(), scheduledFor: targetTime.toLocaleString(), delay: delay };
+            this.eventEmitter.emit('notify', JSON.stringify(message));
+
+            // 4. Return
+            const output = {
+                isScheduled: true,
+                message: message,
+                status: 'scheduled',
+            }
+            this.eventEmitter.emit('notify', JSON.stringify(output));
+            return output;
+        }else{
+            const output = {
+                isScheduled: false,
+                message: payload,
+                status: 'not-scheduled',
+            }
+            this.eventEmitter.emit('notify', JSON.stringify(output));
+            return output;
         }
-
-        const message = { status: 'scheduled', timeNow: now.toLocaleString(), scheduledFor: targetTime.toLocaleString(), delay: delay };
-        this.eventEmitter.emit('notify', message);
-        return message;
     }
-
-    
 }

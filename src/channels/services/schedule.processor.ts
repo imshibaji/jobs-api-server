@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Inject } from '@nestjs/common';
 import { Channel } from '../channel.entity';
+import { ExecuteService } from './execute.service';
 
 @Processor('scheduler')
 export class ScheduleProcessor {
@@ -11,10 +12,11 @@ export class ScheduleProcessor {
     @Inject('CHANNEL_REPOSITORY')
     private messageRepo: Repository<Channel>,
     private eventEmitter: EventEmitter2,
+    private executeService: ExecuteService
   ) {}
 
   @Process('publish-message')
-    async handleScheduledMessage(job: Job<{ messageId: string, channel: string }>) {
+    async handleScheduledMessage(job: Job<{ messageId: string }>) {
         console.log(`Processing scheduled message: ${job.data.messageId}`);
 
         // 1. Find the message in DB
@@ -24,7 +26,7 @@ export class ScheduleProcessor {
         });
 
         // 1. Find the message type in DB
-        console.log(message?.payload?.type!);
+        // console.log(message?.payload?.type!);
         
 
         if (message) {
@@ -33,7 +35,10 @@ export class ScheduleProcessor {
             await this.messageRepo.save(message);
 
             // 2. Update Status
-            console.log(message);
+            // console.log(message);
+
+            // 2. Execute the message
+            await this.executeService.executeChannel(message);
             
 
             // 3. Emit to Live Feed (SSE)

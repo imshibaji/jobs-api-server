@@ -4,6 +4,7 @@ import { EmailDto } from './dto/email.dto';
 import { MessageDto } from './dto/message.dto';
 import { PushNotificationDto } from './dto/push-notification.dto';
 import { Public } from 'src/auth/auth.decorator';
+import { WebhookDto } from './dto/webhook.dto';
 
 @Public()
 @Controller('channels')
@@ -15,19 +16,9 @@ export class ChannelsController {
         return this.channelsService.notify();
     }
 
-    @Post('email')
-    async sendEmail(@Body() body: EmailDto) {
-        return await this.channelsService.sendEmail(body);
-    }
-
     @Post('sms')
     async sendSms(@Body() body: MessageDto) {
         return await this.channelsService.sendSms(body);
-    }
-
-    @Post('push-notification')
-    async sendPushNotification(@Body() body: PushNotificationDto) {
-        return await this.channelsService.sendPushNotification(body);
     }
 
     @Post('whatsapp')
@@ -35,25 +26,19 @@ export class ChannelsController {
         return await this.channelsService.sendWhatsApp(body);
     }
 
+    @Post('email')
+    async sendEmail(@Body() body: EmailDto) {
+        return await this.channelsService.sendEmail(body);
+    }
+
+    @Post('push-notification')
+    async sendPushNotification(@Body() body: PushNotificationDto) {
+        return await this.channelsService.sendPushNotification(body);
+    }
+
 
     @Post('webhook')
-    async sendWebhook(@Body() body: PushNotificationDto) {
+    async sendWebhook(@Body() body: WebhookDto) {
         return await this.channelsService.sendWebhook(body);
     }
-
-    @Post('schedule-sms')
-    async scheduleSMS(@Body() body: MessageDto) {
-        return await this.channelsService.scheduleMessage(body);
-    }
-
-    @Post('schedule-email')
-    async scheduleEmail(@Body() body: EmailDto) {
-        return await this.channelsService.scheduleMessage(body);
-    }
-
-    @Post('schedule-push-notification')
-    async schedulePushNotification(@Body() body: PushNotificationDto) {
-        return await this.channelsService.scheduleMessage(body);
-    }
-
 }

@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Base } from "./base.dto";
 
-export class PushNotificationDto {
+export class PushNotificationDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'phone number to send push notification', example: '1234567890' })
     to: string;
 
@@ -28,15 +29,9 @@ export class PushNotificationDto {
     @ApiProperty({ type: String, required: false, description: 'push notification sound', example: 'default' })
     sound?: string;
 
-    @ApiProperty({ type: String, required: false, description: 'push notification category', example: 'default' })
-    category?: string;
-
     @ApiProperty({ type: String, required: false, description: 'push notification thread identifier', example: 'default' })
     threadId?: string;
 
-    @ApiProperty({ type: Date, required: false, description: 'push notification date time', example: '12-12-2025 12:00:00' })
-    dateTime?: string;
-
     @ApiProperty({ type: String, required: false, description: 'push notification type', example: 'push-notification' })
-    type?: string;
+    type: string = 'push-notification';
 }
