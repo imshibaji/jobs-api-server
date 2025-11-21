@@ -18,9 +18,11 @@ import { ChannelsModule } from 'src/channels/channels.module';
 import { UploadController } from './upload.controller';
 import configuration from 'src/config/configuration';
 import { FileController } from './file.controller';
+import { RouterModule } from '@nestjs/core';
 
 @Module({
   imports: [
+    RouterModule.register([]),
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,
