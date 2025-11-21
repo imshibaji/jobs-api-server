@@ -16,10 +16,16 @@ import { ArticlesModule } from 'src/articles/articles.module';
 import { TagsModule } from 'src/tags/tags.module';
 import { ChannelsModule } from 'src/channels/channels.module';
 import { UploadController } from './upload.controller';
+import configuration from 'src/config/configuration';
+import { FileController } from './file.controller';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [configuration],
+      isGlobal: true,
+      envFilePath: ['.env'],
+    }),
     DatabaseModule,
     AuthModule,
     UsersModule,
@@ -34,7 +40,7 @@ import { UploadController } from './upload.controller';
     TagsModule,
     ChannelsModule
   ],
-  controllers: [AppController, UploadController],
+  controllers: [AppController, UploadController, FileController],
   providers: [AppService],
 })
 export class AppModule {}

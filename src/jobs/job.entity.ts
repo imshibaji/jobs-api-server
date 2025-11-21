@@ -47,6 +47,6 @@ export class Job{
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updatedAt: Date;
 
-    @Column()
+    @Column({ type: 'boolean', default: false })
     isDeleted?: boolean;
 }

@@ -26,7 +26,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
         },
       ],
     }),
-    PermissionModule,
+    // PermissionModule,
   ],
   controllers: [AuthController],
   providers: [

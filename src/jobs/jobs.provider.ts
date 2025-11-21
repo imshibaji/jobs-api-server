@@ -5,6 +5,6 @@ export const jobsProvider = [
     {
         provide: 'JOB_REPOSITORY',
         useFactory: (dataSource: DataSource) => dataSource.getRepository(Job),
-        inject: ['DATA_SOURCE'],
+        inject: ['PG_DATA_SOURCE'],
     },
 ];

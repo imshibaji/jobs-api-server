@@ -1,48 +1,44 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Sse } from '@nestjs/common';
 import { ChannelsService } from './channels.service';
 import { EmailDto } from './dto/email.dto';
 import { MessageDto } from './dto/message.dto';
 import { PushNotificationDto } from './dto/push-notification.dto';
 import { Public } from 'src/auth/auth.decorator';
+import { WebhookDto } from './dto/webhook.dto';
 
 @Public()
 @Controller('channels')
 export class ChannelsController {
     constructor(private readonly channelsService: ChannelsService) {}
 
-    @Post('email')
-    async sendEmail(@Body() body: EmailDto) {
-        return await this.channelsService.sendEmail(body.to, body.subject, body.text);
+    @Sse('notify')
+    events() {
+        return this.channelsService.notify();
     }
 
     @Post('sms')
     async sendSms(@Body() body: MessageDto) {
-        return await this.channelsService.sendSms(body.to, body.message);
-    }
-
-    @Post('push-notification')
-    async sendPushNotification(@Body() body: PushNotificationDto) {
-        return await this.channelsService.sendPushNotification(body.to, body.title, body.body);
+        return await this.channelsService.sendSms(body);
     }
 
     @Post('whatsapp')
     async sendWhatsApp(@Body() body: MessageDto) {
-        return await this.channelsService.sendWhatsApp(body.to, body.message);
+        return await this.channelsService.sendWhatsApp(body);
     }
 
-    @Post('telegram')
-    async sendTelegram(@Body() body: MessageDto) {
-        return await this.channelsService.sendTelegram(body.to, body.message);
+    @Post('email')
+    async sendEmail(@Body() body: EmailDto) {
+        return await this.channelsService.sendEmail(body);
     }
 
-    @Post('slack')
-    async sendSlack(@Body() body: MessageDto) {
-        return await this.channelsService.sendSlack(body.to, body.message);
+    @Post('push-notification')
+    async sendPushNotification(@Body() body: PushNotificationDto) {
+        return await this.channelsService.sendPushNotification(body);
     }
+
 
     @Post('webhook')
-    async sendWebhook(@Body() body: MessageDto) {
-        return await this.channelsService.sendWebhook(body.to, body.message);
+    async sendWebhook(@Body() body: WebhookDto) {
+        return await this.channelsService.sendWebhook(body);
     }
-
 }
