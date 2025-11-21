@@ -9,6 +9,7 @@ import { channelsProvider } from './channels.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ScheduleProcessor } from './services/schedule.processor';
 import { ExecuteService } from './services/execute.service';
+import configuration from 'src/config/configuration';
 
 @Module({
   imports: [
@@ -18,11 +19,11 @@ import { ExecuteService } from './services/execute.service';
     // 1. Connect to Redis
     BullModule.forRoot({
       redis: {
-        host: process.env.REDIS_HOST || 'localhost',
-        port: Number(process.env.REDIS_PORT) || 6379,
-        username: process.env.REDIS_USER || 'default',
-        password: process.env.REDIS_PASS ||'password',
-        db: Number(process.env.REDIS_DB) || 0,
+        host: configuration().redis.host,
+        port: configuration().redis.port,
+        username: configuration().redis.user,
+        password: configuration().redis.pass,
+        db: configuration().redis.db,
       },
     }),
     // 2. Register the specific Queue
