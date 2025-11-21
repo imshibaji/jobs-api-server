@@ -9,6 +9,7 @@ export default () => ({
     user: process.env.DB_USER || 'root',
     pass: process.env.DB_PASS || 'password',
     name: process.env.DB_NAME || 'jobs_for_women',
+    sync: Boolean(process.env.DB_SYNC) || true,
   },
   redis: {
     host: process.env.REDIS_HOST || 'localhost',

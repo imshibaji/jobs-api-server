@@ -12,7 +12,7 @@ export const dataSource = new DataSource({
     entities: [
         __dirname + '/../**/*.entity{.ts,.js}',
     ],
-    synchronize: true,
+    synchronize: config().database.sync,
 } as DataSourceOptions);
 
 export const databaseProviders = [
