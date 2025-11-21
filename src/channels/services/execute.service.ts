@@ -56,35 +56,42 @@ export class ExecuteService {
 
     private async webhook(payload: WebhookDto) {
         try {
+            const headers = payload.headers ?{
+                ...payload.headers,
+                'Authorization': payload.secret ? `Bearer ${payload.secret}`: null,
+            }: null;
+            // console.log(headers);
+            
+
             // Send Webhook Request
             if (payload.method?.toUpperCase() === 'POST' || payload.method?.toUpperCase() === 'PUT' || payload.method?.toUpperCase() === 'DELETE' || payload.method?.toUpperCase() === 'PATCH') {
                 const response = await fetch(payload.url, {
                     method: payload.method.toUpperCase() || 'POST',
-                    headers: {
-                        ...payload.headers && payload.headers,
-                        ...payload.secret && { 'Authorization': `Bearer ${payload.secret}` }
-                    },
+                    headers,
                     body: JSON.stringify(payload.data),
                 });
                 const data = await response.json();
 
                 // Testing purposes
-                console.log(data);
+                console.log({data, type: 'webhook-response'});
 
                 // Emit to Live Feed
-                this.eventEmitter.emit('notify', JSON.stringify(data));
+                this.eventEmitter.emit('notify', JSON.stringify({output: data, type: 'webhook-response'}));
                 return data;
             }
 
             if (payload.method?.toUpperCase() === 'GET') {
-                const response = await fetch(payload.url);
+                const response = await fetch(payload.url, {
+                    method: payload.method.toUpperCase() || 'GET',
+                    headers,
+                });
                 const data = await response.json();
 
                 // Testing purposes
-                console.log(data);
+                console.log({data, type: 'webhook-response'});
 
                 // Emit to Live Feed
-                this.eventEmitter.emit('notify', JSON.stringify(data));
+                this.eventEmitter.emit('notify', JSON.stringify({output: data, type: 'webhook-response'}));
                 return data;
             }
         } catch (error) {

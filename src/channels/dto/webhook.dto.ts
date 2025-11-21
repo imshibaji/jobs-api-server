@@ -7,7 +7,7 @@ export class WebhookDto extends Base{
     @ApiProperty({ type: String, required: true, description: 'webhook url', example: 'https://example.com/webhook' })
     url: string;
 
-    @ApiProperty({ type: String, required: false, description: 'webhook headers', example: '"Content-Type": "application/json"' })
+    @ApiProperty({ type: String, required: false, description: 'webhook headers', example: JSON.parse('{"accept": "*/*", "Content-Type": "application/json"}') })
     headers?: any;
 
     @ApiProperty({ type: String, required: false, description: 'webhook secret', example: 'secret' })
