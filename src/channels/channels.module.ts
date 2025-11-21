@@ -18,11 +18,11 @@ import { ExecuteService } from './services/execute.service';
     // 1. Connect to Redis
     BullModule.forRoot({
       redis: {
-        host: '168.231.121.55',
-        port: 6379,
-        username: 'default',
-        password: 'Sdnsdn@1',
-        db: 1234,
+        host: process.env.REDIS_HOST || 'localhost',
+        port: Number(process.env.REDIS_PORT) || 6379,
+        username: process.env.REDIS_USER || 'default',
+        password: process.env.REDIS_PASS ||'password',
+        db: Number(process.env.REDIS_DB) || 0,
       },
     }),
     // 2. Register the specific Queue

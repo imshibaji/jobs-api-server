@@ -1,46 +1,18 @@
 
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSource = new DataSource({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'password',
-    database: 'jobs_for_women',
+    type: process.env.DB_TYPE ?? 'mysql',
+    host: process.env.DB_HOST ?? 'localhost',
+    port: Number(process.env.DB_PORT) ?? 3306,
+    username: process.env.DB_USER ?? 'root',
+    password: process.env.DB_PASS ?? 'password',
+    database: process.env.DB_NAME ?? 'jobs_for_women',
     entities: [
         __dirname + '/../**/*.entity{.ts,.js}',
     ],
     synchronize: true,
-});
-
-
-const PostgresDataSource = new DataSource({
-    type: "postgres",
-    host: "168.231.121.55",
-    port: 5432,
-    username: "shibaji",
-    password: "Sdnsdn@1",
-    database: "jobs_for_woman",
-    entities: [
-        __dirname + '/../**/*.entity{.ts,.js}',
-    ],
-    synchronize: true,
-});
-
-const mongoDataSource = new DataSource({
-    type: "mongodb",
-    host: "168.231.121.55",
-    port: 27017,
-    username: "shibaji",
-    password: "Sdnsdn@1",
-    database: "jobs_for_woman",
-    authSource: "admin",
-    entities: [
-        // __dirname + '/../**/*.entity{.ts,.js}',
-    ],
-    synchronize: true,
-});
+} as DataSourceOptions);
 
 export const databaseProviders = [
   {
@@ -48,17 +20,5 @@ export const databaseProviders = [
     useFactory: async () => {
       return await dataSource.initialize();
     },
-  },
-  {
-    provide: 'PG_DATA_SOURCE',
-    useFactory: async () => {
-      return await PostgresDataSource.initialize();
-    },
-  },
-  {
-    provide: 'MONGO_DATA_SOURCE',
-    useFactory: async () => {
-      return await mongoDataSource.initialize();
-    },
-  },
+  }
 ];

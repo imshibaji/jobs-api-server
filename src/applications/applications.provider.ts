@@ -5,6 +5,6 @@ export const applicationProviders = [
     {
         provide: 'APPLICATION_REPOSITORY',
         useFactory: (dataSource: DataSource) => dataSource.getRepository(Application),
-        inject: ['PG_DATA_SOURCE'],
+        inject: ['DATA_SOURCE'],
     },
 ];
