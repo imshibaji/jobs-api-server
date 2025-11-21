@@ -1,42 +1,50 @@
-import { Controller, Get, StreamableFile, Res, Header } from '@nestjs/common';
+import { Controller, Get, StreamableFile, Query } from '@nestjs/common';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
-import type { Response } from 'express'; // Assuming that we are using the ExpressJS HTTP Adapter
+// import type { Response } from 'express'; // Assuming that we are using the ExpressJS HTTP Adapter
 import { Public } from 'src/auth/auth.decorator';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @Public()
-@ApiTags('Stream File')
+@ApiTags('Download File')
 @Controller('file')
 export class FileController {
   @Get()
-  getFile(): StreamableFile {
-    const file = createReadStream(join(process.cwd(), 'package.json'));
+  @ApiQuery({ name: 'Folder', type: 'string', required: false, example: 'uploads/pictures' })
+  @ApiQuery({ name: 'Type', type: 'string', required: false, example: 'image/jpg' })
+  @ApiQuery({ name: 'Filename', type: 'string', required: false, example: 'avatar.jpg' })
+  @ApiQuery({ name: 'OutputFileName', type: 'string', required: false, example: 'image.jpg' })
+  getFile(@Query() query: any): StreamableFile {
+    const file = createReadStream(join(process.cwd(), query.folder || 'uploads', query.filename || 'package.json'));
     return new StreamableFile(file, {
-      type: 'application/json',
-      disposition: 'attachment; filename="package.json"',
+      type: query.type || 'application/json',
+      disposition: `attachment; filename="${query.outputFileName || "package.json"}"`,
       // If you want to define the Content-Length value to another value instead of file's length:
       // length: 123,
     });
   }
 
-  // Or even:
-  @Get('/p')
-  getFileChangingResponseObjDirectly(@Res({ passthrough: true }) res: Response): StreamableFile {
-    const file = createReadStream(join(process.cwd(), 'package.json'));
-    res.set({
-      'Content-Type': 'application/json',
-      'Content-Disposition': 'attachment; filename="package.json"',
-    });
-    return new StreamableFile(file);
-  }
 
-  // Or even:
-  @Get('/p2')
-  @Header('Content-Type', 'application/json')
-  @Header('Content-Disposition', 'attachment; filename="package.json"')
-  getFileUsingStaticValues(): StreamableFile {
-    const file = createReadStream(join(process.cwd(), 'package.json'));
-    return new StreamableFile(file);
-  }  
+  // // Or even:
+  // @Get('/p')
+  // getFileChangingResponseObjDirectly(@Res({ passthrough: true }) res: Response): StreamableFile {
+  //   const file = createReadStream(join(process.cwd(), 'package.json'));
+  //   res.set({
+  //     'Content-Type': 'application/json',
+  //     'Content-Disposition': `attachment; filename="package.json"`,
+  //   });
+  //   return new StreamableFile(file);
+  // }
+
+  // // Or even:
+  // @Get('/image')
+  // @Header('Content-Type', 'image/jpg')
+  // @Header('Content-Disposition', 'attachment; filename="image.jpg"')
+  // @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'scene.jpg' })
+  // getFileUsingStaticValues(@Query('filename') filename?: string, ): StreamableFile {
+  //   console.log(filename);
+    
+  //   const file = createReadStream(join(process.cwd(),'uploads/pictures', ( filename || 'avatar.jpg')));
+  //   return new StreamableFile(file);
+  // }  
 }

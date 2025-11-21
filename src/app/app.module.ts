@@ -19,6 +19,9 @@ import { UploadController } from './upload.controller';
 import configuration from 'src/config/configuration';
 import { FileController } from './file.controller';
 import { RouterModule } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -27,6 +30,12 @@ import { RouterModule } from '@nestjs/core';
       load: [configuration],
       isGlobal: true,
       envFilePath: ['.env'],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+    }),
+    MulterModule.register({
+      dest: './uploads',
     }),
     DatabaseModule,
     AuthModule,
