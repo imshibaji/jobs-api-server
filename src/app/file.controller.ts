@@ -1,9 +1,10 @@
-import { Controller, Get, StreamableFile, Query } from '@nestjs/common';
+import { Controller, Get, StreamableFile, Query, Header, NotFoundException, BadRequestException } from '@nestjs/common';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 // import type { Response } from 'express'; // Assuming that we are using the ExpressJS HTTP Adapter
 import { Public } from 'src/auth/auth.decorator';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { stat } from 'node:fs/promises';
 
 @Public()
 @ApiTags('Download File')
@@ -14,14 +15,26 @@ export class FileController {
   @ApiQuery({ name: 'Type', type: 'string', required: false, example: 'image/jpg' })
   @ApiQuery({ name: 'Filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'OutputFileName', type: 'string', required: false, example: 'image.jpg' })
-  getFile(@Query() query: any): StreamableFile {
-    const file = createReadStream(join(process.cwd(), query.folder || 'uploads', query.filename || 'package.json'));
-    return new StreamableFile(file, {
-      type: query.type || 'application/json',
-      disposition: `attachment; filename="${query.outputFileName || "package.json"}"`,
-      // If you want to define the Content-Length value to another value instead of file's length:
-      // length: 123,
-    });
+  @Header('access-control-allow-origin', '*')
+  async getFile(@Query() query: any): Promise<StreamableFile> {
+    const filePath = join(process.cwd(), query.Folder || 'uploads', query.Filename || 'package.json');
+
+    try {
+      // Check if file exists asynchronously before creating the stream
+      await stat(filePath); 
+
+      const file = createReadStream(filePath);
+      return new StreamableFile(file, {
+        type: query.Type || 'application/json',
+        disposition: `attachment; filename="${query.OutputFileName || "package.json"}"`,
+      });
+
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new NotFoundException(`File not found at path: ${filePath}`);
+      }
+      throw new BadRequestException(`Error accessing file: ${error.message}`);
+    }
   }
 
 
