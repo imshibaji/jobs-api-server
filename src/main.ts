@@ -8,12 +8,18 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(helmet());
   app.use(compression());
+  // Enable CORS
+  app.enableCors({
+    origin: '*', // Replace with the actual URL of your client app (e.g., 'https://yourfrontend.com')
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Jobs Portal API Documentation')
     .setDescription('The Jobs Portal API Documentation')
     .setExternalDoc('Auth API Documentation', '/api/auth/docs')
-    .addServer('http://localhost:3300')
+    .addServer(process.env.APP_URL || 'http://localhost:3300')
     .addBearerAuth()
     .setVersion('1.0')
     .build();

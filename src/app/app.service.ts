@@ -1,7 +1,6 @@
 import { Injectable, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBody } from '@nestjs/swagger';
 
 @Injectable()
 export class AppService {
