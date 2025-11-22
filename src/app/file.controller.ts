@@ -77,6 +77,18 @@ export class FileController {
     }
   }
 
+  @Get('delete')
+  @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
+  @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
+  async remove(@Query('filename') filename: string, @Query('folder') folder: string) {
+    const filePath = join(process.cwd(), 'uploads', folder || 'pictures', filename);
+    try {
+      await fs.promises.unlink(filePath);
+      return { message: 'File deleted successfully' };
+    } catch (err) {
+      throw new NotFoundException(`File not found at path: ${filePath}`);
+    }
+  }
 
   // // Or even:
   // @Get('/p')
