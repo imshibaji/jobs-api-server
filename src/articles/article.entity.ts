@@ -26,6 +26,9 @@ export class Article {
     @Column({ name: 'user_id' })
     userId: number;
 
+    @Column({ name: 'type', default: 'post' })
+    type: string;
+
     @Column({ name: 'is_published', default: false })
     isPublished: boolean;
 

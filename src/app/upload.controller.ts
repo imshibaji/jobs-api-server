@@ -1,12 +1,11 @@
 import { Controller, Post, UploadedFile, UseInterceptors, Body, BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiConsumes, ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiConsumes, ApiBody, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import * as fs from 'fs';
-import { Public } from 'src/auth/auth.decorator';
 
-@Public()
+@ApiBearerAuth()
 @ApiTags('Upload File')
 @Controller()
 export class UploadController {

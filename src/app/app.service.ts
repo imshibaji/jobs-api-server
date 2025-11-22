@@ -13,7 +13,7 @@ export class AppService {
       appEnvironment: this.configService.get('APP_ENVIRONMENT'),
       appPort: this.configService.get('APP_PORT'),
       appBaseUrl: this.configService.get('APP_BASE_URL'),
-      appSecretKey: this.configService.get('APP_SECRET_KEY'),
+      // appSecretKey: this.configService.get('APP_SECRET_KEY'),
     };
   }
 

@@ -2,10 +2,10 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { ApplicationsService } from './applications.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { UpdateApplicationDto } from './dto/update-application.dto';
-import { Public } from 'src/auth/auth.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
-@Public()
+@ApiBearerAuth()
 @Controller('applications')
 export class ApplicationsController {
     constructor(private readonly applicationsService: ApplicationsService) {}

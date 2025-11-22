@@ -22,6 +22,9 @@ export class CreateArticleDto {
     @ApiProperty({ description: 'The ID of the user who created the article', example: 1, required: true })
     userId: number;
 
+    @ApiProperty({ description: 'The type of the article', enum: ['post', 'page', 'article'], example: 'post', required: true })
+    type: string;
+
     @ApiProperty({ description: 'Whether the article is published or not', example: true, required: false })
     isPublished?: boolean;
 

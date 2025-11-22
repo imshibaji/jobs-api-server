@@ -17,7 +17,7 @@ export class EmailDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'email body', example: 'Welcome to Jobs Portal'})
     text: string;
 
-    @ApiProperty({ type: String, required: false, description: 'email sender name', example: 'admin?@example.com' })
+    @ApiProperty({ type: String, required: false, description: 'email sender name', example: 'admin@example.com' })
     from?: string;
 
     @ApiProperty({ type: String, required: false, description: 'email sender name', example: 'Jobs Portal' })

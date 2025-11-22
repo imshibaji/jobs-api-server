@@ -30,4 +30,7 @@ export class CreateCompanyDto {
 
     @ApiProperty({ required: true, example: 1 })
     userId: number;
+
+    @ApiProperty({ required: false, example: false })
+    isDeleted?: boolean;
 }
