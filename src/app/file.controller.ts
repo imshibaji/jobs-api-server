@@ -4,6 +4,7 @@ import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import { ApiBearerAuth, ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
+import { Public } from 'src/auth/auth.decorator';
 
 @ApiBearerAuth()
 @ApiTags('Download File')
@@ -23,6 +24,7 @@ export class FileController {
     return [];
   }
 
+  @Public()
   @Get('image/view')
   @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
