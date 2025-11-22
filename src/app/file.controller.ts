@@ -1,7 +1,7 @@
 import { Controller, Get, StreamableFile, Query, Header, NotFoundException, BadRequestException } from '@nestjs/common';
+import * as fs from 'fs';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
-// import type { Response } from 'express'; // Assuming that we are using the ExpressJS HTTP Adapter
 import { Public } from 'src/auth/auth.decorator';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
@@ -10,14 +10,29 @@ import { stat } from 'node:fs/promises';
 @ApiTags('Download File')
 @Controller('file')
 export class FileController {
-  @Get()
-  @ApiQuery({ name: 'Folder', type: 'string', required: false, example: 'uploads/pictures' })
+
+  @Get('list')
+  @ApiQuery({ name: 'directory', type: 'string', required: false, example: 'pictures' })
+  async readDirectoryAsync(@Query('directory') directoryPath: string): Promise<String[]> {
+    try {
+      const files = await fs.promises.readdir('uploads/'+directoryPath);
+      console.log('Files in directory (async):', files);
+      return files;
+    } catch (err) {
+      console.error('Error reading directory (async):', err);
+    }
+    return [];
+  }
+
+
+  @Get('download')
+  @ApiQuery({ name: 'Folder', type: 'string', required: false, example: 'pictures' })
   @ApiQuery({ name: 'Type', type: 'string', required: false, example: 'image/jpg' })
   @ApiQuery({ name: 'Filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'OutputFileName', type: 'string', required: false, example: 'image.jpg' })
   @Header('access-control-allow-origin', '*')
   async getFile(@Query() query: any): Promise<StreamableFile> {
-    const filePath = join(process.cwd(), query.Folder || 'uploads', query.Filename || 'package.json');
+    const filePath = join(process.cwd(), 'uploads/'+query.Folder, query.Filename || 'package.json');
 
     try {
       // Check if file exists asynchronously before creating the stream
