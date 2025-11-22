@@ -8,8 +8,8 @@ export default () => ({
     port: Number(process.env.DB_PORT) || 3306,
     user: process.env.DB_USER || 'root',
     pass: process.env.DB_PASS || 'password',
-    name: process.env.DB_NAME || 'jobs_for_women',
-    sync: Boolean(process.env.DB_SYNC) || true,
+    name: process.env.DB_NAME || 'jobs_api_server',
+    sync: Boolean(process.env.DB_SYNC) || false,
   },
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
