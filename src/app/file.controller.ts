@@ -7,7 +7,7 @@ import { stat } from 'node:fs/promises';
 import { Public } from 'src/auth/auth.decorator';
 
 @ApiBearerAuth()
-@ApiTags('Download File')
+@ApiTags('Files Management')
 @Controller('file')
 export class FileController {
 
