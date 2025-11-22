@@ -18,6 +18,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Jobs Portal API Documentation')
     .setDescription('The Jobs Portal API Documentation')
+    .setContact('Shibaji Debnath', 'https://shibajidebnath.com', 'imshibaji@gmail.com')
     .setExternalDoc('Auth API Documentation', '/api/auth/docs')
     .addServer(process.env.APP_URL || 'http://localhost:3300')
     .addBearerAuth()
