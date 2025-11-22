@@ -2,9 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { SkillsService } from './skills.service';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
-import { Public } from 'src/auth/auth.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
-@Public()
+@ApiBearerAuth()
 @Controller('skills')
 export class SkillsController {
     constructor(private readonly skillService: SkillsService) { }

@@ -32,8 +32,8 @@ export class Company {
     @Column()
     website?: string;
 
-    @Column()
-    isDeleted?: boolean;
+    @Column({ default: false })
+    isDeleted: boolean;
 
     @Column()
     userId: number;

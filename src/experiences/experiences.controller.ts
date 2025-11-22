@@ -2,9 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { ExperiencesService } from './experiences.service';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
-import { Public } from 'src/auth/auth.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
-@Public()
+@ApiBearerAuth()
 @Controller('experiences')
 export class ExperiencesController {
     constructor(private readonly experiencesService: ExperiencesService) {}

@@ -2,11 +2,10 @@ import { Controller, Get, StreamableFile, Query, Header, NotFoundException, BadR
 import * as fs from 'fs';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
-import { Public } from 'src/auth/auth.decorator';
-import { ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
 
-@Public()
+@ApiBearerAuth()
 @ApiTags('Download File')
 @Controller('file')
 export class FileController {

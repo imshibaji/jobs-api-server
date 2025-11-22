@@ -3,10 +3,10 @@ import { ChannelsService } from './channels.service';
 import { EmailDto } from './dto/email.dto';
 import { MessageDto } from './dto/message.dto';
 import { PushNotificationDto } from './dto/push-notification.dto';
-import { Public } from 'src/auth/auth.decorator';
 import { WebhookDto } from './dto/webhook.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
-@Public()
+@ApiBearerAuth()
 @Controller('channels')
 export class ChannelsController {
     constructor(private readonly channelsService: ChannelsService) {}
