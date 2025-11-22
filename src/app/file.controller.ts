@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import { Public } from 'src/auth/auth.decorator';
-import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
 
 @Public()
@@ -22,6 +22,30 @@ export class FileController {
       console.error('Error reading directory (async):', err);
     }
     return [];
+  }
+
+  @Get('image/view')
+  @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
+  @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
+  @ApiQuery({ name: 'type', type: 'string', required: false, example: 'image/jpeg' })
+  @ApiProduces('image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/tiff', 'image/avif') // Informs Swagger the endpoint returns an image
+  @Header('access-control-allow-origin', '*')
+  @Header('access-control-allow-credentials', 'true')
+  @ApiResponse({ status: 200, description: 'File found' })
+  @ApiResponse({ status: 404, description: 'File not found' })
+  async imageView(@Query('filename') filename: string, @Query('folder') folder: string, @Query('type') type?: string): Promise<StreamableFile> {
+    const filePath = join(process.cwd(), 'uploads', folder || 'pictures', filename);
+    try {
+      await stat(filePath); // Check if file exists
+      const file = createReadStream(filePath);
+      
+      // Return the StreamableFile. NestJS handles setting the Content-Type header correctly.
+      const imageBlob = new StreamableFile(file, { type: type || 'image/jpeg' });
+
+      return imageBlob;
+    } catch (err) {
+      throw new NotFoundException(`File not found at path: ${filePath}`);
+    }
   }
 
 
