@@ -48,13 +48,13 @@ export class AuthService {
         };
     }
 
-    async signIn(username: string, pass: string): Promise<any> {
+    async signIn(email: string, pass: string): Promise<any> {
         try {
-            const user = await this.usersService.findByEmail(username);
+            const user = await this.usersService.findByEmail(email);
             // if (user?.password !== pass) {
             //     throw new UnauthorizedException();
             // }
-            if(user?.password && !await verifyPassword(pass, user.password)) {
+            if(user && user.email === email && !await verifyPassword(pass, user.password)) {
                 throw new UnauthorizedException();
             }
             const payload = { sub: user?.id, user:{
