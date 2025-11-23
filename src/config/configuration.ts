@@ -2,6 +2,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default () => ({
+  app_url: process.env.APP_URL || 'http://localhost:3300',
+  app_secret_key: process.env.APP_SECRET_KEY || 'app_key',
   database: {
     type: process.env.DB_TYPE || 'mysql',
     host: process.env.DB_HOST || 'localhost',
