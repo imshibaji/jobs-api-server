@@ -31,7 +31,7 @@ export class FileController {
   @ApiQuery({ name: 'type', type: 'string', required: false, example: 'image/jpeg' })
   @ApiProduces('image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/tiff', 'image/avif') // Informs Swagger the endpoint returns an image
   @Header('access-control-allow-origin', '*')
-  @Header('access-control-allow-credentials', 'true')
+  @Header('Cross-Origin-Resource-Policy', 'cross-origin')
   @ApiResponse({ status: 200, description: 'File found' })
   @ApiResponse({ status: 404, description: 'File not found' })
   async imageView(@Query('filename') filename: string, @Query('folder') folder: string, @Query('type') type?: string): Promise<StreamableFile> {
@@ -56,6 +56,9 @@ export class FileController {
   @ApiQuery({ name: 'Filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'OutputFileName', type: 'string', required: false, example: 'image.jpg' })
   @Header('access-control-allow-origin', '*')
+  @Header('Cross-Origin-Resource-Policy', 'cross-origin')
+  @ApiResponse({ status: 200, description: 'File found' })
+  @ApiResponse({ status: 404, description: 'File not found' })
   async getFile(@Query() query: any): Promise<StreamableFile> {
     const filePath = join(process.cwd(), 'uploads/'+query.Folder, query.Filename || 'package.json');
 
