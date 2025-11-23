@@ -70,14 +70,15 @@ export class AuthService {
                 // user,
             };
         } catch (error) {
-            throw new ExceptionsHandler(error);
+            throw new UnauthorizedException();
         }
     }
 
-    async signOut(request: any): Promise<UpdateResult> {
+    async signOut(request: Request): Promise<boolean> {
         const user = request.user as JwtPayload;
         const userId = user?.sub as number;
-        return await this.usersService.update(userId, { isOnline: false });
+        await this.usersService.update(userId, { isOnline: false });
+        return true;
     }
 
     async forgetPassword(email: string): Promise<String> {
