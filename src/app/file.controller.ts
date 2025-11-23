@@ -4,9 +4,10 @@ import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import { ApiBearerAuth, ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
+import { Public } from 'src/auth/auth.decorator';
 
 @ApiBearerAuth()
-@ApiTags('Download File')
+@ApiTags('Files Management')
 @Controller('file')
 export class FileController {
 
@@ -23,6 +24,7 @@ export class FileController {
     return [];
   }
 
+  @Public()
   @Get('image/view')
   @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
@@ -75,6 +77,18 @@ export class FileController {
     }
   }
 
+  @Get('delete')
+  @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
+  @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
+  async remove(@Query('filename') filename: string, @Query('folder') folder: string) {
+    const filePath = join(process.cwd(), 'uploads', folder || 'pictures', filename);
+    try {
+      await fs.promises.unlink(filePath);
+      return { message: 'File deleted successfully' };
+    } catch (err) {
+      throw new NotFoundException(`File not found at path: ${filePath}`);
+    }
+  }
 
   // // Or even:
   // @Get('/p')
