@@ -318,10 +318,31 @@ export class AuthController {
         },
     } })
 
+    @Public()
+    @HttpCode(HttpStatus.OK)
     @Post('encrypt-password')
     async encryptPassword(@Body() body: any) {        
         return {
             encryptedText: await this.authService.encryptPassword(body.password),
+        };
+    }
+
+    @Public()
+    @HttpCode(HttpStatus.OK)
+    @ApiBody({ type: Object, description: 'Text to be verified', examples: {
+        example1: {
+            summary: 'Example text',
+            value: '{"password":"password", "hashedPassword":"$2b$10$21VYtLaJLaDrAAyhrCL71OKplktSfekrlihZ5GJNYfPkkC3HzycjG"}',
+        },
+        example2: {
+            summary: 'Another example text',
+            value: '{"password":"mySecret123", "hashedPassword":"$2b$10$Lc7GpNKD1aPNPPdIbx7lCu16Hoccj5qpNbm5cXas503a0bs/HLwWm"}',
+        },
+    } })
+    @Post('verify-password')
+    async verifyPassword(@Body() body: any) {        
+        return {
+            varified: await this.authService.verifyPassword(body.password, body.hashedPassword),
         };
     }
 }

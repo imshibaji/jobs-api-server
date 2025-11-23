@@ -20,6 +20,10 @@ export class UsersService {
     async findByEmail(email: string): Promise<User | null> {
         return await this.usersRepository.findOne({ where: { email } });
     }
+    
+    async findByPhoneNumber(phoneNumber: string): Promise<User | null> {
+        return await this.usersRepository.findOne({ where: { phoneNumber } });
+    }
 
     async create(user: Partial<User>): Promise<User> {
         return await this.usersRepository.save(user);

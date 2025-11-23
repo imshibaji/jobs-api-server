@@ -2,10 +2,11 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { JwtPayload, SignUpDto } from './utils/auth.types';
-import { hashPassword, varifyPassword } from './utils/encryption';
+import { hashPassword, verifyPassword } from './utils/encryption';
 import { UpdateResult } from 'typeorm';
 import { Request } from 'express';
 import { sendEmail } from './utils/communications';
+import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +17,15 @@ export class AuthService {
     ) {}
 
     async signUp(user: SignUpDto): Promise<any> {
+        const userExists = await this.usersService.findByEmail(user.email);
+        const phoneNumberExists = await this.usersService.findByPhoneNumber(user.phoneNumber!);
+        if (userExists) {
+            throw new UnauthorizedException('User already exists');
+        }
+        if (phoneNumberExists) {
+            throw new UnauthorizedException('Phone number already exists');
+        }
+        
         const { password, ...result } = await this.usersService.create({
             email: user.email,
             name: user.name,
@@ -39,25 +49,29 @@ export class AuthService {
     }
 
     async signIn(username: string, pass: string): Promise<any> {
-        const user = await this.usersService.findByEmail(username);
-        // if (user?.password !== pass) {
-        //     throw new UnauthorizedException();
-        // }
-        if(user?.password && !await varifyPassword(pass, user.password)) {
-            throw new UnauthorizedException();
+        try {
+            const user = await this.usersService.findByEmail(username);
+            // if (user?.password !== pass) {
+            //     throw new UnauthorizedException();
+            // }
+            if(user?.password && !await verifyPassword(pass, user.password)) {
+                throw new UnauthorizedException();
+            }
+            const payload = { sub: user?.id, user:{
+                name: user?.name,
+                email: user?.email,
+                phoneNumber: user?.phoneNumber,
+                image: user?.image,
+                role: user!.role,
+            }};
+            await this.usersService.update(user?.id!, { isOnline: true });
+            return {
+                access_token: await this.jwtService.signAsync(payload),
+                // user,
+            };
+        } catch (error) {
+            throw new ExceptionsHandler(error);
         }
-        const payload = { sub: user?.id, user:{
-            name: user?.name,
-            email: user?.email,
-            phoneNumber: user?.phoneNumber,
-            image: user?.image,
-            role: user!.role,
-        }};
-        await this.usersService.update(user?.id!, { isOnline: true });
-        return {
-            access_token: await this.jwtService.signAsync(payload),
-            // user,
-        };
     }
 
     async signOut(request: any): Promise<UpdateResult> {
@@ -167,5 +181,9 @@ export class AuthService {
 
     async encryptPassword(text: string): Promise<string> {
         return await hashPassword(text);
+    }
+
+    async verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
+        return await verifyPassword(password, hashedPassword);
     }
 }
