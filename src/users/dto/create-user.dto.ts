@@ -1,8 +1,16 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Role } from "../roles/role.enum";
-import { CreateUserDto } from "src/users/dto/create-user.dto";
 
-export class SignUpDto {
+export enum Role {
+    Admin = 'admin',
+    Recruiter = 'recruiter',
+    User = 'user',
+}
+
+
+export class CreateUserDto {
+    @ApiProperty({ type: Number, required: true, description: 'user id' })
+    id?: number;
+
     @ApiProperty({ type: String, required: true, description: 'user full name' })
     name: string;
 
@@ -35,23 +43,4 @@ export class SignUpDto {
 
     @ApiProperty({ type: String, required: false, description: 'user github ID' })
     githubId?: string;
-}
-
-export class LoginDto {
-  @ApiProperty({ type: String, required: true , description: 'use the email as username' })
-  username: string;
-  @ApiProperty({ type: String, required: true, description: 'user password' })
-  password: string;
-}
-
-
-export class JwtPayload {
-  @ApiProperty({ type: Number, required: true, description: 'user id' })
-  sub: number;
-  @ApiProperty({ type: Object, required: true, description: 'user details' })
-  user: CreateUserDto;
-}
-
-export class JwtToken {
-  access_token: string;
 }

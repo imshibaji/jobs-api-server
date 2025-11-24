@@ -23,17 +23,32 @@ export class Applicant {
     @Column()
     country?: string;
 
-    @Column()
+    @Column({ nullable: true })
+    zipCode?: string;
+
+    @Column({ nullable: true })
+    bio?: string;
+
+    @Column({ nullable: true })
     dob?: string;
 
     @Column()
     gender: string;
 
     @Column()
-    phoneNumber: string;
+    email: string;
 
     @Column()
-    email: string;
+    phoneNumber: string;
+
+    @Column({ nullable: true })
+    skills?: string;
+
+    @Column({ nullable: true })
+    experience?: string;
+
+    @Column({ nullable: true })
+    location?: string;
 
     @Column()
     resume?: string;

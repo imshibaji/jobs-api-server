@@ -12,36 +12,22 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Public()
+    @Post('register')
     @HttpCode(HttpStatus.CREATED)
     @ApiBody({ type: SignUpDto, description: 'User registration credentials', examples: {
         admin: {
-            summary: 'Example credentials',
+            summary: 'Admin credentials',
             value: '{"email":"admin@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","role":"admin"}',
         },        
         candidate: {
-            summary: 'Another example credentials',
+            summary: 'Candidate credentials',
             value: '{"email":"user@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"user"}',
         },
         employer: {
-            summary: 'Another example credentials',
-            value: '{"email":"employer@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"employer"}',
+            summary: 'Employer credentials',
+            value: '{"email":"employer@example.com","password":"mySecret456","phoneNumber":"0987654323","name":"Jane Smith","role":"employer"}',
         },
     }})
-
-    @Post('register')
-    @HttpCode(HttpStatus.CREATED)
-    @ApiBody({ type: SignUpDto, description: 'User registration credentials',
-        examples: {
-            example1: {
-                summary: 'Example credentials',
-                value: '{"email":"user1@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","image":"https://example.com/user.jpg","role":"admin"}',
-            },        
-            example2: {
-                summary: 'Another example credentials',
-                value: '{"email":"user2@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","image":"https://example.com/user2.jpg","role":"user"}',
-            },
-        }
-    })
     signUp(@Body() signUpDto: SignUpDto) {
         return this.authService.signUp(signUpDto);
     }
@@ -49,13 +35,17 @@ export class AuthController {
     @Public()
     @HttpCode(HttpStatus.OK)
     @ApiBody({ type: LoginDto, description: 'User login credentials', examples: {
-        example1: {
-            summary: 'Example credentials',
+        admin: {
+            summary: 'Admin credentials',
             value: '{"username":"admin@abc.com","password":"password"}',
         },
-        example2: {
-            summary: 'Another example credentials',
+        candidate: {
+            summary: 'Candidate credentials',
             value: '{"username":"user@abc.com","password":"password"}',
+        },
+        employer: {
+            summary: 'Employer credentials',
+            value: '{"username":"employer@abc.com","password":"password"}',
         },
     } })
     @Post('login')
@@ -194,13 +184,17 @@ export class AuthController {
     @UseGuards(AuthGuard)
     @Put('change-role')
     @ApiBody({ type: Object, description: 'New role', examples: {
-        example1: {
-            summary: 'Example new role',
+        admin: {
+            summary: 'Admin new role',
             value: '{"newRole":"admin"}',
         },
-        example2: {
-            summary: 'Another example new role',
+        candidate: {
+            summary: 'Candidate new role',
             value: '{"newRole":"user"}',
+        },
+        employer: {
+            summary: 'Employer new role',
+            value: '{"newRole":"employer"}',
         },
     }})
     async changeRole(@Request() req: ExpressRequest, @Body('newRole') newRole: string) {        
