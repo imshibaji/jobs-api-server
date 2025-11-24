@@ -6,7 +6,6 @@ import { hashPassword, verifyPassword } from './utils/encryption';
 import { UpdateResult } from 'typeorm';
 import { Request } from 'express';
 import { sendEmail } from './utils/communications';
-import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class AuthService {
@@ -48,13 +47,13 @@ export class AuthService {
         };
     }
 
-    async signIn(username: string, pass: string): Promise<any> {
+    async signIn(email: string, pass: string): Promise<any> {
         try {
-            const user = await this.usersService.findByEmail(username);
+            const user = await this.usersService.findByEmail(email);
             // if (user?.password !== pass) {
             //     throw new UnauthorizedException();
             // }
-            if(user?.password && !await verifyPassword(pass, user.password)) {
+            if(user && user.email === email && !await verifyPassword(pass, user.password)) {
                 throw new UnauthorizedException();
             }
             const payload = { sub: user?.id, user:{
@@ -70,14 +69,15 @@ export class AuthService {
                 // user,
             };
         } catch (error) {
-            throw new ExceptionsHandler(error);
+            throw new UnauthorizedException();
         }
     }
 
-    async signOut(request: any): Promise<UpdateResult> {
+    async signOut(request: Request): Promise<boolean> {
         const user = request.user as JwtPayload;
         const userId = user?.sub as number;
-        return await this.usersService.update(userId, { isOnline: false });
+        await this.usersService.update(userId, { isOnline: false });
+        return true;
     }
 
     async forgetPassword(email: string): Promise<String> {
