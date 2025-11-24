@@ -6,7 +6,6 @@ import { hashPassword, verifyPassword } from './utils/encryption';
 import { UpdateResult } from 'typeorm';
 import { Request } from 'express';
 import { sendEmail } from './utils/communications';
-import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class AuthService {

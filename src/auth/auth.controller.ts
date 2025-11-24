@@ -14,13 +14,17 @@ export class AuthController {
     @Public()
     @HttpCode(HttpStatus.CREATED)
     @ApiBody({ type: SignUpDto, description: 'User registration credentials', examples: {
-        example1: {
+        admin: {
             summary: 'Example credentials',
-            value: '{"email":"user1@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","image":"https://example.com/user.jpg","role":"admin"}',
+            value: '{"email":"admin@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","role":"admin"}',
         },        
-        example2: {
+        candidate: {
             summary: 'Another example credentials',
-            value: '{"email":"user2@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","image":"https://example.com/user2.jpg","role":"user"}',
+            value: '{"email":"user@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"user"}',
+        },
+        employer: {
+            summary: 'Another example credentials',
+            value: '{"email":"employer@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"employer"}',
         },
     }})
 
