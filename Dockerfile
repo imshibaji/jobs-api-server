@@ -68,6 +68,7 @@ COPY package.json .
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/uploads ./uploads
+COPY --from=build /app/public ./public
 
 
 # Expose the port that the application listens on.

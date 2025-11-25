@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@casl/ability": "^6.7.3",
+    "@debiprasadmishra50/swagger-dark-mode": "^1.0.1",
     "@nestjs/axios": "^4.0.1",
     "@nestjs/bull": "^11.0.4",
     "@nestjs/common": "^11.0.1",

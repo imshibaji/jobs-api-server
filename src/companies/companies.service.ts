@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository, Like } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Company } from './company.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
@@ -12,7 +12,7 @@ export class CompaniesService {
     ) {}
 
     async searchBy(prop: string, value: string): Promise<Company[]> {
-        return this.companyRepository.findBy({ [prop]: Like(`%${value}%`), isDeleted: false });
+        return this.companyRepository.findBy({ [prop]: ILike(`%${value}%`), isDeleted: false });
     }
 
     async findAll(): Promise<Company[]> {
