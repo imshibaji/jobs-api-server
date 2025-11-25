@@ -3,11 +3,14 @@ import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import compression from 'compression';
+import * as express from 'express';
+import { join } from 'path';
+import { swaggerDarkModeMiddleware } from '@debiprasadmishra50/swagger-dark-mode';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(helmet());
-  app.use(compression());
+
   // Enable CORS
   app.enableCors({
     origin: '*', // Replace with the actual URL of your client app (e.g., 'https://yourfrontend.com')
@@ -16,6 +19,26 @@ async function bootstrap() {
     credentials: true,
   });
 
+  // Serve static files, including your custom CSS
+  app.use('/', express.static(join(__dirname, '..', 'public'))); 
+
+  // Apply dark mode middleware before Swagger setup
+  app.use('/', swaggerDarkModeMiddleware);
+
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [`'self'`],
+        styleSrc: [`'self'`, `'unsafe-inline'`],
+        scriptSrc: [`'self'`, `'unsafe-inline'`],
+        // Add other directives as necessary
+      },
+    },
+  }));
+  app.use(compression());
+  
+
+  // Swagger setup
   const config = new DocumentBuilder()
     .setTitle('Jobs Portal API Documentation')
     .setDescription('The Jobs Portal API Documentation')
@@ -25,8 +48,18 @@ async function bootstrap() {
     .addBearerAuth()
     .setVersion('1.0')
     .build();
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('', app, documentFactory);
+  const documentFactory = () => SwaggerModule.createDocument(app, config, {
+    autoTagControllers: true,
+    ignoreGlobalPrefix: true,
+  });
+  SwaggerModule.setup('', app, documentFactory, {
+    customSiteTitle: 'Jobs Portal API Documentation',
+    customCssUrl: '/css/swagger-dark.css',
+    swaggerOptions: {
+      // tagsSorter: "alpha",
+      // docExpansion: "none",
+    },
+  });
 
   await app.listen(process.env.APP_PORT ?? 3300);
 }

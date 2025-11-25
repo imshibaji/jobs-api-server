@@ -1,6 +1,6 @@
 import { Controller, Post, UploadedFile, UseInterceptors, Body, BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiConsumes, ApiBody, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiConsumes, ApiBody, ApiTags, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import * as fs from 'fs';
@@ -49,6 +49,26 @@ export class UploadController {
         file: {
           type: 'string',
           format: 'binary',
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'File uploaded successfully',
+    schema: {
+      type: 'object',
+      properties: {
+        message: { type: 'string', example: 'File uploaded successfully' },
+        path: { type: 'string', example: '/uploads/pictures/avatar.jpg' },
+        finalPath: { type: 'string', example: 'http://localhost:3000/uploads/pictures/avatar.jpg' },
+        filename: { type: 'string', example: 'avatar.jpg' },
+        body: {
+          type: 'object',
+          properties: {
+            folder: { type: 'string', example: 'pictures' },
+            customName: { type: 'string', example: 'avatar' },
+          },
         },
       },
     },

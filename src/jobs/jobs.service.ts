@@ -20,7 +20,10 @@ export class JobsService {
     }
 
     async create(jobData: CreateJobDto): Promise<Job> {
-        const job = this.jobsRepository.create(jobData);
+        const job = this.jobsRepository.create({
+            ...jobData,
+            isDeleted: false,
+        });
         return this.jobsRepository.save(job);
     }
 

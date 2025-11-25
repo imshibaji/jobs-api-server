@@ -8,19 +8,28 @@ export class Company {
     @Column()
     name: string;
 
-    @Column()
+    @Column({ nullable: true, name: 'recruiter_name' })
+    recruiterName?: string;
+
+    @Column({ nullable: true, name: 'industry_type' })
+    industryType?: string;
+
+    @Column({ nullable: true, name: 'company_size' })
+    companySize?: string;
+
+    @Column({ nullable: true })
     image?: string;
 
-    @Column()
+    @Column({ nullable: true })
     address?: string;
 
-    @Column()
+    @Column({ nullable: true })
     city?: string;
 
-    @Column()
+    @Column({ nullable: true })
     state?: string;
 
-    @Column()
+    @Column({ nullable: true })
     country?: string;
 
     @Column()
@@ -29,14 +38,14 @@ export class Company {
     @Column()
     email: string;
 
-    @Column()
+    @Column({ nullable: true })
     website?: string;
 
     @Column({ default: false })
     isDeleted: boolean;
 
-    @Column()
-    userId: number;
+    @Column({ nullable: true, name: 'user_id' })
+    userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
