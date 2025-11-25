@@ -4,6 +4,15 @@ export class CreateCompanyDto {
     @ApiProperty({ required: true, example: 'Tech Solutions Ltd.' })
     name: string;
 
+    @ApiProperty({ required: false, example: 'John Doe' })
+    recruiterName?: string;
+
+    @ApiProperty({ required: false, example: 'Tech' })
+    industryType?: string;
+
+    @ApiProperty({ required: false, example: '100-500 employees' })
+    companySize?: string;
+
     @ApiProperty({ required: false, example: 'https://example.com/logo.png' })
     image?: string;
 

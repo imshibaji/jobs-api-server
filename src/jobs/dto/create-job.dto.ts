@@ -36,4 +36,7 @@ export class CreateJobDto {
 
     @ApiProperty({ example: 1, description: 'The ID of the company posting the job' })
     companyId: number;
+
+    @ApiProperty({ example: 1, description: 'The ID of the user posting the job' })
+    userId: number;
 }

@@ -20,26 +20,32 @@ export class Job{
     @Column()
     benefits: string;
 
-    @Column()
+    @Column({ nullable: true })
+    skills?: string;
+
+    @Column({ nullable: true })
     location?: string;
 
-    @Column()
+    @Column({ nullable: true })
     salary?: number;
 
-    @Column()
+    @Column({ nullable: true, name: 'salary_type' })
     salaryType?: string;
 
-    @Column()
+    @Column({ nullable: true, name: 'salary_range'})
     salaryRange?: string;
 
-    @Column()
+    @Column({ nullable: true, name: 'employment_type' })
     employmentType?: string;
 
-    @Column()
+    @Column({ nullable: true })
     isRemote?: boolean;
 
-    @Column()
+    @Column({ nullable: true, name: 'company_id' })
     companyId: number;
+
+    @Column({ nullable: true, name: 'user_id' })
+    userId: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;

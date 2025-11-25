@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @Controller('companies')
@@ -9,37 +9,44 @@ export class CompaniesController {
     constructor(private readonly companiesService: CompaniesService) {}
 
     @Get()
-    findAll() {
-        return this.companiesService.findAll();
+    async findAll() {
+        return await this.companiesService.findAll();
+    }
+
+    @Get('search')
+    @ApiQuery({ name: 'value', required: true, type: String})
+    @ApiQuery({ name: 'key', required: true, type: String, enum: ['name', 'email', 'phoneNumber', 'recruiterName', 'website']})
+    async seachBy(@Query('key') key: string, @Query('value') value: string) {
+        return await this.companiesService.searchBy(key, value);
     }
 
     @Get(':id')
-    findOne(@Param('id') id: number) {
-        return this.companiesService.findOne(id);
+    async findOne(@Param('id') id: number) {
+        return await this.companiesService.findOne(id);
     }
 
     @Post()
-    create(@Body() createCompanyDto: CreateCompanyDto) {
-        return this.companiesService.create(createCompanyDto);
+    async create(@Body() createCompanyDto: CreateCompanyDto) {
+        return await this.companiesService.create(createCompanyDto);
     }
 
     @Put(':id')
-    update(@Param('id') id: number, @Body() updateCompanyDto: any) {
-        return this.companiesService.update(id, updateCompanyDto);
+    async update(@Param('id') id: number, @Body() updateCompanyDto: any) {
+        return await this.companiesService.update(id, updateCompanyDto);
     }
 
     @Put(':id/soft-delete')
-    softDelete(@Param('id') id: number) {
-        return this.companiesService.softDelete(id);
+    async softDelete(@Param('id') id: number) {
+        return await this.companiesService.softDelete(id);
     }
 
     @Put(':id/restore')
-    restore(@Param('id') id: number) {
-        return this.companiesService.restore(id);
+    async restore(@Param('id') id: number) {
+        return await this.companiesService.restore(id);
     }
 
     @Delete(':id')
-    delete(@Param('id') id: number) {
-        return this.companiesService.delete(id);
+    async delete(@Param('id') id: number) {
+        return await this.companiesService.delete(id);
     }
 }
