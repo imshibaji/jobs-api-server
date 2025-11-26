@@ -39,8 +39,11 @@ body.dark-mode .swagger-ui .parameters-col_description p,
 body.dark-mode .swagger-ui .parameters-col_description div {
   color: #cccccc !important;
 }
+body.dark-mode .swagger-ui .opblock-section-header .parameter__name {
+  color: #3b4151 !important;
+}
 body.dark-mode .swagger-ui .parameter__name {
-  color: #ffffff !important;
+  color: #cccccc !important;
 }
 body.dark-mode .swagger-ui .parameter__type {
   color: #61affe !important;
@@ -179,7 +182,7 @@ body.dark-mode .swagger-ui .copy-to-clipboard:hover {
 
 /* Additional styles for other elements */
 body.dark-mode .swagger-ui .scheme-container {
-  background: #404040 !important;
+  background: #232323 !important;
   color: #e0e0e0 !important;
 }
 
@@ -225,4 +228,12 @@ body.dark-mode .swagger-ui .operation-tag-content .opblock-summary-options {
 body.dark-mode .swagger-ui .operation-tag-content .opblock-summary-head {
   background: #00004d !important;
   color: #e0e0e0 !important;
+}
+
+body.dark-mode .swagger-ui .parameters-container .parameters input{
+  color: #4e4e4e !important;
+}
+
+.swagger-ui .parameter__empty_value_toggle {
+  color: #c9c9c9 !important;
 }

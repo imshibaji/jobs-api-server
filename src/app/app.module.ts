@@ -49,7 +49,7 @@ import { MulterModule } from '@nestjs/platform-express';
     ApplicationsModule,
     ArticlesModule,
     TagsModule,
-    ChannelsModule
+    ChannelsModule,
   ],
   controllers: [AppController, UploadController, FileController],
   providers: [AppService],

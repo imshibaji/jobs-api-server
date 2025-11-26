@@ -55,10 +55,6 @@ async function bootstrap() {
   SwaggerModule.setup('', app, documentFactory, {
     customSiteTitle: 'Jobs Portal API Documentation',
     customCssUrl: '/css/swagger-dark.css',
-    swaggerOptions: {
-      // tagsSorter: "alpha",
-      // docExpansion: "none",
-    },
   });
 
   await app.listen(process.env.APP_PORT ?? 3300);
