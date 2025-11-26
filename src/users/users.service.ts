@@ -26,11 +26,12 @@ export class UsersService {
     }
 
     async create(user: Partial<User>): Promise<User> {
+        user.role = user.role || 'user';
         return await this.usersRepository.save(user);
     }
 
     async update(id: number, user: Partial<User>): Promise<UpdateResult> {
-        return await this.usersRepository.update(id, {...user, updatedAt: new Date() });
+        return await this.usersRepository.update(id, {...user, role: user.role || 'user', updatedAt: new Date() });
     }
 
     async delete(id: number): Promise<DeleteResult> {

@@ -1,5 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+enum Role {
+    Admin = "admin",
+    Employer = "employer",
+    User = "user"
+}
+
 @Entity('users')
 export class User{
     @PrimaryGeneratedColumn()
@@ -26,7 +32,7 @@ export class User{
     @Column({ nullable: true })
     image?: string;
 
-    @Column({ type: 'enum', enum: ['admin', 'user'], default: 'user', nullable: true })
+    @Column({ type: 'enum', enum: Role, default: 'user', nullable: true })
     role?: string;
 
     @Column({ nullable: true })

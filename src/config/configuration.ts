@@ -1,7 +1,9 @@
 import * as dotenv from 'dotenv';
+import * as packageFile from '../../package.json';
 dotenv.config();
 
 export default () => ({
+  APP_VERSION: packageFile.version || '1.0.0',
   app_url: process.env.APP_URL || 'http://localhost:3300',
   app_secret_key: process.env.APP_SECRET_KEY || 'app_key',
   database: {
