@@ -25,7 +25,7 @@ export class FileController {
   }
 
   @Public()
-  @Get('image/view')
+  @Get('view')
   @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
   @ApiQuery({ name: 'type', type: 'string', required: false, example: 'image/jpeg' })

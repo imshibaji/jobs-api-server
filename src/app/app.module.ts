@@ -32,7 +32,7 @@ import { MulterModule } from '@nestjs/platform-express';
       envFilePath: ['.env'],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
+      rootPath: join(__dirname, '../../..', 'public'),
     }),
     MulterModule.register({
       dest: './uploads',

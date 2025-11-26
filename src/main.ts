@@ -3,13 +3,17 @@ import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import compression from 'compression';
-import * as express from 'express';
-import { join } from 'path';
+// import * as express from 'express';
+// import { join } from 'path';
 import { swaggerDarkModeMiddleware } from '@debiprasadmishra50/swagger-dark-mode';
+import * as packageJson from '../package.json';
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Serve static files, including your custom CSS
+  // app.use('/', express.static(join(__dirname, '..', 'public')));
 
   // Enable CORS
   app.enableCors({
@@ -18,9 +22,6 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
-
-  // Serve static files, including your custom CSS
-  app.use('/', express.static(join(__dirname, '..', 'public'))); 
 
   // Apply dark mode middleware before Swagger setup
   app.use('/', swaggerDarkModeMiddleware);
@@ -46,7 +47,7 @@ async function bootstrap() {
     .setExternalDoc('Auth API Documentation', '/api/auth/docs')
     .addServer(process.env.APP_URL || 'http://localhost:3300')
     .addBearerAuth()
-    .setVersion('1.0')
+    .setVersion(packageJson.version || '1.0.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config, {
     autoTagControllers: true,
