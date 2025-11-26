@@ -8,19 +8,19 @@ export class Applicant {
     @Column()
     name: string;
 
-    @Column()
+    @Column({ nullable: true })
     image?: string;
 
-    @Column()
+    @Column({ nullable: true })
     address?: string;
 
-    @Column()
+    @Column({ nullable: true })
     city?: string;
 
-    @Column()
+    @Column({ nullable: true })
     state?: string;
 
-    @Column()
+    @Column({ nullable: true })
     country?: string;
 
     @Column({ nullable: true })
@@ -32,8 +32,8 @@ export class Applicant {
     @Column({ nullable: true })
     dob?: string;
 
-    @Column()
-    gender: string;
+    @Column({ nullable: true })
+    gender?: string;
 
     @Column()
     email: string;
@@ -50,13 +50,13 @@ export class Applicant {
     @Column({ nullable: true })
     location?: string;
 
-    @Column()
+    @Column({ nullable: true })
     resume?: string;
 
-    @Column()
+    @Column({ default: false })
     isDeleted?: boolean;
 
-    @Column()
+    @Column({ nullable: true })
     userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
