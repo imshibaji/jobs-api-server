@@ -1,9 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-enum Role {
+export enum Role {
     Admin = "admin",
     Employer = "employer",
+    Editor = "editor",
     User = "user"
+}
+
+export enum Status {
+    Active = "active",
+    Inactive = "inactive",
+    Suspended = "suspended"
 }
 
 @Entity('users')
@@ -34,6 +41,9 @@ export class User{
 
     @Column({ type: 'enum', enum: Role, default: 'user', nullable: true })
     role?: string;
+
+    @Column({ type: 'enum', enum: Status, default: 'active', nullable: true })
+    status?: string;
 
     @Column({ nullable: true })
     instagramId?: string;

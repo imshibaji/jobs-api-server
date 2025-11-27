@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { User } from './users.entity';
+import { hashPassword, verifyPassword } from 'src/auth/utils/encryption';
 
 @Injectable()
 export class UsersService {
@@ -10,7 +11,7 @@ export class UsersService {
     ) {}
 
     async findAll(): Promise<User[]> {
-        return await this.usersRepository.find();
+        return await this.usersRepository.find({ order: { createdAt: 'DESC' } });
     }
 
     async findOne(id: number): Promise<User | null> {
@@ -31,7 +32,7 @@ export class UsersService {
     }
 
     async update(id: number, user: Partial<User>): Promise<UpdateResult> {
-        return await this.usersRepository.update(id, {...user, role: user.role || 'user', updatedAt: new Date() });
+        return await this.usersRepository.update(id, {...user, updatedAt: new Date() });
     }
 
     async delete(id: number): Promise<DeleteResult> {
