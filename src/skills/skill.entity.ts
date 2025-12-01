@@ -14,11 +14,14 @@ export class Skill {
     @Column()
     experience: string;
 
+    @Column({ name: 'last_used', type: 'timestamp', nullable: true })
+    lastUsed?: Date;
+
     @Column()
     applicantId: number;
 
-    @Column()
-    isDeleted: boolean;
+    @Column({ default: false })
+    isDeleted?: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;

@@ -11,11 +11,11 @@ export class Experience {
     @Column()
     position: string;
 
-    @Column('text')
-    description: string;
+    @Column({name: 'used_skills' })
+    usedSkills?: string;
 
-    @Column({name: 'used_skills',type: 'simple-array' })
-    usedSkills: string[];
+    @Column()
+    location?: string;
 
     @Column({name: 'start_date', type: 'date' })
     startDate: Date;

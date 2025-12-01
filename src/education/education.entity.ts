@@ -17,8 +17,8 @@ export class Education {
     @Column({ nullable: true })
     grade?: string;
 
-    @Column({ nullable: true })
-    description?: string;
+    @Column({ name: 'applicant_id', nullable: true })
+    applicantId?: number;
 
     @Column({name: 'start_date', type: 'date' })
     startDate: Date;

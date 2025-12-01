@@ -10,6 +10,9 @@ export class CreateSkillDto {
     @ApiProperty({ example: '3 years' })
     experience: string;
 
+    @ApiProperty({ example: '2022-01-01' })
+    lastUsed?: Date;
+
     @ApiProperty({ example: 1 })
     applicantId: number;
 

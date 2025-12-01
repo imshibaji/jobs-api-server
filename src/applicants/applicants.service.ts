@@ -17,7 +17,11 @@ export class ApplicantsService {
   }
 
   findAll() {
-    return this.applicantRepository.find();
+    return this.applicantRepository.find({
+      order: {
+        id: 'DESC'
+      }
+    });
   }
 
   findOne(id: number) {
