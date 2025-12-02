@@ -13,8 +13,8 @@ export class CreateEducationDto {
     @ApiProperty({ required: false })
     grade?: string;
 
-    @ApiProperty({ required: false })
-    description?: string;
+    @ApiProperty({ default: 1 })
+    applicantId: number;
 
     @ApiProperty()
     startDate: Date;

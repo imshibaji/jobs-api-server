@@ -7,11 +7,11 @@ export class CreateExperienceDto {
     @ApiProperty({ example: 'Software Engineer' })
     position: string;
 
-    @ApiProperty({ example: 'Developed a new feature for the company' })
-    description: string;
+    @ApiProperty({ example: 'JavaScript, React, Node.js' })
+    usedSkills: string;
 
-    @ApiProperty({ example: ['JavaScript', 'React', 'Node.js'] })
-    usedSkills: string[];
+    @ApiProperty({ example: 'San Francisco, CA' })
+    location?: string;
 
     @ApiProperty({ example: '2022-01-01' })
     startDate: Date;

@@ -6,6 +6,9 @@ export class Application {
     id?: number;
 
     @Column()
+    userId: number;
+
+    @Column()
     jobId: number;
 
     @Column()

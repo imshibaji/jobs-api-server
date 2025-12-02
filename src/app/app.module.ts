@@ -22,6 +22,7 @@ import { RouterModule } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MulterModule } from '@nestjs/platform-express';
+import { PortfoliosModule } from 'src/portfolios/portfolios.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { MulterModule } from '@nestjs/platform-express';
     SkillsModule,
     ExperiencesModule,
     EducationModule,
+    PortfoliosModule,
     CompaniesModule,
     JobsModule,
     ApplicationsModule,
