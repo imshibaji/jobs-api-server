@@ -14,8 +14,8 @@ export class Company {
     @Column({ nullable: true, name: 'industry_type' })
     industryType?: string;
 
-    @Column({ nullable: true, name: 'company_size' })
-    companySize?: string;
+    @Column({ nullable: true, name: 'size' })
+    size?: string;
 
     @Column({ nullable: true })
     image?: string;
@@ -31,6 +31,9 @@ export class Company {
 
     @Column({ nullable: true })
     country?: string;
+
+    @Column({ nullable: true })
+    zipCode?: string;
 
     @Column()
     phoneNumber: string;

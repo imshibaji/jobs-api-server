@@ -27,6 +27,12 @@ export class Job{
     location?: string;
 
     @Column({ nullable: true })
+    experience?: string;
+
+    @Column({ nullable: true })
+    currency?: string;
+
+    @Column({ nullable: true })
     salary?: number;
 
     @Column({ nullable: true, name: 'salary_type' })

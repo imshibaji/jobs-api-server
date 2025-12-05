@@ -50,6 +50,7 @@ export class FileController {
   }
 
 
+  @Public()
   @Get('download')
   @ApiQuery({ name: 'Folder', type: 'string', required: false, example: 'pictures' })
   @ApiQuery({ name: 'Type', type: 'string', required: false, example: 'image/jpg' })
