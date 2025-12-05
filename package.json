@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "This is the server application of the project.",
   "author": "Shibaji Debnath",
   "private": true,

@@ -16,8 +16,17 @@ export class CreateJobDto {
     @ApiProperty({ example: 'Health insurance, 401(k), paid time off.', description: 'The benefits of the job' })
     benefits: string;
 
+    @ApiProperty({ example: 'Software Engineer', description: 'The skills required for the job', required: false })
+    skills?: string;
+
     @ApiProperty({ example: 'New York, NY', description: 'The location of the job', required: false })
     location?: string;
+
+    @ApiProperty({ example: '1 year', description: 'The experience required for the job', required: false })
+    experience?: string;
+
+    @ApiProperty({ example: 'USD', description: 'The currency of the salary', required: false })
+    currency?: string;
 
     @ApiProperty({ example: 80000, description: 'The salary for the job', required: false })
     salary?: number;

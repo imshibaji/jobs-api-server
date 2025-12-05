@@ -23,6 +23,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MulterModule } from '@nestjs/platform-express';
 import { PortfoliosModule } from 'src/portfolios/portfolios.module';
+import { OffersModule } from 'src/offers/offers.module';
+import { InterviewsModule } from 'src/interviews/interviews.module';
+import { JoiningsModule } from 'src/joinings/joinings.module';
 
 @Module({
   imports: [
@@ -49,6 +52,9 @@ import { PortfoliosModule } from 'src/portfolios/portfolios.module';
     CompaniesModule,
     JobsModule,
     ApplicationsModule,
+    InterviewsModule,
+    OffersModule,
+    JoiningsModule,
     ArticlesModule,
     TagsModule,
     ChannelsModule,
