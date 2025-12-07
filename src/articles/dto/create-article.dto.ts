@@ -25,8 +25,8 @@ export class CreateArticleDto {
     @ApiProperty({ description: 'The type of the article', enum: ['post', 'page', 'article'], example: 'post', required: true })
     type: string;
 
-    @ApiProperty({ description: 'Whether the article is published or not', example: true, required: false })
-    isPublished?: boolean;
+    @ApiProperty({ description: 'The status of the article', enum: ['draft', 'published', 'archived', 'deleted'], example: 'draft', required: true })
+    status?: string;
 
     @ApiProperty({ description: 'Whether the article is archived or not', example: false, required: false })
     isArchived?: boolean;

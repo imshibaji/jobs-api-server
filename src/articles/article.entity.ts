@@ -29,8 +29,8 @@ export class Article {
     @Column({ name: 'type', default: 'post' })
     type: string;
 
-    @Column({ name: 'is_published', default: false })
-    isPublished: boolean;
+    @Column({ name: 'status', default: 'draft' })
+    status: string;
 
     @Column({ name: 'is_archived', default: false })
     isArchived: boolean;

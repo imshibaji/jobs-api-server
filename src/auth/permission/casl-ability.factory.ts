@@ -20,7 +20,7 @@ export class CaslAbilityFactory {
     }
 
     can(Action.Update, Article, { userId: user.id });
-    cannot(Action.Delete, Article, { isPublished: true });
+    cannot(Action.Delete, Article, { isDeleted: false });
 
     return build({
       // Read https://casl.js.org/v6/en/guide/subject-type-detection#use-classes-as-subject-types for details
