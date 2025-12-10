@@ -6,30 +6,6 @@ This is the Fullstack Jobs Portal Applications APIs. If you wanted to launch you
 
 [Jobs Portal API](https://github.com/imshibaji/jobs-api-server) is based on a [NestJS](https://github.com/nestjs/nest) framework TypeScript starter repository. It is an open source project that anyone can use to launch their own Jobs Portal. Here you can find all the resources you need to get started with the project. 
 
-As a NestJS developer, you can use this project as a starting point for your own projects. If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS.
-
-## Quick Start
-
-```bash
-# Clone the repository
-$ git clone https://github.com/imshibaji/jobs-api-server.git
-
-# Move into the directory
-$ cd jobs-api-server
-
-# Create .env file
-$ cp .env.example .env
-
-# Install dependencies
-$ pnpm install
-
-# Run the development server
-$ pnpm run start:dev
-
-# Run the production server
-$ pnpm run start:prod
-```
-
 ## Environment Variables
 
 To run this project, you will need to create a `.env` file and add the following environment variables:
@@ -65,84 +41,6 @@ SMTP_SECURITY=TLS # or SSL
 WHATSAPP_NUMBER=<your-number>
 SMS_NUMBER=<your-number>
 ```
-
-## Compile and run the project
-
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## How to use
-
-1. Register a new user
-2. Then login to your account
-3. Get Access Token and Set Authorization Header
-4. Then you can use the API endpoints
-
-## API Endpoints
-
-```bash
-# Register a new user
-POST /auth/register
-
-# Login a user
-POST /auth/login
-
-# Get all jobs
-GET /jobs
-
-# Get a single job
-GET /jobs/:id
-
-# Create a new job
-POST /jobs
-
-# Update a job
-PUT /jobs/:id
-
-# Delete a job
-DELETE /jobs/:id
-
-# Many more API endpoints are available in the project source code
-```
-
-## Hosting on VPS
-You can deploy your Project on VPS with [Hostinger](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6). It a very cost-effective and easy-to-use platform for deploying NestJS applications on Hostinger.
-
-If want to get offer then you can use [Hostinger Offer](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6) for your project from this link.
-
-
-## Setup Jobs API Server on VPS
-
-1. Create a VPS on [Hostinger](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6)
-2. Choose your plan and click on checkout
-3. Enter your details and click on checkout
-4. Setup your VPS with Docker
-5. Then Follow this Process to [Setup Jobs API Server](https://github.com/imshibaji/jobs-api-server#deployment-process-with-docker) on Docker Easily
-
-## Deployment with Docker
-
-You can deploy This Project on Docker with [Docker](https://www.docker.com/). It a very cost-effective and easy-to-use platform for deploying NestJS applications on Docker.
 
 ## Deployment Process with Docker
 If you wanted to Quickly deploy this Project on Docker then you can follow these steps:
@@ -220,9 +118,11 @@ then run the following command:
 3. Then run `docker compose logs -f` command
 4. Then open `http://localhost:3300` in your browser
 5. Check Project Status with `docker compose ps` command
-6. For upgrading the project then run `docker compose down` command
-7. Then run `docker compose pull` command
-8. Then run `docker compose up -d` command
+
+## For upgrading the project 
+1. Run `docker compose down` command for stopping the project
+2. Run `docker compose pull` command for updating the project
+3. Run `docker compose up -d` command for starting the project
 
 
 Use this Process to deploy this Project on Docker Easily.
@@ -230,6 +130,58 @@ Use this Process to deploy this Project on Docker Easily.
 You can also modify the `Dockerfile` to fit your needs.
 
 But if you wanted to more control then you can modify the `docker-compose.yaml` file.
+
+## How to use
+
+1. Register a new user
+2. Then login to your account
+3. Get Access Token and Set Authorization Header
+4. Then you can use the API endpoints
+
+## API Endpoints
+
+```bash
+# Register a new user
+POST /auth/register
+
+# Login a user
+POST /auth/login
+
+# Get all jobs
+GET /jobs
+
+# Get a single job
+GET /jobs/:id
+
+# Create a new job
+POST /jobs
+
+# Update a job
+PUT /jobs/:id
+
+# Delete a job
+DELETE /jobs/:id
+
+# Many more API endpoints are available in the project source code
+```
+
+## Hosting on VPS
+You can deploy your Project on VPS with [Hostinger](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6). It a very cost-effective and easy-to-use platform for deploying NestJS applications on Hostinger.
+
+If want to get offer then you can use [Hostinger Offer](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6) for your project from this link.
+
+
+## Setup Jobs API Server on VPS
+
+1. Create a VPS on [Hostinger](https://www.hostinger.in/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=SHIBAJIDEBNATH&referral_id=019b06a2-98e8-7397-8bd6-f7b0e0cb1dc6)
+2. Choose your plan and click on checkout
+3. Enter your details and click on checkout
+4. Setup your VPS with Docker
+5. Then Follow this Process to [Setup Jobs API Server](#deployment-process-with-docker) on Docker Easily
+
+## Deployment with Docker
+
+You can deploy This Project on Docker with [Docker](https://www.docker.com/). It a very cost-effective and easy-to-use platform for deploying NestJS applications on Docker.
 
 ## Resources
 

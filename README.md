@@ -138,7 +138,7 @@ If want to get offer then you can use [Hostinger Offer](https://www.hostinger.in
 2. Choose your plan and click on checkout
 3. Enter your details and click on checkout
 4. Setup your VPS with Docker
-5. Then Follow this Process to [Setup Jobs API Server](https://github.com/imshibaji/jobs-api-server#deployment-process-with-docker) on Docker Easily
+5. Then Follow this Process to [Setup Jobs API Server](#deployment-process-with-docker) on Docker Easily
 
 ## Deployment with Docker
 
