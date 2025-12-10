@@ -18,6 +18,11 @@ export class ArticlesController {
         return this.articlesService.findOne(+id);
     }
 
+    @Get(':slug')
+    findBySlug(@Param('slug') slug: string) {
+        return this.articlesService.findBySlug(slug);
+    }
+
     @Post()
     create(@Body() createArticleDto: CreateArticleDto) {
         return this.articlesService.create(createArticleDto);

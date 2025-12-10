@@ -16,12 +16,13 @@ async function bootstrap() {
   // app.use('/', express.static(join(__dirname, '..', 'public')));
 
   // Enable CORS
-  app.enableCors({
-    origin: '*', // Replace with the actual URL of your client app (e.g., 'https://yourfrontend.com')
-    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
+  app.enableCors('*');
+  // app.enableCors({
+  //   origin: '*', // Replace with the actual URL of your client app (e.g., 'https://yourfrontend.com')
+  //   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true,
+  // });
 
   // Apply dark mode middleware before Swagger setup
   app.use('/', swaggerDarkModeMiddleware);
@@ -45,7 +46,6 @@ async function bootstrap() {
     .setDescription('The Jobs Portal API Documentation')
     .setContact('Shibaji Debnath', 'https://shibajidebnath.com', 'imshibaji@gmail.com')
     .setExternalDoc('Auth API Documentation', '/api/auth/docs')
-    .addServer(process.env.APP_URL || 'http://localhost:3300')
     .addBearerAuth()
     .setVersion(packageJson.version || '1.0.0')
     .build();

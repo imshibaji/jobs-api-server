@@ -38,6 +38,7 @@ import configuration from 'src/config/configuration';
     EmailService, 
     ScheduleProcessor,
     ExecuteService
-  ]
+  ],
+  exports: [ChannelsService]
 })
 export class ChannelsModule {}

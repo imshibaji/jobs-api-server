@@ -3,6 +3,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export enum Role {
     Admin = "admin",
     Employer = "employer",
+    Recruiter = "recruiter",
+    Manager = "manager",
+    HR = "hr",
     Editor = "editor",
     User = "user"
 }
@@ -45,6 +48,8 @@ export class User{
     @Column({ type: 'enum', enum: Status, default: 'active', nullable: true })
     status?: string;
 
+
+
     @Column({ nullable: true })
     instagramId?: string;
 
@@ -60,12 +65,15 @@ export class User{
     @Column({ nullable: true })
     githubId?: string;
 
+    @Column({ nullable: true })
+    twitterId?: string;
+
     @Column({ default: false })
     isOnline: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true })
     createdAt?: Date;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP', nullable: true })
     updatedAt?: Date;
 }

@@ -15,15 +15,21 @@ export class ArticlesService {
         return this.articleRepository.find();
     }
 
+    findBySlug(slug: string): Promise<Article | null> {
+        return this.articleRepository.findOneBy({ slug });
+    }
+
     findOne(id: number): Promise<Article | null> {
         return this.articleRepository.findOneBy({ id });
     }
 
     async create(article: CreateArticleDto): Promise<Article> {
+        article.slug = article.slug || article.title.replace(/\s+/g, '-').toLowerCase();
         return this.articleRepository.save(article);
     }
 
     async update(id: number, article: UpdateArticleDto): Promise<Article | null> {
+        article.slug = article.slug || article.title?.replace(/\s+/g, '-').toLowerCase();
         await this.articleRepository.update(id, article);
         return this.articleRepository.findOneBy({ id });
     }
@@ -37,7 +43,6 @@ export class ArticlesService {
         if (!article) {
             return null;
         }
-        article.isPublished = true;
         article.publishedAt = new Date();
         await this.articleRepository.save(article);
         return article;
