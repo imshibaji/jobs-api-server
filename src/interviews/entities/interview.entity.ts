@@ -26,8 +26,6 @@ export class Interview {
     @Column({ nullable: true })
     feedback?: string;
 
-    
-
     @Column({ nullable: true })
     status?: string;
 

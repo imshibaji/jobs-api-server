@@ -12,15 +12,23 @@ name: jobs
 
 services:
   traefik:
-    image: traefik:v2.11
+    image: traefik:v3.6
+    container_name: traefik
+    restart: unless-stopped
     command:
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--entryPoints.web.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.0.0/8"
+      - "--entryPoints.websecure.proxyProtocol.trustedIPs=127.0.0.1/32,10.0.0.0/8"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.email=your@email.com"
+      - "--certificatesresolvers.myresolver.acme.email=shepreneurinfo@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+
+      - "--api=true"
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
     ports:
       - "80:80"
       - "443:443"
@@ -37,9 +45,11 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.server.rule=Host(`api.localhost`)
-      - traefik.http.routers.server.entrypoints=web
-      - traefik.http.routers.server.entrypoints=websecure
+      - traefik.http.routers.server.entrypoints=web,websecure
       - traefik.http.routers.server.tls.certresolver=myresolver
+      - traefik.http.routers.server.tls=false
+      - traefik.http.services.server.loadbalancer.server.port=3300
+  
     environment:
       NODE_ENV: production
       APP_NAME: "Jobs API Server"
@@ -58,8 +68,10 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: Spaceranger@123
-    ports:
-      - 3300:3300
+    # ports:
+    #   - 3300:3300
+    expose:
+      - 3300
     volumes:
       - ./uploads:/app/uploads:rw
     depends_on:
@@ -70,6 +82,7 @@ services:
 
   db:
     image: postgres:17
+    container_name: db
     restart: always
     user: postgres
     volumes:
@@ -87,6 +100,7 @@ services:
 
   redis:
     image: redis:latest
+    container_name: redis
     restart: always
     ports:
       - 6378:6379

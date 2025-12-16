@@ -1,7 +1,9 @@
 # compiled output
+/letsencrypt
 /dist
 /node_modules
 /build
+/uploads/**/*
 
 # Logs
 logs

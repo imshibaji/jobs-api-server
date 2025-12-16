@@ -25,7 +25,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { PortfoliosModule } from 'src/portfolios/portfolios.module';
 import { OffersModule } from 'src/offers/offers.module';
 import { InterviewsModule } from 'src/interviews/interviews.module';
-import { JoiningsModule } from 'src/joinings/joinings.module';
+import { FeedbacksModule } from 'src/feedbacks/feedbacks.module';
 
 @Module({
   imports: [
@@ -54,10 +54,10 @@ import { JoiningsModule } from 'src/joinings/joinings.module';
     ApplicationsModule,
     InterviewsModule,
     OffersModule,
-    JoiningsModule,
     ArticlesModule,
     TagsModule,
     ChannelsModule,
+    FeedbacksModule
   ],
   controllers: [AppController, UploadController, FileController],
   providers: [AppService],

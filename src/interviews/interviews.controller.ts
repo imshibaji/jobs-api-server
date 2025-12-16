@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { InterviewsService } from './interviews.service';
 import { CreateInterviewDto } from './dto/create-interview.dto';
 import { UpdateInterviewDto } from './dto/update-interview.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('interviews')
 export class InterviewsController {
   constructor(private readonly interviewsService: InterviewsService) {}
@@ -22,7 +24,7 @@ export class InterviewsController {
     return this.interviewsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateInterviewDto: UpdateInterviewDto) {
     return this.interviewsService.update(+id, updateInterviewDto);
   }

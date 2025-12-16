@@ -9,13 +9,16 @@ export class Offer {
     applicationId?: number;
 
     @Column({ nullable: true })
+    applicantId?: number;
+
+    @Column({ nullable: true })
     userId?: number; // Maybe a recruiter ID
 
     @Column({ nullable: true })
     jobId?: number;
 
     @Column({ nullable: true })
-    letter: string;
+    message: string;
 
     @Column({ nullable: true })
     date: string;
