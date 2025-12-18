@@ -37,6 +37,15 @@ export class CreateCompanyDto {
     @ApiProperty({ required: false, example: 'https://techsolutions.com' })
     website?: string;
 
+    @ApiProperty({ required: false, example: 'A leading tech solutions provider.' })
+    description?: string;
+
+    @ApiProperty({ required: false, example: 2010 })
+    founded?: number;
+
+    @ApiProperty({ required: false, example: false })
+    isVerified?: boolean;
+
     @ApiProperty({ required: true, example: 1 })
     userId: number;
 

@@ -44,6 +44,15 @@ export class Company {
     @Column({ nullable: true })
     website?: string;
 
+    @Column({ nullable: true })
+    description?: string;
+
+    @Column({ nullable: true })
+    founded?: number;
+
+    @Column({ default: false })
+    isVerified: boolean;
+
     @Column({ default: false })
     isDeleted: boolean;
 
