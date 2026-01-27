@@ -23,7 +23,7 @@ export class Applicant {
     @Column({ nullable: true })
     country?: string;
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, name: 'zip_code' })
     zipCode?: string;
 
     @Column({ nullable: true })
@@ -49,6 +49,36 @@ export class Applicant {
 
     @Column({ nullable: true })
     location?: string;
+
+    @Column({ nullable: true, name: 'professional_status' })
+    professionalStatus?: string;
+
+    @Column({ nullable: true, name: 'highest_education' })
+    highestEducation?: string;
+
+    @Column({ nullable: true, name: 'interested_industry' })
+    interestedIndustry?: string;
+
+    @Column({ nullable: true, name: 'preferred_work' })
+    preferredWork?: string;
+
+    @Column({ nullable: true, name: 'work_tools' })
+    workTools?: string;
+
+    @Column({ nullable: true, name: 'work_environments' })
+    workEnvironments?: string;
+
+    @Column({ nullable: true, name: 'company_culture' })
+    companyCulture?: string;
+
+    @Column({ nullable: true, name: 'preferred_communication' })
+    preferredCommunication?: string;
+
+    @Column({ nullable: true, name: 'joining_time' })
+    joiningTime?: string;
+
+    @Column({ nullable: true, name: 'expected_monthly_salary' })
+    expectedMonthlySalary?: string;
 
     @Column({ nullable: true })
     resume?: string;
