@@ -4,6 +4,7 @@ import { Job } from './job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { Public } from 'src/auth/auth.decorator';
+import { DeleteResult } from 'typeorm';
 
 @ApiBearerAuth()
 @Controller('jobs')
@@ -33,7 +34,7 @@ export class JobsController {
     }
 
     @Delete(':id')
-    async remove(@Param('id') id: number): Promise<void> {
+    async remove(@Param('id') id: number): Promise<DeleteResult> {
         return this.jobsService.remove(id);
     }
 

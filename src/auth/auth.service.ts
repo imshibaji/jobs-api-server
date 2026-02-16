@@ -1,11 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
-import { JwtPayload, SignUpDto } from './utils/auth.types';
+import { JwtPayload, JwtToken, SignUpDto } from './utils/auth.types';
 import { hashPassword, verifyPassword } from './utils/encryption';
 import { UpdateResult } from 'typeorm';
 import { Request } from 'express';
 import { sendEmail } from './utils/communications';
+import { User } from 'src/users/users.entity';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,17 @@ export class AuthService {
         private jwtService: JwtService,
     ) {}
 
-    async signUp(user: SignUpDto): Promise<any> {
+    async me(token: string): Promise<User | null> {
+        try {
+            const decoded = this.jwtService.verify(token) as JwtPayload;
+            const userId = decoded.sub;
+            return await this.usersService.findOne(userId) as User;
+        } catch (error) {
+            throw new UnauthorizedException();
+        }
+    }
+
+    async signUp(user: SignUpDto): Promise<JwtToken> {
         const userExists = await this.usersService.findByEmail(user.email);
         const phoneNumberExists = await this.usersService.findByPhoneNumber(user.phoneNumber!);
         if (userExists) {
@@ -47,7 +58,7 @@ export class AuthService {
         };
     }
 
-    async signIn(email: string, pass: string): Promise<any> {
+    async signIn(email: string, pass: string): Promise<JwtToken> {
         try {
             const user = await this.usersService.findByEmail(email);
             // if (user?.password !== pass) {

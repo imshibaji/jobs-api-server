@@ -6,11 +6,11 @@ import { ApiBearerAuth, ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nes
 import { stat } from 'node:fs/promises';
 import { Public } from 'src/auth/auth.decorator';
 
-@ApiBearerAuth()
+// @ApiBearerAuth()
 @ApiTags('Files Management')
 @Controller('file')
 export class FileController {
-
+  @ApiBearerAuth()
   @Get('list')
   @ApiQuery({ name: 'directory', type: 'string', required: false, example: 'pictures' })
   async readDirectoryAsync(@Query('directory') directoryPath: string): Promise<String[]> {
@@ -41,7 +41,7 @@ export class FileController {
       const file = createReadStream(filePath);
       
       // Return the StreamableFile. NestJS handles setting the Content-Type header correctly.
-      const imageBlob = new StreamableFile(file, { type: type || 'image/jpeg' });
+      const imageBlob = new StreamableFile(file, { type: type || 'image/jpeg', disposition: 'inline' });
 
       return imageBlob;
     } catch (err) {
@@ -81,6 +81,7 @@ export class FileController {
     }
   }
 
+  @ApiBearerAuth()
   @Get('delete')
   @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
   @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })

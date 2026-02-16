@@ -9,6 +9,7 @@ import { jwtConstants } from './utils/constants';
 import { RolesGuard } from './roles/roles.guard';
 import { PermissionModule } from './permission/permission.module';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    AuthResolver,
   ]
 })
 export class AuthModule {}

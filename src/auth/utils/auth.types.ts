@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Role } from "../roles/role.enum";
 import { CreateUserDto } from "src/users/dto/create-user.dto";
+import { Field, ObjectType } from "@nestjs/graphql";
 
 export class SignUpDto {
     @ApiProperty({ type: String, required: true, description: 'user full name' })
@@ -19,7 +20,7 @@ export class SignUpDto {
     image?: string;
 
     @ApiProperty({ type: String, required: false, enum: Role, default: Role.User, description: 'user role, either admin or user' })
-    role?: Role;
+    role?: Role | string;
 
     @ApiProperty({ type: String, required: false, description: 'user instagram ID' })
     instagramId?: string;
@@ -53,5 +54,13 @@ export class JwtPayload {
 }
 
 export class JwtToken {
+  @ApiProperty({ type: String, required: true, description: 'access token' })
+  access_token: string;
+}
+
+@ObjectType()
+export class AuthResponse {
+  @Field(() => String, { nullable: true })
+  @ApiProperty({ type: String, required: true, description: 'access token' })
   access_token: string;
 }

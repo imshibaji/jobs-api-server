@@ -1,0 +1,667 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AppInfo {
+  appBaseUrl: String
+  appEnvironment: String
+  appName: String
+  appPort: Float
+  appSecretKey: String
+  appVersion: String
+}
+
+type Applicant {
+  address: String
+  applications: [Application!]
+  bio: String
+  city: String
+  companyCulture: String
+  country: String
+  dob: String
+  educations: [Education!]
+  email: String
+  expectedMonthlySalary: String
+  experience: String
+  experiences: [Experience!]
+  gender: String
+  highestEducation: String
+  id: Float
+  image: String
+  interestedIndustry: String
+  isDeleted: Boolean
+  joiningTime: String
+  location: String
+  name: String
+  offers: [Offer!]
+  phoneNumber: String
+  portfolios: [Portfolio!]
+  preferredCommunication: String
+  preferredWork: String
+  professionalStatus: String
+  resume: String
+  skillList: [Skill!]
+  skills: String
+  state: String
+  user: User
+  userId: Float
+  workEnvironments: String
+  workTools: String
+  zipCode: String
+}
+
+type Application {
+  applicant: Applicant!
+  applicantId: Float!
+  coverLetter: String!
+  details: String
+  id: Float
+  interviews: [Interview!]
+  job: Job!
+  jobId: Float!
+  offers: [Offer!]
+  resume: String
+  status: String!
+  user: User!
+  userId: Float!
+}
+
+type Article {
+  content: String!
+  createdAt: DateTime
+  id: Float
+  image: String
+  isArchived: Boolean!
+  isDeleted: Boolean!
+  publishedAt: DateTime
+  slug: String!
+  status: String!
+  summary: String!
+  tags: [String!]!
+  title: String!
+  type: String!
+  updatedAt: DateTime
+  user: User!
+  userId: Float!
+}
+
+type AuthResponse {
+  access_token: String
+}
+
+type Company {
+  address: String
+  city: String
+  country: String
+  description: String
+  email: String!
+  founded: String
+  id: Float
+  image: String
+  industryType: String
+  isDeleted: Boolean!
+  isVerified: Boolean!
+  jobs: [Job!]
+  name: String!
+  phoneNumber: String!
+  recruiterName: String
+  size: String
+  state: String
+  user: User
+  userId: Float
+  website: String
+  zipCode: String
+}
+
+input CreateApplicantDto {
+  address: String
+  bio: String
+  city: String
+  companyCulture: String
+  country: String
+  dob: String
+  email: String!
+  expectedMonthlySalary: String
+  experience: String
+  gender: String
+  highestEducation: String
+  id: Float
+  image: String
+  interestedIndustry: String
+  isDeleted: Boolean
+  joiningTime: String
+  location: String
+  name: String!
+  phoneNumber: String
+  preferredCommunication: String
+  preferredWork: String
+  professionalStatus: String
+  resume: String
+  skills: String
+  state: String
+  userId: Float
+  workEnvironments: String
+  workTools: String
+  zipCode: String
+}
+
+input CreateArticleDto {
+  content: String!
+  image: String
+  isArchived: Boolean
+  isDeleted: Boolean
+  publishedAt: DateTime
+  slug: String!
+  status: String!
+  summary: String
+  tags: [String!]
+  title: String!
+  type: String!
+  userId: Float!
+}
+
+input CreateCompanyDto {
+  address: String
+  city: String
+  companySize: String
+  country: String
+  description: String
+  email: String!
+  founded: Float
+  image: String
+  industryType: String
+  isDeleted: Boolean
+  isVerified: Boolean
+  name: String!
+  phoneNumber: String!
+  recruiterName: String
+  state: String
+  userId: Boolean
+  website: String
+}
+
+input CreateEducationDto {
+  applicantId: Float
+  degree: String!
+  endDate: DateTime
+  fieldOfStudy: String!
+  grade: String
+  institution: String!
+  startDate: DateTime!
+}
+
+input CreateExperienceDto {
+  applicantId: Float!
+  company: String!
+  endDate: DateTime
+  location: String
+  position: String!
+  startDate: DateTime!
+  usedSkills: String
+}
+
+input CreateInterviewDto {
+  applicationId: Float!
+  date: DateTime!
+  feedback: String
+  id: Float
+  jobId: Float!
+  location: String!
+  notes: String
+  status: String
+  time: String!
+}
+
+input CreateJobDto {
+  benefits: String!
+  companyId: Float!
+  currency: String
+  description: String!
+  employmentType: String
+  experience: String
+  isRemote: Boolean
+  location: String
+  referenceLink: String
+  requirements: String!
+  responsibilities: String!
+  salary: String
+  salaryRange: String
+  salaryType: String
+  skills: String
+  title: String!
+  userId: Float!
+}
+
+input CreateOfferDto {
+  applicantId: Float!
+  applicationId: Float!
+  attachment: String!
+  date: String!
+  id: Float
+  jobId: Float!
+  message: String
+  status: String!
+  type: String!
+  userId: Float!
+}
+
+input CreatePortfolioDto {
+  applicantId: Float
+  description: String!
+  image: String
+  title: String!
+  url: String!
+  userId: Float
+}
+
+input CreateTagDto {
+  description: String
+  name: String!
+  slug: String!
+}
+
+input CreateUserDto {
+  email: String!
+  facebookId: String
+  githubId: String
+  id: Float
+  image: String
+  instagramId: String
+  linkedinId: String
+  name: String!
+  password: String!
+  phoneNumber: Boolean
+  role: String
+  youtubeId: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Education {
+  applicant: Applicant
+  applicantId: Float
+  degree: String!
+  fieldOfStudy: String!
+  grade: String
+  id: Float
+  institution: String!
+}
+
+type Experience {
+  applicant: Applicant
+  applicantId: String
+  company: String!
+  endDate: DateTime
+  id: Float
+  location: String
+  position: String!
+  startDate: DateTime!
+  usedSkills: String
+}
+
+type Interview {
+  application: Application
+  applicationId: Float
+  date: String
+  feedback: String
+  id: Float
+  location: String
+  notes: String
+  status: String
+  time: String
+  user: User
+  userId: Float
+}
+
+type Job {
+  applications: [Application!]
+  benefits: String!
+  company: Company
+  companyId: Float
+  currency: String
+  description: String!
+  employmentType: String
+  experience: String
+  id: Float
+  isDeleted: Boolean!
+  isRemote: String
+  location: String
+  offers: [Offer!]
+  referenceLink: String
+  requirements: String!
+  responsibilities: String!
+  salary: String
+  salaryRange: String
+  salaryType: String
+  skills: String
+  title: String!
+  user: User
+  userId: Float
+}
+
+type Mutation {
+  create(article: CreateArticleDto!): Article!
+  createApplicant(createApplicantDto: CreateApplicantDto!): Applicant!
+  createCompany(company: CreateCompanyDto!): Company!
+  createEducation(education: CreateEducationDto!): Education!
+  createExperience(experience: CreateExperienceDto!): Experience!
+  createInterview(interview: CreateInterviewDto!): Interview!
+  createJob(job: CreateJobDto!): Job!
+  createOffer(offer: CreateOfferDto!): Offer!
+  createPortfolio(portfolio: CreatePortfolioDto!): Portfolio!
+  createSkill: Skill!
+  createTag(tag: CreateTagDto!): Tag!
+  createUser(user: CreateUserDto!): User
+  deleteApplicant(id: Float!): Boolean!
+  deleteCompany(id: Float!): Boolean!
+  deleteEducation(id: Float!): Boolean!
+  deleteExperience: Boolean!
+  deleteInterview(id: Float!): Boolean!
+  deleteJob(id: Float!): Boolean!
+  deleteOffer(id: Float!): Boolean!
+  deletePortfolio(id: Float!): Boolean!
+  deleteSkill(id: Float!): Boolean!
+  deleteTag(id: Float!): Boolean!
+  deleteUser(id: Float!): Boolean!
+  encryptPassword(text: String!): String!
+  forgetPassword(email: String!): String!
+  login(email: String!, password: String!): AuthResponse!
+  me(token: String!): User
+  register(email: String!, facebookId: String, githubId: String, image: String, instagramId: String, linkedinId: String, name: String!, password: String!, phoneNumber: String, role: String, youtubeId: String): AuthResponse!
+  remove(id: Float!): Article!
+  resetPassword(newPassword: String!, userId: String!): String!
+  update(article: UpdateArticleInput!, id: Float!): Article!
+  updateApplicant(applicant: UpdateApplicantInput!, id: Float!): Applicant!
+  updateCompany(company: UpdateCompanyInput!, id: Float!): Company
+  updateEducation(education: UpdateEducationInput!, id: Float!): Education!
+  updateExperience(experience: UpdateExperienceInput!, id: String!): Experience!
+  updateInterview(id: Float!, interview: UpdateInterviewInput!): Interview!
+  updateJob(id: Float!, job: UpdateJobInput!): Job
+  updateOffer(id: Float!, offer: UpdateOfferInput!): Offer!
+  updatePortfolio(id: Float!, portfolio: UpdatePortfolioInput!): Portfolio!
+  updateSkill(id: Float!, skill: UpdateSkillInput!): Skill!
+  updateTag(id: Float!, tag: UpdateTagInput!): Tag!
+  updateUser(id: Float!, user: UpdateUserInput!): User!
+  verifyPassword(hashedPassword: String!, password: String!): Boolean!
+}
+
+type Offer {
+  applicant: Applicant
+  applicantId: Float
+  application: Application
+  applicationId: Float
+  attachment: String
+  date: String
+  id: Float
+  job: Job
+  jobId: Float
+  message: String
+  status: String
+  type: String
+  user: User
+  userId: Float
+}
+
+type Portfolio {
+  applicant: Applicant
+  applicantId: Float
+  description: String!
+  id: Float
+  image: String
+  title: String!
+  url: String!
+  user: User
+  userId: Float
+}
+
+type Query {
+  applicant(id: Float!): Applicant
+  applicants: [Applicant!]!
+  application(id: Float!): Application
+  applications: [Application!]!
+  companies: [Company!]!
+  company(id: Float!): Company!
+  education: Education
+  educations: [Education!]!
+  experience(id: String!): Experience
+  experiences: [Experience!]!
+  findAll: [Article!]!
+  findOne: Article!
+  getInfo: AppInfo!
+  interview(id: Float!): Interview!
+  interviews: [Interview!]!
+  job(id: Float!): Job
+  jobs: [Job!]!
+  offer: Offer
+  offers: [Offer!]!
+  portfolio(id: Float!): Portfolio
+  portfolios: [Portfolio!]!
+  sayHello: String!
+  skill(id: Float!): Skill
+  skills: [Skill!]!
+  tag(id: Float!): Tag!
+  tags: [Tag!]!
+  user(id: Float!): User!
+  users: [User!]!
+}
+
+type Skill {
+  applicant: Applicant
+  applicantId: Float!
+  experience: String!
+  id: Float
+  isDeleted: Boolean!
+  lastUsed: String
+  name: String!
+  proficiency: String!
+}
+
+type Tag {
+  description: String
+  id: Float!
+  isDeleted: Boolean
+  name: String!
+  slug: String!
+}
+
+input UpdateApplicantInput {
+  address: String
+  bio: String
+  city: String
+  companyCulture: String
+  country: String
+  dob: String
+  email: String
+  expectedMonthlySalary: String
+  experience: String
+  gender: String
+  highestEducation: String
+  id: Float
+  image: String
+  interestedIndustry: String
+  isDeleted: Boolean
+  joiningTime: String
+  location: String
+  name: String
+  phoneNumber: String
+  preferredCommunication: String
+  preferredWork: String
+  professionalStatus: String
+  resume: String
+  skills: String
+  state: String
+  userId: Float
+  workEnvironments: String
+  workTools: String
+  zipCode: String
+}
+
+input UpdateArticleInput {
+  content: String
+  image: String
+  isArchived: Boolean
+  isDeleted: Boolean
+  publishedAt: DateTime
+  slug: String
+  status: String
+  summary: String
+  tags: [String!]
+  title: String
+  type: String
+  userId: Float
+}
+
+input UpdateCompanyInput {
+  address: String
+  city: String
+  companySize: String
+  country: String
+  description: String
+  email: String
+  founded: Float
+  image: String
+  industryType: String
+  isDeleted: Boolean
+  isVerified: Boolean
+  name: String
+  phoneNumber: String
+  recruiterName: String
+  state: String
+  userId: Boolean
+  website: String
+}
+
+input UpdateEducationInput {
+  applicantId: Float
+  degree: String
+  endDate: DateTime
+  fieldOfStudy: String
+  grade: String
+  institution: String
+  startDate: DateTime
+}
+
+input UpdateExperienceInput {
+  applicantId: Float
+  company: String
+  endDate: DateTime
+  location: String
+  position: String
+  startDate: DateTime
+  usedSkills: String
+}
+
+input UpdateInterviewInput {
+  applicationId: Float
+  date: DateTime
+  feedback: String
+  id: Float
+  jobId: Float
+  location: String
+  notes: String
+  status: String
+  time: String
+}
+
+input UpdateJobInput {
+  benefits: String
+  companyId: Float
+  currency: String
+  description: String
+  employmentType: String
+  experience: String
+  isRemote: Boolean
+  location: String
+  referenceLink: String
+  requirements: String
+  responsibilities: String
+  salary: String
+  salaryRange: String
+  salaryType: String
+  skills: String
+  title: String
+  userId: Float
+}
+
+input UpdateOfferInput {
+  applicantId: Float
+  applicationId: Float
+  attachment: String
+  date: String
+  id: Float
+  jobId: Float
+  message: String
+  status: String
+  type: String
+  userId: Float
+}
+
+input UpdatePortfolioInput {
+  applicantId: Float
+  description: String
+  image: String
+  title: String
+  url: String
+  userId: Float
+}
+
+input UpdateSkillInput {
+  applicantId: Float
+  experience: String
+  isDeleted: Boolean
+  lastUsed: DateTime
+  name: String
+  proficiency: String
+}
+
+input UpdateTagInput {
+  description: String
+  name: String
+  slug: String
+}
+
+input UpdateUserInput {
+  email: String
+  facebookId: String
+  githubId: String
+  id: Float
+  image: String
+  instagramId: String
+  linkedinId: String
+  name: String
+  password: String
+  phoneNumber: Boolean
+  role: String
+  youtubeId: String
+}
+
+type User {
+  applicants: [Applicant!]
+  applications: [Application!]
+  articles: [Article!]
+  companies: [Company!]
+  email: String!
+  facebookId: String
+  githubId: String
+  id: Float
+  image: String
+  instagramId: String
+  interviews: [Interview!]
+  isOnline: Boolean!
+  jobs: [Job!]
+  linkedinId: String
+  name: String!
+  offers: [Offer!]
+  password: String!
+  phoneNumber: String
+  portfolios: [Portfolio!]
+  role: String
+  status: String
+  twitterId: String
+  verifiedEmail: Boolean!
+  verifiedPhoneNumber: Boolean
+  youtubeId: String
+}

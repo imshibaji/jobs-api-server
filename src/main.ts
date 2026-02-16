@@ -12,31 +12,37 @@ import * as packageJson from '../package.json';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Serve static files, including your custom CSS
-  // app.use('/', express.static(join(__dirname, '..', 'public')));
-
   // Enable CORS
   app.enableCors('*');
-  // app.enableCors({
-  //   origin: '*', // Replace with the actual URL of your client app (e.g., 'https://yourfrontend.com')
-  //   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  //   credentials: true,
-  // });
 
   // Apply dark mode middleware before Swagger setup
   app.use('/', swaggerDarkModeMiddleware);
 
+  // app.use(helmet({
+  //   crossOriginResourcePolicy: { policy: "cross-origin" },
+  //   contentSecurityPolicy: {
+  //     directives: {
+  //       defaultSrc: [`'self'`],
+  //       styleSrc: [`'self'`, `'unsafe-inline'`, 'https://unpkg.com'],
+  //       scriptSrc: [`'self'`, `'unsafe-inline'`, 'https://unpkg.com'],
+  //       imgSrc: [`'self'`, 'data:', 'https://graphql-hero.com', 'http://localhost:3300'], // For Apollo icons
+  //       // Add other directives as necessary
+  //     },
+  //   },
+  //   // contentSecurityPolicy: false, // Disable CSP to allow Swagger UI to load resources without restrictions
+  //   // crossOriginEmbedderPolicy: false,
+  // }));
+
+
+  // Enable helmet
   app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: [`'self'`],
-        styleSrc: [`'self'`, `'unsafe-inline'`],
-        scriptSrc: [`'self'`, `'unsafe-inline'`],
-        // Add other directives as necessary
-      },
-    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: false, // Disable CSP to allow Swagger UI to load resources without restrictions
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: false,
   }));
+
+  // Enable compression
   app.use(compression());
   
 
@@ -55,7 +61,12 @@ async function bootstrap() {
   });
   SwaggerModule.setup('', app, documentFactory, {
     customSiteTitle: 'Jobs Portal API Documentation',
-    customCssUrl: '/css/swagger-dark.css',
+    customCssUrl: '/static/css/swagger-dark.css',
+  });
+
+  // Provide global prefix for all routes except GraphQL
+  app.setGlobalPrefix('', {
+    exclude: ['graphql'], // Optional: excludes the default path if needed
   });
 
   await app.listen(process.env.APP_PORT ?? 3300);

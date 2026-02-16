@@ -3,10 +3,11 @@ import { CompaniesController } from './companies.controller';
 import { CompaniesService } from './companies.service';
 import { companiesProvider } from './companies.provider';
 import { DatabaseModule } from 'src/database/database.module';
+import { CompaniesResolver } from './companies.resolver';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [CompaniesController],
-  providers: [...companiesProvider, CompaniesService]
+  providers: [...companiesProvider, CompaniesService, CompaniesResolver]
 })
 export class CompaniesModule {}

@@ -29,6 +29,9 @@ import { FeedbacksModule } from 'src/feedbacks/feedbacks.module';
 import { LoggerMiddleware } from 'src/logger/logger.middleware';
 import { LoggerModule } from 'src/logger/logger.module';
 import { LoggerInterceptor } from 'src/logger/logger.interceptor';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
@@ -40,6 +43,8 @@ import { LoggerInterceptor } from 'src/logger/logger.interceptor';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../..', 'public'),
+      serveRoot: '/static', // 👈 This moves the static files to http://localhost:3000/static
+      exclude: ['/graphql'], // Ensure it doesn't interfere with GraphQL
     }),
     MulterModule.register({
       dest: './uploads',
@@ -61,12 +66,24 @@ import { LoggerInterceptor } from 'src/logger/logger.interceptor';
     TagsModule,
     ChannelsModule,
     FeedbacksModule,
-    LoggerModule
+    LoggerModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      path: '/graphql',
+      sortSchema: true,
+      context: ({ req, res }) => ({ req, res }),
+      introspection: true,
+      playground: false, // Disable the default GraphQL Playground
+      debug: true,
+      graphiql: true,
+    }),
   ],
   controllers: [AppController, UploadController, FileController],
   providers: [
     AppService,
     { provide: 'APP_INTERCEPTOR', useClass: LoggerInterceptor },
+    AppResolver,
   ],
 })
 export class AppModule implements NestModule {

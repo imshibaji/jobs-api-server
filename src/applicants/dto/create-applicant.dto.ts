@@ -1,87 +1,121 @@
+import { Field, InputType } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 
+@InputType()
 export class CreateApplicantDto {
+    @Field(() => Number, { nullable: true })
+    @ApiProperty({ example: 1 })
+    id?: number;
+
+    @Field(() => String)
     @ApiProperty({ example: 'Jane Doe' })
     name: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'https://example.com/image.jpg' })
-    image: string;
+    image?: string;
     
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '123 Main St' })
-    address: string;
+    address?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Springfield' })
-    city: string;
+    city?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'IL' })
-    state: string;
+    state?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'USA' })
-    country: string;
+    country?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '12345' })
-    zipCode: string;
+    zipCode?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'I am a software developer with 5 years of experience.' })
-    bio: string;
+    bio?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '1990-01-01' })
-    dob: string;
+    dob?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Female' })
     gender: string;
 
+    @Field(() => String)
     @ApiProperty({ example: 'jane@example.com' })
     email: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '+1-555-1234' })
-    phoneNumber: string;
+    phoneNumber?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'JavaScript, React, Node.js' })
-    skills: string;
+    skills?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '2 years' })
-    experience: string;
+    experience?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '123 Main St' })
-    location: string;
+    location?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Employed' })
-    professionalStatus: string;
+    professionalStatus?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Bachelor\'s Degree in Computer Science' })
-    highestEducation: string;
+    highestEducation?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Information Technology' })
-    interestedIndustry: string;
+    interestedIndustry?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Remote' })
-    preferredWork: string;
+    preferredWork?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Git, Docker' })
-    workTools: string;
+    workTools?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Linux, Windows' })
-    workEnvironments: string;
+    workEnvironments?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Agile, Scrum' })
-    companyCulture: string;
+    companyCulture?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Email' })
-    preferredCommunication: string;
+    preferredCommunication?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '2 weeks' })
-    joiningTime: string;
+    joiningTime?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: '5000' })
-    expectedMonthlySalary: string;
+    expectedMonthlySalary?: string;
 
+    @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'https://example.com/resume.pdf' })
-    resume: string;
+    resume?: string;
 
+    @Field(() => Boolean, { nullable: true })
     @ApiProperty({ example: false })
     isDeleted: boolean;
 
+    @Field(() => Number, { nullable: true })
     @ApiProperty({ example: 1 })
     userId: number;
 }

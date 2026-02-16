@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { Job } from './job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -32,7 +32,7 @@ export class JobsService {
         return this.findOne(id);
     }
 
-    async remove(id: number): Promise<void> {
-        await this.jobsRepository.delete(id);
+    async remove(id: number): Promise<DeleteResult> {
+        return await this.jobsRepository.delete(id);
     }
 }
