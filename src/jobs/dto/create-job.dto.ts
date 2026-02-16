@@ -43,6 +43,9 @@ export class CreateJobDto {
     @ApiProperty({ example: true, description: 'Indicates if the job is remote', required: false })
     isRemote?: boolean;
 
+    @ApiProperty({ example: 'https://example.com/job', description: 'The link to the job', required: false })
+    referenceLink?: string;
+
     @ApiProperty({ example: 1, description: 'The ID of the company posting the job' })
     companyId: number;
 

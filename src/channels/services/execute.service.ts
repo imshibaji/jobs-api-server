@@ -76,7 +76,7 @@ export class ExecuteService {
                 console.log({data, type: 'webhook-response'});
 
                 // Emit to Live Feed
-                this.eventEmitter.emit('notify', JSON.stringify({output: data, type: 'webhook-response'}));
+                this.eventEmitter.emit('notify', JSON.stringify({message: {...data, type: 'webhook-response'}}));
                 return data;
             }
 
@@ -91,7 +91,7 @@ export class ExecuteService {
                 console.log({data, type: 'webhook-response'});
 
                 // Emit to Live Feed
-                this.eventEmitter.emit('notify', JSON.stringify({output: data, type: 'webhook-response'}));
+                this.eventEmitter.emit('notify', JSON.stringify({message: {...data, type: 'webhook-response'}}));
                 return data;
             }
         } catch (error) {

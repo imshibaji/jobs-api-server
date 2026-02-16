@@ -47,6 +47,9 @@ export class Job{
     @Column({ nullable: true })
     isRemote?: boolean;
 
+    @Column({ nullable: true })
+    referenceLink?: string;
+
     @Column({ nullable: true, name: 'company_id' })
     companyId: number;
 

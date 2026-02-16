@@ -17,15 +17,15 @@ export class AuthController {
     @ApiBody({ type: SignUpDto, description: 'User registration credentials', examples: {
         admin: {
             summary: 'Admin credentials',
-            value: '{"email":"admin@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","role":"admin"}',
+            value: '{"email":"admin@example.com","password":"password123","phoneNumber":"1234567890","name":"John Doe","role":"admin","image":"admin.jpg"}',
         },        
         candidate: {
             summary: 'Candidate credentials',
-            value: '{"email":"user@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"user"}',
+            value: '{"email":"user@example.com","password":"mySecret456","phoneNumber":"0987654321","name":"Jane Smith","role":"user","image":"candidate.jpg"}',
         },
         employer: {
             summary: 'Employer credentials',
-            value: '{"email":"employer@example.com","password":"mySecret456","phoneNumber":"0987654323","name":"Jane Smith","role":"employer"}',
+            value: '{"email":"employer@example.com","password":"mySecret456","phoneNumber":"0987654323","name":"Jane Smith","role":"employer","image":"employer.jpg"}',
         },
     }})
     signUp(@Body() signUpDto: SignUpDto) {

@@ -46,6 +46,36 @@ export class CreateApplicantDto {
     @ApiProperty({ example: '123 Main St' })
     location: string;
 
+    @ApiProperty({ example: 'Employed' })
+    professionalStatus: string;
+
+    @ApiProperty({ example: 'Bachelor\'s Degree in Computer Science' })
+    highestEducation: string;
+
+    @ApiProperty({ example: 'Information Technology' })
+    interestedIndustry: string;
+
+    @ApiProperty({ example: 'Remote' })
+    preferredWork: string;
+
+    @ApiProperty({ example: 'Git, Docker' })
+    workTools: string;
+
+    @ApiProperty({ example: 'Linux, Windows' })
+    workEnvironments: string;
+
+    @ApiProperty({ example: 'Agile, Scrum' })
+    companyCulture: string;
+
+    @ApiProperty({ example: 'Email' })
+    preferredCommunication: string;
+
+    @ApiProperty({ example: '2 weeks' })
+    joiningTime: string;
+
+    @ApiProperty({ example: '5000' })
+    expectedMonthlySalary: string;
+
     @ApiProperty({ example: 'https://example.com/resume.pdf' })
     resume: string;
 

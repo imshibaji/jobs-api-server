@@ -17,7 +17,11 @@ export class InterviewsService {
   }
 
   findAll() {
-    return this.interviewRepository.find();
+    return this.interviewRepository.find({
+      order: {
+        updatedAt: 'DESC'
+      }
+    });
   }
 
   findOne(id: number) {
