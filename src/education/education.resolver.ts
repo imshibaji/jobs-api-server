@@ -1,12 +1,17 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { EducationService } from './education.service';
 import { CreateEducationDto } from './dto/create-education.dto';
 import { Education } from './education.entity';
 import { UpdateEducationInput } from './dto/update-education.dto';
+import { ApplicantsService } from 'src/applicants/applicants.service';
+import { Applicant } from 'src/applicants/applicant.entity';
 
-@Resolver()
+@Resolver(() => Education)
 export class EducationResolver {
-    constructor(private readonly educationService: EducationService) {}
+    constructor(
+        private readonly educationService: EducationService,
+        private readonly applicantsService: ApplicantsService
+    ) {}
 
     @Query(() => [Education])
     async educations() {
@@ -16,6 +21,12 @@ export class EducationResolver {
     @Query(() => Education, { nullable: true })
     async education(id: number) {
         return this.educationService.findOne(id);
+    }
+
+    @ResolveField(() => Applicant, { nullable: true })
+    async applicant(@Parent() education: Education) {
+        if (!education.applicantId) return null;
+        return this.applicantsService.findOne(education.applicantId);
     }
 
     @Mutation(() => Education)

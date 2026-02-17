@@ -1,7 +1,7 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Application } from "src/applications/application.entity";
 import { User } from "src/users/users.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -16,6 +16,7 @@ export class Interview {
 
     @Field(() => Application, { nullable: true })
     @ManyToOne(() => Application, (application) => application.interviews)
+    @JoinColumn({ name: 'applicationId' })
     application: Application;
 
     @Field(() => Number, { nullable: true })
@@ -24,6 +25,7 @@ export class Interview {
 
     @Field(() => User, { nullable: true })
     @ManyToOne(() => User, (user) => user.interviews)
+    @JoinColumn({ name: 'userId' })
     user: User;
 
     @Field(() => String, { nullable: true })

@@ -11,21 +11,26 @@ export class ArticlesService {
         private readonly articleRepository: Repository<Article>,
     ) {}
 
-    findAll(): Promise<Article[]> {
-        return this.articleRepository.find();
+
+    async searchBy(prop: string, value: string): Promise<Article[]> {
+        return await this.articleRepository.findBy({ [prop]: value });
     }
 
-    findBySlug(slug: string): Promise<Article | null> {
-        return this.articleRepository.findOneBy({ slug });
+    async findAll(): Promise<Article[]> {
+        return await this.articleRepository.find();
     }
 
-    findOne(id: number): Promise<Article | null> {
-        return this.articleRepository.findOneBy({ id });
+    async findBySlug(slug: string): Promise<Article | null> {
+        return await this.articleRepository.findOneBy({ slug });
+    }
+
+    async findOne(id: number): Promise<Article | null> {
+        return await this.articleRepository.findOneBy({ id });
     }
 
     async create(article: CreateArticleDto): Promise<Article> {
         article.slug = article.slug || article.title.replace(/\s+/g, '-').toLowerCase();
-        return this.articleRepository.save(article);
+        return await this.articleRepository.save(article);
     }
 
     async update(id: number, article: UpdateArticleDto): Promise<Article | null> {

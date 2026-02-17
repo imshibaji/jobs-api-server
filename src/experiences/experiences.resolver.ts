@@ -1,35 +1,47 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { ExperiencesService } from './experiences.service';
 import { Experience } from './experience.entity';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceInput } from './dto/update-experience.dto';
+import { Applicant } from 'src/applicants/applicant.entity';
+import { ApplicantsService } from 'src/applicants/applicants.service';
 
-@Resolver()
+@Resolver(() => Experience)
 export class ExperiencesResolver {
-    constructor(private readonly experiencesService: ExperiencesService) {}
+    constructor(
+        private readonly experiencesService: ExperiencesService,
+        private readonly applicantsService: ApplicantsService
+    ) {}
 
     @Query(() => [Experience])
     async experiences() {
-        return this.experiencesService.findAll();
+        return await this.experiencesService.findAll();
     }
 
     @Query(() => Experience, { nullable: true })
     async experience(@Args('id') id: string) {
-        return this.experiencesService.findOne(id);
+        return await this.experiencesService.findOne(id);
+    }
+
+    @ResolveField(() => Applicant, { nullable: true })
+    async applicant(@Parent() experience: Experience) {
+        if(!experience.applicantId) return null;
+        return await this.applicantsService.findOne(experience.applicantId);
     }
 
     @Mutation(() => Experience)
     async createExperience(@Args('experience') createExperienceInput: CreateExperienceDto) {
-        return this.experiencesService.create(createExperienceInput);
+        return await this.experiencesService.create(createExperienceInput);
     }
 
     @Mutation(() => Experience)
     async updateExperience(@Args('id') id: string, @Args('experience') updateExperienceInput: UpdateExperienceInput) {
-        return this.experiencesService.update(id, updateExperienceInput);
+        await this.experiencesService.update(id, updateExperienceInput);
+        return await this.experiencesService.findOne(id);
     }
 
     @Mutation(() => Boolean)
     async deleteExperience(id: string) {
-        return this.experiencesService.delete(id);
+        return await this.experiencesService.delete(id);
     }
 }

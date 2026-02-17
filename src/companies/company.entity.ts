@@ -1,7 +1,7 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Job } from "src/jobs/job.entity";
 import { User } from "src/users/users.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity('companies')
@@ -84,7 +84,8 @@ export class Company {
 
     @Field(() => User, { nullable: true })
     @ManyToOne(() => User, (user) => user.companies, { onDelete: 'CASCADE' })
-    user: User;
+    @JoinColumn({ name: 'user_id' })
+    user?: User;
 
     @Field(() => [Job], { nullable: true })
     @OneToMany(() => Job, (job) => job.company, { cascade: true })

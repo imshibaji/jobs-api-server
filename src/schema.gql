@@ -453,6 +453,7 @@ type Query {
   portfolio(id: Float!): Portfolio
   portfolios: [Portfolio!]!
   sayHello: String!
+  searchBy(prop: String!, value: String!): [Article!]!
   searchJobs(prop: String!, value: String!): [Job!]!
   skill(id: Float!): Skill
   skills: [Skill!]!
@@ -465,12 +466,15 @@ type Query {
 type Skill {
   applicant: Applicant
   applicantId: Float!
+  application: Application
   experience: String!
   id: Float
   isDeleted: Boolean!
+  job: Job
   lastUsed: String
   name: String!
   proficiency: String!
+  user: User
 }
 
 type Tag {

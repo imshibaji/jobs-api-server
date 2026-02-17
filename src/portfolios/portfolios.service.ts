@@ -12,23 +12,23 @@ export class PortfoliosService {
     private readonly portfolioRepository: Repository<Portfolio>,
   ) {}
 
-  create(createPortfolioDto: CreatePortfolioDto) {
-    return 'This action adds a new portfolio';
+  async create(createPortfolioDto: CreatePortfolioDto) {
+    return await this.portfolioRepository.save(createPortfolioDto);
   }
 
-  findAll() {
-    return `This action returns all portfolios`;
+  async findAll() {
+    return await this.portfolioRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} portfolio`;
+  async findOne(id: number) {
+    return await this.portfolioRepository.findOneBy({ id });
   }
 
-  update(id: number, updatePortfolioDto: UpdatePortfolioDto) {
-    return `This action updates a #${id} portfolio`;
+  async update(id: number, updatePortfolioDto: UpdatePortfolioDto) {
+    return await this.portfolioRepository.update(id, updatePortfolioDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} portfolio`;
+  async remove(id: number) {
+    return await this.portfolioRepository.delete(id);
   }
 }
