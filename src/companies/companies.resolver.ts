@@ -1,12 +1,20 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { CompaniesService } from './companies.service';
 import { Company } from './company.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyInput } from './dto/update-company.dto';
+import { User } from 'src/users/users.entity';
+import { UsersService } from 'src/users/users.service';
+import { Job } from 'src/jobs/job.entity';
+import { JobsService } from 'src/jobs/jobs.service';
 
-@Resolver()
+@Resolver(() => Company)
 export class CompaniesResolver {
-    constructor(private readonly companiesService: CompaniesService) {}
+    constructor(
+        private readonly companiesService: CompaniesService,
+        private readonly usersService: UsersService,
+        private readonly jobsService: JobsService
+    ) {}
 
     @Query(() => [Company])
     async companies() {
@@ -16,6 +24,18 @@ export class CompaniesResolver {
     @Query(() => Company)
     async company(@Args('id') id: number) {
         return await this.companiesService.findOne(id) || null;
+    }
+
+    @ResolveField(() => User, { nullable: true })
+    async user(@Parent() company: Company) {
+        if (!company.userId) return null;
+        return this.usersService.findOne(company.userId);
+    }
+
+    @ResolveField(() => [Job], { nullable: true })
+    async jobs(@Parent() company: Company) {
+        if (!company.id) return null;
+        return this.jobsService.findBy({ companyId: company.id });
     }
 
     @Mutation(() => Company)

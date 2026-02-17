@@ -127,10 +127,10 @@ export class Applicant {
     @Column()
     userId: number;
 
-    @ManyToOne(() => User, user => user.applicants, { onDelete: 'CASCADE' })
+    @ManyToOne(() => User, user => user.applicants)
     @JoinColumn({ name: 'userId' })
     @Field(() => User, { nullable: true })
-    user: User;
+    user?: User;
 
     @Field(() => [Application], { nullable: true })
     @OneToMany(() => Application, application => application.applicant)

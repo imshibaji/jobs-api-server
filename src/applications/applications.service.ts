@@ -19,6 +19,14 @@ export class ApplicationsService {
         return this.applicationRepository.findOneBy({ id });
     }
 
+    async findOneBy(data: any): Promise<Application | null> {
+        return this.applicationRepository.findOneBy(data);
+    }
+
+    async findBy(data: any): Promise<Application[]> {
+        return this.applicationRepository.findBy(data);
+    }
+
     async create(application: CreateApplicationDto): Promise<Application> {
         return this.applicationRepository.save(application);
     }

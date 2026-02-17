@@ -3,7 +3,7 @@ import { Application } from "src/applications/application.entity";
 import { Company } from "src/companies/company.entity";
 import { Offer } from "src/offers/entities/offer.entity";
 import { User } from "src/users/users.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity('jobs')
@@ -78,18 +78,19 @@ export class Job{
 
     @Field(() => Company, { nullable: true })
     @ManyToOne(() => Company, (company) => company.jobs, { onDelete: 'CASCADE' })
-    company: Company;
+    company?: Company;
 
     @Field(() => Number, { nullable: true })
     @Column({ nullable: true, name: 'user_id' })
-    userId: number;
+    userId?: number;
 
     @Field(() => User, { nullable: true })
-    @ManyToOne(() => User, (user) => user.applicants, { onDelete: 'CASCADE' })
-    user: User;
+    @ManyToOne(() => User, (user) => user.jobs)
+    @JoinColumn({ name: 'user_id' })
+    user?: User;
 
 
-    @Field(() => [Application], { nullable: true })
+    @Field(() => [Application], { nullable: 'itemsAndList' })
     @OneToMany(() => Application, application => application.job, { cascade: true })
     applications?: Application[]; // This will be a relation to the Application entity, but we can keep it as any for now
 

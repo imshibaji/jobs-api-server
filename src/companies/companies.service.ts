@@ -16,11 +16,25 @@ export class CompaniesService {
     }
 
     async findAll(): Promise<Company[]> {
-        return this.companyRepository.find({ where: { isDeleted: false } });
+        return this.companyRepository.find({ where: { isDeleted: false }, relations: ['user', 'jobs'] });
     }
 
     async findOne(id: number): Promise<Company | null> {
-        return this.companyRepository.findOne({ where: { id, isDeleted: false } });
+        return this.companyRepository.findOne({ where: { id, isDeleted: false }, relations: ['user', 'jobs'] }) || null;
+    }
+
+    async findAllByUserId(userId: number): Promise<Company[]> {
+        return await this.companyRepository.find({
+            where: { userId: userId } // Returns an Array []
+        });
+    }
+
+    async findOneBy(data: any): Promise<Company | null> {
+        return this.companyRepository.findOneBy(data);
+    }
+
+    async findBy(data: any): Promise<Company[]> {
+        return this.companyRepository.findBy(data);
     }
 
     async create(companyData: CreateCompanyDto): Promise<Company> {

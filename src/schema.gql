@@ -51,18 +51,18 @@ type Applicant {
 }
 
 type Application {
-  applicant: Applicant!
+  applicant: Applicant
   applicantId: Float!
   coverLetter: String!
   details: String
   id: Float
   interviews: [Interview!]
-  job: Job!
+  job: Job
   jobId: Float!
   offers: [Offer!]
   resume: String
   status: String!
-  user: User!
+  user: User
   userId: Float!
 }
 
@@ -145,6 +145,16 @@ input CreateApplicantDto {
   zipCode: String
 }
 
+input CreateApplicationDto {
+  applicantId: Float!
+  coverLetter: String!
+  details: String
+  jobId: Float!
+  resume: String
+  status: String!
+  userId: Float!
+}
+
 input CreateArticleDto {
   content: String!
   image: String
@@ -176,7 +186,7 @@ input CreateCompanyDto {
   phoneNumber: String!
   recruiterName: String
   state: String
-  userId: Boolean
+  userId: Float!
   website: String
 }
 
@@ -317,7 +327,7 @@ type Interview {
 }
 
 type Job {
-  applications: [Application!]
+  applications: [Application]
   benefits: String!
   company: Company
   companyId: Float
@@ -344,7 +354,8 @@ type Job {
 
 type Mutation {
   create(article: CreateArticleDto!): Article!
-  createApplicant(createApplicant: CreateApplicantDto!): Applicant!
+  createApplicant(applicant: CreateApplicantDto!): Applicant!
+  createApplication(application: CreateApplicationDto!): Application!
   createCompany(company: CreateCompanyDto!): Company!
   createEducation(education: CreateEducationDto!): Education!
   createExperience(experience: CreateExperienceDto!): Experience!
@@ -356,6 +367,7 @@ type Mutation {
   createTag(tag: CreateTagDto!): Tag!
   createUser(user: CreateUserDto!): User
   deleteApplicant(id: Float!): Boolean!
+  deleteApplication: Boolean!
   deleteCompany(id: Float!): Boolean!
   deleteEducation(id: Float!): Boolean!
   deleteExperience: Boolean!
@@ -374,7 +386,8 @@ type Mutation {
   remove(id: Float!): Article!
   resetPassword(newPassword: String!, userId: String!): String!
   update(article: UpdateArticleInput!, id: Float!): Article!
-  updateApplicant(id: Float!, updateApplicant: UpdateApplicantInput!): Applicant!
+  updateApplicant(applicant: UpdateApplicantInput!, id: Float!): Applicant
+  updateApplication(application: UpdateApplicationInput!, id: Float!): Application!
   updateCompany(company: UpdateCompanyInput!, id: Float!): Company
   updateEducation(education: UpdateEducationInput!, id: Float!): Education!
   updateExperience(experience: UpdateExperienceInput!, id: String!): Experience!
@@ -440,6 +453,7 @@ type Query {
   portfolio(id: Float!): Portfolio
   portfolios: [Portfolio!]!
   sayHello: String!
+  searchJobs(prop: String!, value: String!): [Job!]!
   skill(id: Float!): Skill
   skills: [Skill!]!
   tag(id: Float!): Tag!
@@ -499,6 +513,16 @@ input UpdateApplicantInput {
   zipCode: String
 }
 
+input UpdateApplicationInput {
+  applicantId: Float
+  coverLetter: String
+  details: String
+  jobId: Float
+  resume: String
+  status: String
+  userId: Float
+}
+
 input UpdateArticleInput {
   content: String
   image: String
@@ -530,7 +554,7 @@ input UpdateCompanyInput {
   phoneNumber: String
   recruiterName: String
   state: String
-  userId: Boolean
+  userId: Float
   website: String
 }
 

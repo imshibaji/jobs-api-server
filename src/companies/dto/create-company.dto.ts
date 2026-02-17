@@ -63,7 +63,7 @@ export class CreateCompanyDto {
     @ApiProperty({ required: false, example: false })
     isVerified?: boolean;
 
-    @Field(() => Boolean, { nullable: true })
+    @Field(() => Number)
     @ApiProperty({ required: true, example: 1 })
     userId: number;
 

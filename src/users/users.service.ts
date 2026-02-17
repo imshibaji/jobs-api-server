@@ -11,11 +11,11 @@ export class UsersService {
     ) {}
 
     async findAll(): Promise<User[]> {
-        return await this.usersRepository.find({ order: { createdAt: 'DESC' }, relations: ['applicants'] });
+        return await this.usersRepository.find({ order: { createdAt: 'DESC' }, relations: ['applicants', 'companies', 'jobs'] });
     }
 
     async findOne(id: number): Promise<User | null> {
-        return await this.usersRepository.findOne({ where: { id }, relations: ['applicants'] });
+        return await this.usersRepository.findOne({ where: { id }, relations: ['applicants', 'companies', 'jobs'] });
     }
 
     async findByEmail(email: string): Promise<User | null> {

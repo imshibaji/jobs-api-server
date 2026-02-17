@@ -17,15 +17,15 @@ export class Application {
     @Column()
     userId: number; // Recruiter
 
-    @Field(() => User)
+    @Field(() => User, { nullable: true })
     @ManyToOne(() => User, (user) => user.applications)
-    user: User;
+    user?: User;
 
     @Field(() => Number)
     @Column()
     jobId: number;
 
-    @Field(() => Job)
+    @Field(() => Job, { nullable: true })
     @ManyToOne(() => Job, (job) => job.applications)
     job?: Job; // This will be a relation to the Job entity, but we can keep it as any for now
 
@@ -33,20 +33,20 @@ export class Application {
     @Column()
     applicantId: number;
 
-    @Field(() => Applicant)
+    @Field(() => Applicant, { nullable: true })
     @ManyToOne(() => Applicant, (applicant) => applicant.applications)
-    applicant: Applicant;
+    applicant?: Applicant;
 
     @Field(() => String)
     @Column()
     coverLetter: string;
 
     @Field(() => String, { nullable: true })
-    @Column()
+    @Column({ nullable: true })
     details?: string;
 
     @Field(() => String, { nullable: true })
-    @Column()
+    @Column({ nullable: true })
     resume?: string;
 
     @Field(() => String)

@@ -11,12 +11,25 @@ export class JobsService {
         private jobsRepository: Repository<Job>,
     ) {}
 
+
+    async searchBy(prop: string, value: string): Promise<Job[]> {
+        return this.jobsRepository.findBy({ [prop]: value, isDeleted: false });
+    }
+
     async findAll(): Promise<Job[]> {
-        return this.jobsRepository.find();
+        return this.jobsRepository.find({ where: { isDeleted: false }, relations: ['user', 'company', 'applications'] });
     }
 
     async findOne(id: number): Promise<Job | null> {
-        return this.jobsRepository.findOne({ where: { id } });
+        return this.jobsRepository.findOne({ where: { id }, relations: ['user', 'company', 'applications'] }) || null;
+    }
+
+    async findOneBy(data: any){
+        return this.jobsRepository.findOneBy(data);
+    }
+
+    async findBy(data: any){
+        return this.jobsRepository.findBy(data);
     }
 
     async create(jobData: CreateJobDto): Promise<Job> {
