@@ -20,7 +20,7 @@ type Applicant {
   country: String
   dob: String
   educations: [Education!]
-  email: String
+  email: String!
   expectedMonthlySalary: String
   experience: String
   experiences: [Experience!]
@@ -32,9 +32,9 @@ type Applicant {
   isDeleted: Boolean
   joiningTime: String
   location: String
-  name: String
+  name: String!
   offers: [Offer!]
-  phoneNumber: String
+  phoneNumber: String!
   portfolios: [Portfolio!]
   preferredCommunication: String
   preferredWork: String
@@ -44,7 +44,7 @@ type Applicant {
   skills: String
   state: String
   user: User
-  userId: Float
+  userId: Float!
   workEnvironments: String
   workTools: String
   zipCode: String
@@ -132,14 +132,14 @@ input CreateApplicantDto {
   joiningTime: String
   location: String
   name: String!
-  phoneNumber: String
+  phoneNumber: String!
   preferredCommunication: String
   preferredWork: String
   professionalStatus: String
   resume: String
   skills: String
   state: String
-  userId: Float
+  userId: Float!
   workEnvironments: String
   workTools: String
   zipCode: String
@@ -344,7 +344,7 @@ type Job {
 
 type Mutation {
   create(article: CreateArticleDto!): Article!
-  createApplicant(createApplicantDto: CreateApplicantDto!): Applicant!
+  createApplicant(createApplicant: CreateApplicantDto!): Applicant!
   createCompany(company: CreateCompanyDto!): Company!
   createEducation(education: CreateEducationDto!): Education!
   createExperience(experience: CreateExperienceDto!): Experience!
@@ -374,7 +374,7 @@ type Mutation {
   remove(id: Float!): Article!
   resetPassword(newPassword: String!, userId: String!): String!
   update(article: UpdateArticleInput!, id: Float!): Article!
-  updateApplicant(applicant: UpdateApplicantInput!, id: Float!): Applicant!
+  updateApplicant(id: Float!, updateApplicant: UpdateApplicantInput!): Applicant!
   updateCompany(company: UpdateCompanyInput!, id: Float!): Company
   updateEducation(education: UpdateEducationInput!, id: Float!): Education!
   updateExperience(experience: UpdateExperienceInput!, id: String!): Experience!
@@ -639,25 +639,25 @@ input UpdateUserInput {
 }
 
 type User {
-  applicants: [Applicant!]
-  applications: [Application!]
-  articles: [Article!]
-  companies: [Company!]
+  applicants: [Applicant]
+  applications: [Application]
+  articles: [Article]
+  companies: [Company]
   email: String!
   facebookId: String
   githubId: String
   id: Float
   image: String
   instagramId: String
-  interviews: [Interview!]
+  interviews: [Interview]
   isOnline: Boolean!
-  jobs: [Job!]
+  jobs: [Job]
   linkedinId: String
   name: String!
-  offers: [Offer!]
+  offers: [Offer]
   password: String!
   phoneNumber: String
-  portfolios: [Portfolio!]
+  portfolios: [Portfolio]
   role: String
   status: String
   twitterId: String

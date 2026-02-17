@@ -96,37 +96,37 @@ export class User{
     isOnline: boolean;
 
 
-    @Field(() => [Applicant], { nullable: true })
+    @Field(() => [Applicant], { nullable: 'itemsAndList' })
     @OneToMany(() => Applicant, applicant => applicant.user, { cascade: true })
-    applicants?: Applicant[];
+    applicants?: Applicant[]; // 👈 No "= []" here anymore!
 
 
-    @Field(() => [Job], { nullable: true })
+    @Field(() => [Job], { nullable: 'itemsAndList' })
     @OneToMany(() => Job, job => job.user, { cascade: true })
     jobs?: Job[];
 
-    @Field(() => [Application], { nullable: true })
+    @Field(() => [Application], { nullable: 'itemsAndList' })
     @OneToMany(() => Application, application => application.user, { cascade: true })
     applications?: Application[];
 
 
-    @Field(() => [Company], { nullable: true })
+    @Field(() => [Company], { nullable: 'itemsAndList' })
     @OneToMany(() => Company, company => company.user, { cascade: true })
     companies?: Company[];
 
-    @Field(() => [Offer], { nullable: true })
+    @Field(() => [Offer], { nullable: 'itemsAndList' })
     @OneToMany(() => Offer, offer => offer.user, { cascade: true })
     offers?: Offer[];
 
-    @Field(() => [Portfolio], { nullable: true })
+    @Field(() => [Portfolio], { nullable: 'itemsAndList' })
     @OneToMany(() => Portfolio, portfolio => portfolio.user, { cascade: true })
     portfolios?: Portfolio[];
 
-    @Field(() => [Interview], { nullable: true })
+    @Field(() => [Interview], { nullable: 'itemsAndList' })
     @OneToMany(() => Interview, interview => interview.user, { cascade: true })
     interviews?: Interview[];
 
-    @Field(() => [Article], { nullable: true })
+    @Field(() => [Article], { nullable: 'itemsAndList' })
     @OneToMany(() => Article, article => article.user, { cascade: true })
     articles?: Article[];
 

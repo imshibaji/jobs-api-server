@@ -1,12 +1,17 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto, UpdateUserInput } from './dto/update-user.dto';
+import { ApplicantsService } from 'src/applicants/applicants.service';
+import { Applicant } from 'src/applicants/applicant.entity';
 
-@Resolver()
+@Resolver(() => User)
 export class UsersResolver {
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        private readonly applicantsService: ApplicantsService
+    ) {}
 
     @Query(() => [User])
     async users() {
@@ -31,5 +36,21 @@ export class UsersResolver {
     @Mutation(() => Boolean)
     async deleteUser(@Args('id') id: number) {
         return await this.usersService.delete(id);
+    }
+
+    // Relationship resolver to fetch applicants for a user
+    
+    @ResolveField(() => [Applicant])
+    async applicants(@Parent() user: User) {
+        // If the user already has applicants loaded, return them
+        if (user.applicants) {
+            return user.applicants;
+        }
+        
+        // Otherwise, fetch them from the service
+        const data = await this.applicantsService.findOneBy({ userId: user.id });
+        
+        // Return the data if found, or an empty array to satisfy GraphQL
+        return data || []; 
     }
 }

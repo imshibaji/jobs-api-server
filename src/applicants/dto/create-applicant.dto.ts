@@ -45,15 +45,15 @@ export class CreateApplicantDto {
 
     @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'Female' })
-    gender: string;
+    gender?: string;
 
     @Field(() => String)
     @ApiProperty({ example: 'jane@example.com' })
     email: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String)
     @ApiProperty({ example: '+1-555-1234' })
-    phoneNumber?: string;
+    phoneNumber: string;
 
     @Field(() => String, { nullable: true })
     @ApiProperty({ example: 'JavaScript, React, Node.js' })
@@ -115,7 +115,7 @@ export class CreateApplicantDto {
     @ApiProperty({ example: false })
     isDeleted: boolean;
 
-    @Field(() => Number, { nullable: true })
+    @Field(() => Number)
     @ApiProperty({ example: 1 })
     userId: number;
 }

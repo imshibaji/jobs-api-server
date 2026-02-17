@@ -15,7 +15,7 @@ export class Applicant {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String)
     @Column()
     name: string;
 
@@ -55,11 +55,11 @@ export class Applicant {
     @Column({ nullable: true })
     gender?: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String)
     @Column()
     email: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String)
     @Column()
     phoneNumber: string;
 
@@ -123,9 +123,9 @@ export class Applicant {
     @Column({ default: false })
     isDeleted?: boolean;
 
-    @Field(() => Number, { nullable: true })
-    @Column({ nullable: true })
-    userId?: number;
+    @Field(() => Number)
+    @Column()
+    userId: number;
 
     @ManyToOne(() => User, user => user.applicants, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'userId' })

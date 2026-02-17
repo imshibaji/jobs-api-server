@@ -28,6 +28,10 @@ export class ApplicantsService {
     return this.applicantRepository.findOneBy({ id });
   }
 
+  findOneBy(data: any){
+    return this.applicantRepository.findOneBy(data);
+  }
+
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
     return this.applicantRepository.update(id, {...updateApplicantDto, updatedAt: new Date() });
   }
