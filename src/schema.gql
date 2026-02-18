@@ -312,6 +312,12 @@ type Experience {
   usedSkills: String
 }
 
+type FileInfo {
+  directory: String!
+  filename: String!
+  fullPath: String!
+}
+
 type Interview {
   application: Application
   applicationId: Float
@@ -443,6 +449,7 @@ type Query {
   educations: [Education!]!
   experience(id: String!): Experience
   experiences: [Experience!]!
+  filesDetails(directory: String = "pictures"): [FileInfo!]!
   findAll: [Article!]!
   findOne: Article!
   getInfo: AppInfo!
