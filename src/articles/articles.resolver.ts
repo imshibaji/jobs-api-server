@@ -34,18 +34,18 @@ export class ArticlesResolver {
     }
     
     @Mutation(() => Article)
-    create(@Args('article') createArticleInput: CreateArticleDto) {
+    createArticle(@Args('article') createArticleInput: CreateArticleDto) {
         return this.articlesService.create(createArticleInput);
     }
 
 
     @Mutation(() => Article)
-    update(@Args('id') id: number, @Args('article') updateArticleInput: UpdateArticleInput) {
+    updateUpdate(@Args('id') id: number, @Args('article') updateArticleInput: UpdateArticleInput) {
         return this.articlesService.update(id, updateArticleInput);
     }
 
     @Mutation(() => Article)
-    remove(@Args('id') id: number) {
+    deleteArticle(@Args('id') id: number) {
         return this.articlesService.remove(id);
     }
 }

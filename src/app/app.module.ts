@@ -32,6 +32,9 @@ import { LoggerInterceptor } from 'src/logger/logger.interceptor';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppResolver } from './app.resolver';
+import { GraphQLUpload } from 'graphql-upload-ts';
+import { UploadResolver } from './upload.resolver';
+import { FileResolver } from './file.resolver';
 
 @Module({
   imports: [
@@ -69,6 +72,7 @@ import { AppResolver } from './app.resolver';
     LoggerModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      resolvers: { Upload: GraphQLUpload },
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       path: '/graphql',
       sortSchema: true,
@@ -83,7 +87,7 @@ import { AppResolver } from './app.resolver';
   providers: [
     AppService,
     { provide: 'APP_INTERCEPTOR', useClass: LoggerInterceptor },
-    AppResolver,
+    AppResolver, UploadResolver, FileResolver
   ],
 })
 export class AppModule implements NestModule {

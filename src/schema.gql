@@ -353,9 +353,9 @@ type Job {
 }
 
 type Mutation {
-  create(article: CreateArticleDto!): Article!
   createApplicant(applicant: CreateApplicantDto!): Applicant!
   createApplication(application: CreateApplicationDto!): Application!
+  createArticle(article: CreateArticleDto!): Article!
   createCompany(company: CreateCompanyDto!): Company!
   createEducation(education: CreateEducationDto!): Education!
   createExperience(experience: CreateExperienceDto!): Experience!
@@ -368,9 +368,11 @@ type Mutation {
   createUser(user: CreateUserDto!): User
   deleteApplicant(id: Float!): Boolean!
   deleteApplication: Boolean!
+  deleteArticle(id: Float!): Article!
   deleteCompany(id: Float!): Boolean!
   deleteEducation(id: Float!): Boolean!
   deleteExperience: Boolean!
+  deleteFile(filename: String!, folder: String! = "pictures"): Boolean!
   deleteInterview(id: Float!): Boolean!
   deleteJob(id: Float!): Boolean!
   deleteOffer(id: Float!): Boolean!
@@ -383,9 +385,7 @@ type Mutation {
   login(email: String!, password: String!): AuthResponse!
   me(token: String!): User
   register(email: String!, facebookId: String, githubId: String, image: String, instagramId: String, linkedinId: String, name: String!, password: String!, phoneNumber: String, role: String, youtubeId: String): AuthResponse!
-  remove(id: Float!): Article!
   resetPassword(newPassword: String!, userId: String!): String!
-  update(article: UpdateArticleInput!, id: Float!): Article!
   updateApplicant(applicant: UpdateApplicantInput!, id: Float!): Applicant
   updateApplication(application: UpdateApplicationInput!, id: Float!): Application!
   updateCompany(company: UpdateCompanyInput!, id: Float!): Company
@@ -397,7 +397,9 @@ type Mutation {
   updatePortfolio(id: Float!, portfolio: UpdatePortfolioInput!): Portfolio!
   updateSkill(id: Float!, skill: UpdateSkillInput!): Skill!
   updateTag(id: Float!, tag: UpdateTagInput!): Tag!
+  updateUpdate(article: UpdateArticleInput!, id: Float!): Article!
   updateUser(id: Float!, user: UpdateUserInput!): User!
+  uploadFile(customName: String, file: Upload!, folder: String): Boolean!
   verifyPassword(hashedPassword: String!, password: String!): Boolean!
 }
 
@@ -448,6 +450,7 @@ type Query {
   interviews: [Interview!]!
   job(id: Float!): Job
   jobs: [Job!]!
+  listFiles(directory: String = "pictures"): [String!]!
   offer: Offer
   offers: [Offer!]!
   portfolio(id: Float!): Portfolio
@@ -665,6 +668,9 @@ input UpdateUserInput {
   role: String
   youtubeId: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   applicants: [Applicant]
