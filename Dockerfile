@@ -57,6 +57,9 @@ FROM base AS final
 # Use production node environment by default.
 ENV NODE_ENV=production
 
+# Change ownership of the app directory to the 'node' user
+RUN chown -R node:node /app
+
 # Run the application as a non-root user.
 USER node
 

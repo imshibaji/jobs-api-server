@@ -73,7 +73,8 @@ import { FileResolver } from './file.resolver';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       resolvers: { Upload: GraphQLUpload },
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      // autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: '/tmp/schema.gql',
       path: '/graphql',
       sortSchema: true,
       context: ({ req, res }) => ({ req, res }),

@@ -8,12 +8,12 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 
-name: jobs
+name: jobs_server_v2
 
 services:
   traefik:
     image: traefik:v3.6
-    container_name: traefik
+    container_name: ${COMPOSE_PROJECT_NAME}_traefik
     restart: unless-stopped
     command:
       - "--providers.docker=true"
@@ -40,7 +40,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: jobs-server
+    container_name: ${COMPOSE_PROJECT_NAME}_server
     restart: unless-stopped
     labels:
       - traefik.enable=true
@@ -82,8 +82,10 @@ services:
 
   db:
     image: postgres:17
-    container_name: db
+    container_name: ${COMPOSE_PROJECT_NAME}_db
     restart: always
+    labels:
+      - "traefik.enable=false"
     user: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
@@ -92,6 +94,8 @@ services:
       - POSTGRES_PASSWORD=Spaceranger@123
     ports:
       - 5433:5432
+    # expose:
+    #   - 5432
     healthcheck:
       test: [ "CMD", "pg_isready" ]
       interval: 10s
@@ -100,10 +104,14 @@ services:
 
   redis:
     image: redis:latest
-    container_name: redis
+    container_name: ${COMPOSE_PROJECT_NAME}_redis
     restart: always
+    labels:
+      - "traefik.enable=false"
     ports:
       - 6378:6379
+    # expose:
+    #   - 6379
     volumes:
       - redis_data:/data
     healthcheck:
