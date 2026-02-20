@@ -60,10 +60,10 @@ export class Job{
     timeToHire?: string;
 
     @Column({ nullable: true, name: 'using_tools'})
-    usingTools?: string[];
+    usingTools?: string;
 
     @Column({ nullable: true, name: 'company_offerings'})
-    companyOfferings?: string[];
+    companyOfferings?: string;
 
     @Column({ nullable: true, name: 'onboard_support'})
     onboardSupport?: string;

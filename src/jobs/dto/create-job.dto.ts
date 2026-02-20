@@ -56,10 +56,10 @@ export class CreateJobDto {
     timeToHire?: string;
 
     @ApiProperty({ example: 'Company provides training', description: 'The training policy of the job', required: false })
-    usingTools?: string[];
+    usingTools?: string;
 
     @ApiProperty({ example: 'Flexible working hours', description: 'The working hours policy of the job', required: false })
-    companyOfferings?: string[];
+    companyOfferings?: string;
 
     @ApiProperty({ example: 'Yes (Mentor provided)', description: 'The Onboarding policy of the job', required: false })
     onboardSupport?: string;
