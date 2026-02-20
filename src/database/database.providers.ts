@@ -12,6 +12,8 @@ export const dataSource = new DataSource({
     entities: [
         __dirname + '/../**/*.entity{.ts,.js}',
     ],
+    factories: ['src/database/factories/**/*{.ts,.js}'],
+    seeds: ['src/database/seeds/**/*{.ts,.js}'],
     synchronize: config().database.sync,
 } as DataSourceOptions);
 

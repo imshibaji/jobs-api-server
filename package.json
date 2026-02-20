@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "This is the server application of the project.",
   "author": "Shibaji Debnath",
   "private": true,
@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "seed": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run -d ./src/config/configuration.ts"
   },
   "dependencies": {
     "@apollo/server": "^5.4.0",
@@ -68,6 +69,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
+    "@faker-js/faker": "^10.3.0",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
@@ -93,6 +95,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "typeorm-extension": "^3.8.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
   },

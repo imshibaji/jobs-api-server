@@ -63,8 +63,16 @@ export class Company {
     website?: string;
 
     @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'linkedin_url' })
+    linkedinUrl?: string;
+
+    @Field(() => String, { nullable: true })
     @Column({ nullable: true })
     description?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true })
+    culture?: string;
 
     @Field(() => String, { nullable: true })
     @Column({ nullable: true })

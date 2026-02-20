@@ -52,8 +52,16 @@ export class CreateCompanyDto {
     website?: string;
 
     @Field(() => String, { nullable: true })
+    @ApiProperty({ required: false, example: 'https://www.linkedin.com/company/techsolutions' })
+    linkedinUrl?: string;
+
+    @Field(() => String, { nullable: true })
     @ApiProperty({ required: false, example: 'A leading tech solutions provider.' })
     description?: string;
+
+    @Field(() => String, { nullable: true })
+    @ApiProperty({ required: false, example: 'Fast-paced Startup' })
+    culture?: string;
 
     @Field(() => Number, { nullable: true })
     @ApiProperty({ required: false, example: 2010 })

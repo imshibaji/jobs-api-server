@@ -72,6 +72,38 @@ export class Job{
     @Column({ nullable: true })
     referenceLink?: string;
 
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'work_arrangement'})
+    workArrangement?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'equipment_policy'})
+    equipmentPolicy?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'time_to_hire'})
+    timeToHire?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'using_tools'})
+    usingTools?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'company_offerings'})
+    companyOfferings?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'onboard_support'})
+    onboardSupport?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true, name: 'career_restarters'})
+    careerRestarters?: string;
+
+    @Field(() => String, { nullable: true })
+    @Column({ nullable: true })
+    notes?: string;
+
     @Field(() => Number, { nullable: true })
     @Column({ nullable: true, name: 'company_id' })
     companyId: number;
