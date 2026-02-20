@@ -37,8 +37,14 @@ export class CreateCompanyDto {
     @ApiProperty({ required: false, example: 'https://techsolutions.com' })
     website?: string;
 
+    @ApiProperty({ required: false, example: 'https://www.linkedin.com/company/techsolutions' })
+    linkedinUrl?: string;
+
     @ApiProperty({ required: false, example: 'A leading tech solutions provider.' })
     description?: string;
+
+    @ApiProperty({ required: false, example: 'Fast-paced Startup' })
+    culture?: string;
 
     @ApiProperty({ required: false, example: 2010 })
     founded?: number;

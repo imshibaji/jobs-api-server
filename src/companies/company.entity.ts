@@ -44,8 +44,14 @@ export class Company {
     @Column({ nullable: true })
     website?: string;
 
+    @Column({ nullable: true, name: 'linkedin_url' })
+    linkedinUrl?: string;
+
     @Column({ nullable: true })
     description?: string;
+
+    @Column({ nullable: true })
+    culture?: string;
 
     @Column({ nullable: true })
     founded?: number;

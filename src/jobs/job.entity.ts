@@ -50,6 +50,30 @@ export class Job{
     @Column({ nullable: true })
     referenceLink?: string;
 
+    @Column({ nullable: true, name: 'work_arrangement'})
+    workArrangement?: string;
+
+    @Column({ nullable: true, name: 'equipment_policy'})
+    equipmentPolicy?: string;
+
+    @Column({ nullable: true, name: 'time_to_hire'})
+    timeToHire?: string;
+
+    @Column({ nullable: true, name: 'using_tools'})
+    usingTools?: string[];
+
+    @Column({ nullable: true, name: 'company_offerings'})
+    companyOfferings?: string[];
+
+    @Column({ nullable: true, name: 'onboard_support'})
+    onboardSupport?: string;
+
+    @Column({ nullable: true, name: 'career_restarters'})
+    careerRestarters?: string;
+
+    @Column({ nullable: true })
+    notes?: string;
+
     @Column({ nullable: true, name: 'company_id' })
     companyId: number;
 

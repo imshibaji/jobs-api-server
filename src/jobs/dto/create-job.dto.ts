@@ -46,6 +46,30 @@ export class CreateJobDto {
     @ApiProperty({ example: 'https://example.com/job', description: 'The link to the job', required: false })
     referenceLink?: string;
 
+    @ApiProperty({ example: 'Full-time', description: 'The work arrangement of the job', required: false })
+    workArrangement?: string;
+
+    @ApiProperty({ example: 'Company provides hardware', description: 'The equipment policy of the job', required: false })
+    equipmentPolicy?: string;
+
+    @ApiProperty({ example: '2 weeks', description: 'The time to hire for the job', required: false })
+    timeToHire?: string;
+
+    @ApiProperty({ example: 'Company provides training', description: 'The training policy of the job', required: false })
+    usingTools?: string[];
+
+    @ApiProperty({ example: 'Flexible working hours', description: 'The working hours policy of the job', required: false })
+    companyOfferings?: string[];
+
+    @ApiProperty({ example: 'Yes (Mentor provided)', description: 'The Onboarding policy of the job', required: false })
+    onboardSupport?: string;
+
+    @ApiProperty({ example: 'Yes, we actively encourage it', description: 'The Career Restarters policy of the job', required: false })
+    careerRestarters?: string;
+
+    @ApiProperty({ example: 'Yes, we actively encourage it. Please reach out to us if you have any questions.', description: 'Notes about the job', required: false })
+    notes?: string;
+
     @ApiProperty({ example: 1, description: 'The ID of the company posting the job' })
     companyId: number;
 
