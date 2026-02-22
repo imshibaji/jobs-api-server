@@ -109,7 +109,7 @@ export class Job{
     companyId: number;
 
     @Field(() => Company, { nullable: true })
-    @ManyToOne(() => Company, (company) => company.jobs, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Company, (company) => company.jobs)
     company?: Company;
 
     @Field(() => Number, { nullable: true })
@@ -123,7 +123,7 @@ export class Job{
 
 
     @Field(() => [Application], { nullable: 'itemsAndList' })
-    @OneToMany(() => Application, application => application.job, { cascade: true })
+    @OneToMany(() => Application, application => application.job)
     applications?: Application[]; // This will be a relation to the Application entity, but we can keep it as any for now
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -138,6 +138,6 @@ export class Job{
 
 
     @Field(() => [Offer], { nullable: true })
-    @OneToMany(() => Offer, offer => offer.job, { cascade: true })
+    @OneToMany(() => Offer, offer => offer.job)
     offers?: Offer[];
 }

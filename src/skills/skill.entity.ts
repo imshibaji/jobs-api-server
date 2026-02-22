@@ -30,7 +30,7 @@ export class Skill {
     applicantId: number;
 
     @Field(() => Applicant, { nullable: true })
-    @ManyToOne(() => Applicant, (applicant) => applicant.skillList, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Applicant, (applicant) => applicant.skillList)
     applicant?: Applicant;
 
     @Field(() => Boolean)

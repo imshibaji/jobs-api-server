@@ -36,7 +36,7 @@ export class Offer {
     userId?: number; // Maybe a recruiter ID
 
     @Field(() => User, { nullable: true })
-    @ManyToOne(() => User, (user) => user.offers, { onDelete: 'CASCADE' })
+    @ManyToOne(() => User, (user) => user.offers)
     @JoinColumn({ name: 'userId' })
     user: User;
 

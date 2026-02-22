@@ -91,12 +91,12 @@ export class Company {
     userId?: number;
 
     @Field(() => User, { nullable: true })
-    @ManyToOne(() => User, (user) => user.companies, { onDelete: 'CASCADE' })
+    @ManyToOne(() => User, (user) => user.companies)
     @JoinColumn({ name: 'user_id' })
     user?: User;
 
     @Field(() => [Job], { nullable: true })
-    @OneToMany(() => Job, (job) => job.company, { cascade: true })
+    @OneToMany(() => Job, (job) => job.company)
     jobs: Job[];
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
