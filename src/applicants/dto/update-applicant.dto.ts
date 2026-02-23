@@ -5,4 +5,6 @@ import { InputType, PartialType as InputPartialType } from '@nestjs/graphql';
 export class UpdateApplicantDto extends PartialType(CreateApplicantDto) {}
 
 @InputType()
-export class UpdateApplicantInput extends InputPartialType(CreateApplicantDto) {}
+export class UpdateApplicantInput extends InputPartialType(
+  CreateApplicantDto,
+) {}

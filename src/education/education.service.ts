@@ -6,29 +6,29 @@ import { UpdateEducationDto } from './dto/update-education.dto';
 
 @Injectable()
 export class EducationService {
-    constructor(
-        @Inject('EDUCATION_REPOSITORY')
-        private educationRepository: Repository<Education>,
-    ) {}
+  constructor(
+    @Inject('EDUCATION_REPOSITORY')
+    private educationRepository: Repository<Education>,
+  ) {}
 
-    async findAll(): Promise<Education[]> {
-        return this.educationRepository.find();
-    }
+  async findAll(): Promise<Education[]> {
+    return this.educationRepository.find();
+  }
 
-    async findOne(id: number): Promise<Education | null> {
-        return this.educationRepository.findOneBy({ id });
-    }
+  async findOne(id: number): Promise<Education | null> {
+    return this.educationRepository.findOneBy({ id });
+  }
 
-    async create(education: CreateEducationDto): Promise<Education> {
-        const newEducation = this.educationRepository.create(education);
-        return this.educationRepository.save(newEducation);
-    }
+  async create(education: CreateEducationDto): Promise<Education> {
+    const newEducation = this.educationRepository.create(education);
+    return this.educationRepository.save(newEducation);
+  }
 
-    async update(id: number, education: UpdateEducationDto): Promise<void> {
-        await this.educationRepository.update(id, education);
-    }
+  async update(id: number, education: UpdateEducationDto): Promise<void> {
+    await this.educationRepository.update(id, education);
+  }
 
-    async remove(id: number): Promise<void> {
-        await this.educationRepository.delete(id);
-    }
+  async remove(id: number): Promise<void> {
+    await this.educationRepository.delete(id);
+  }
 }

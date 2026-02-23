@@ -25,10 +25,10 @@ export class UploadResolver {
     // 2. Determine Dynamic Filename
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
     const extension = extname(filename);
-    const baseName = customName 
-      ? customName.replace(/[^a-z0-9]/gi, '-') 
+    const baseName = customName
+      ? customName.replace(/[^a-z0-9]/gi, '-')
       : filename.split('.')[0];
-      
+
     const finalFileName = `${baseName}-${uniqueSuffix}${extension}`;
     const filePath = join(uploadDir, finalFileName);
 
@@ -38,9 +38,9 @@ export class UploadResolver {
         .pipe(createWriteStream(filePath))
         .on('finish', () => resolve(true))
         .on('error', (err) => {
-           console.error('Upload Error:', err);
-           reject(false);
-        })
+          console.error('Upload Error:', err);
+          reject(false);
+        }),
     );
   }
 }

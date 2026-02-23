@@ -7,10 +7,7 @@ import { EducationResolver } from './education.resolver';
 import { ApplicantsModule } from 'src/applicants/applicants.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    forwardRef(() => ApplicantsModule),
-  ],
+  imports: [DatabaseModule, forwardRef(() => ApplicantsModule)],
   controllers: [EducationController],
   providers: [...educationsProvider, EducationService, EducationResolver],
   exports: [EducationService],

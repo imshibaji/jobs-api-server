@@ -19,6 +19,6 @@ import { JobsModule } from 'src/jobs/jobs.module';
   ],
   controllers: [SkillsController],
   providers: [...skillProviders, SkillsService, SkillsResolver],
-  exports: [SkillsService]
+  exports: [SkillsService],
 })
 export class SkillsModule {}

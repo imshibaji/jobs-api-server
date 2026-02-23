@@ -1,8 +1,6 @@
-import { PartialType } from "@nestjs/swagger";
-import { CreateJobDto } from "./create-job.dto";
-import { InputType, PartialType as InputPartialType } from "@nestjs/graphql";
-
-
+import { PartialType } from '@nestjs/swagger';
+import { CreateJobDto } from './create-job.dto';
+import { InputType, PartialType as InputPartialType } from '@nestjs/graphql';
 
 export class UpdateJobDto extends PartialType(CreateJobDto) {}
 

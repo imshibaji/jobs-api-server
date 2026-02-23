@@ -7,10 +7,7 @@ import { ApplicantsResolver } from './applicants.resolver';
 import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    forwardRef(() => UsersModule),
-  ],
+  imports: [DatabaseModule, forwardRef(() => UsersModule)],
   controllers: [ApplicantsController],
   providers: [...applicantProviders, ApplicantsService, ApplicantsResolver],
   exports: [ApplicantsService],

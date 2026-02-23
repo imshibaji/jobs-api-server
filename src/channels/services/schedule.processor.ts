@@ -12,39 +12,37 @@ export class ScheduleProcessor {
     @Inject('CHANNEL_REPOSITORY')
     private messageRepo: Repository<Channel>,
     private eventEmitter: EventEmitter2,
-    private executeService: ExecuteService
+    private executeService: ExecuteService,
   ) {}
 
   @Process('publish-message')
-    async handleScheduledMessage(job: Job<{ messageId: string }>) {
-        console.log(`Processing scheduled message: ${job.data.messageId}`);
+  async handleScheduledMessage(job: Job<{ messageId: string }>) {
+    console.log(`Processing scheduled message: ${job.data.messageId}`);
 
-        // 1. Find the message in DB
-        // Note: TypeORM Mongo IDs act weird, ensure you convert if needed
-        const message = await this.messageRepo.findOneBy({ 
-            id: +job.data.messageId
-        });
+    // 1. Find the message in DB
+    // Note: TypeORM Mongo IDs act weird, ensure you convert if needed
+    const message = await this.messageRepo.findOneBy({
+      id: +job.data.messageId,
+    });
 
-        // 1. Find the message type in DB
-        // console.log(message?.payload?.type!);
-        
+    // 1. Find the message type in DB
+    // console.log(message?.payload?.type!);
 
-        if (message) {
-            // 2. Update Status
-            message.status = 'SENT';
-            await this.messageRepo.save(message);
+    if (message) {
+      // 2. Update Status
+      message.status = 'SENT';
+      await this.messageRepo.save(message);
 
-            // 2. Update Status
-            // console.log(message);
+      // 2. Update Status
+      // console.log(message);
 
-            // 2. Execute the message
-            await this.executeService.executeChannel(message);
-            
+      // 2. Execute the message
+      await this.executeService.executeChannel(message);
 
-            // 3. Emit to Live Feed (SSE)
-            this.eventEmitter.emit('notify', message);
-        }else {
-            console.error(`Message with ID ${job.data.messageId} not found.`);
-        }
+      // 3. Emit to Live Feed (SSE)
+      this.eventEmitter.emit('notify', message);
+    } else {
+      console.error(`Message with ID ${job.data.messageId} not found.`);
     }
+  }
 }

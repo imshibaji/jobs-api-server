@@ -1,8 +1,22 @@
-import { Controller, Get, StreamableFile, Query, Header, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  StreamableFile,
+  Query,
+  Header,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import * as fs from 'fs';
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
-import { ApiBearerAuth, ApiProduces, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiProduces,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
 import { Public } from 'src/auth/auth.decorator';
 
@@ -12,10 +26,17 @@ import { Public } from 'src/auth/auth.decorator';
 export class FileController {
   @ApiBearerAuth()
   @Get('list')
-  @ApiQuery({ name: 'directory', type: 'string', required: false, example: 'pictures' })
-  async readDirectoryAsync(@Query('directory') directoryPath: string): Promise<String[]> {
+  @ApiQuery({
+    name: 'directory',
+    type: 'string',
+    required: false,
+    example: 'pictures',
+  })
+  async readDirectoryAsync(
+    @Query('directory') directoryPath: string,
+  ): Promise<String[]> {
     try {
-      const files = await fs.promises.readdir('uploads/'+directoryPath);
+      const files = await fs.promises.readdir('uploads/' + directoryPath);
       console.log('Files in directory (async):', files);
       return files;
     } catch (err) {
@@ -26,22 +47,58 @@ export class FileController {
 
   @Public()
   @Get('view')
-  @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
-  @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
-  @ApiQuery({ name: 'type', type: 'string', required: false, example: 'image/jpeg' })
-  @ApiProduces('image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/tiff', 'image/avif') // Informs Swagger the endpoint returns an image
+  @ApiQuery({
+    name: 'filename',
+    type: 'string',
+    required: false,
+    example: 'avatar.jpg',
+  })
+  @ApiQuery({
+    name: 'folder',
+    type: 'string',
+    required: false,
+    example: 'pictures',
+  })
+  @ApiQuery({
+    name: 'type',
+    type: 'string',
+    required: false,
+    example: 'image/jpeg',
+  })
+  @ApiProduces(
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/webp',
+    'image/svg+xml',
+    'image/bmp',
+    'image/tiff',
+    'image/avif',
+  ) // Informs Swagger the endpoint returns an image
   @ApiResponse({ status: 200, description: 'File found' })
   @ApiResponse({ status: 404, description: 'File not found' })
   @Header('access-control-allow-origin', '*')
   @Header('Cross-Origin-Resource-Policy', 'cross-origin')
-  async imageView(@Query('filename') filename: string, @Query('folder') folder: string, @Query('type') type?: string): Promise<StreamableFile> {
-    const filePath = join(process.cwd(), 'uploads', folder || 'pictures', filename);
+  async imageView(
+    @Query('filename') filename: string,
+    @Query('folder') folder: string,
+    @Query('type') type?: string,
+  ): Promise<StreamableFile> {
+    const filePath = join(
+      process.cwd(),
+      'uploads',
+      folder || 'pictures',
+      filename,
+    );
     try {
       await stat(filePath); // Check if file exists
       const file = createReadStream(filePath);
-      
+
       // Return the StreamableFile. NestJS handles setting the Content-Type header correctly.
-      const imageBlob = new StreamableFile(file, { type: type || 'image/jpeg', disposition: 'inline' });
+      const imageBlob = new StreamableFile(file, {
+        type: type || 'image/jpeg',
+        disposition: 'inline',
+      });
 
       return imageBlob;
     } catch (err) {
@@ -49,30 +106,52 @@ export class FileController {
     }
   }
 
-
   @Public()
   @Get('download')
-  @ApiQuery({ name: 'Folder', type: 'string', required: false, example: 'pictures' })
-  @ApiQuery({ name: 'Type', type: 'string', required: false, example: 'image/jpg' })
-  @ApiQuery({ name: 'Filename', type: 'string', required: false, example: 'avatar.jpg' })
-  @ApiQuery({ name: 'OutputFileName', type: 'string', required: false, example: 'image.jpg' })
+  @ApiQuery({
+    name: 'Folder',
+    type: 'string',
+    required: false,
+    example: 'pictures',
+  })
+  @ApiQuery({
+    name: 'Type',
+    type: 'string',
+    required: false,
+    example: 'image/jpg',
+  })
+  @ApiQuery({
+    name: 'Filename',
+    type: 'string',
+    required: false,
+    example: 'avatar.jpg',
+  })
+  @ApiQuery({
+    name: 'OutputFileName',
+    type: 'string',
+    required: false,
+    example: 'image.jpg',
+  })
   @ApiResponse({ status: 200, description: 'File found' })
   @ApiResponse({ status: 404, description: 'File not found' })
   @Header('access-control-allow-origin', '*')
   @Header('Cross-Origin-Resource-Policy', 'cross-origin')
   async getFile(@Query() query: any): Promise<StreamableFile> {
-    const filePath = join(process.cwd(), 'uploads/'+query.Folder, query.Filename || 'package.json');
+    const filePath = join(
+      process.cwd(),
+      'uploads/' + query.Folder,
+      query.Filename || 'package.json',
+    );
 
     try {
       // Check if file exists asynchronously before creating the stream
-      await stat(filePath); 
+      await stat(filePath);
 
       const file = createReadStream(filePath);
       return new StreamableFile(file, {
         type: query.Type || 'application/json',
-        disposition: `attachment; filename="${query.OutputFileName || "package.json"}"`,
+        disposition: `attachment; filename="${query.OutputFileName || 'package.json'}"`,
       });
-
     } catch (error) {
       if (error.code === 'ENOENT') {
         throw new NotFoundException(`File not found at path: ${filePath}`);
@@ -83,10 +162,28 @@ export class FileController {
 
   @ApiBearerAuth()
   @Get('delete')
-  @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'avatar.jpg' })
-  @ApiQuery({ name: 'folder', type: 'string', required: false, example: 'pictures' })
-  async remove(@Query('filename') filename: string, @Query('folder') folder: string) {
-    const filePath = join(process.cwd(), 'uploads', folder || 'pictures', filename);
+  @ApiQuery({
+    name: 'filename',
+    type: 'string',
+    required: false,
+    example: 'avatar.jpg',
+  })
+  @ApiQuery({
+    name: 'folder',
+    type: 'string',
+    required: false,
+    example: 'pictures',
+  })
+  async remove(
+    @Query('filename') filename: string,
+    @Query('folder') folder: string,
+  ) {
+    const filePath = join(
+      process.cwd(),
+      'uploads',
+      folder || 'pictures',
+      filename,
+    );
     try {
       await fs.promises.unlink(filePath);
       return { message: 'File deleted successfully' };
@@ -113,8 +210,8 @@ export class FileController {
   // @ApiQuery({ name: 'filename', type: 'string', required: false, example: 'scene.jpg' })
   // getFileUsingStaticValues(@Query('filename') filename?: string, ): StreamableFile {
   //   console.log(filename);
-    
+
   //   const file = createReadStream(join(process.cwd(),'uploads/pictures', ( filename || 'avatar.jpg')));
   //   return new StreamableFile(file);
-  // }  
+  // }
 }

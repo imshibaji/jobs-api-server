@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { Job } from './job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -9,33 +17,35 @@ import { DeleteResult } from 'typeorm';
 @ApiBearerAuth()
 @Controller('jobs')
 export class JobsController {
-    constructor(private readonly jobsService: JobsService) {}
+  constructor(private readonly jobsService: JobsService) {}
 
-    @Get()
-    @Public()
-    async findAll(): Promise<Job[]> {
-        return this.jobsService.findAll();
-    }
+  @Get()
+  @Public()
+  async findAll(): Promise<Job[]> {
+    return this.jobsService.findAll();
+  }
 
-    @Get(':id')
-    @Public()
-    async findOne(@Param('id') id: number): Promise<Job | null> {
-        return this.jobsService.findOne(id);
-    }
+  @Get(':id')
+  @Public()
+  async findOne(@Param('id') id: number): Promise<Job | null> {
+    return this.jobsService.findOne(id);
+  }
 
-    @Post()
-    async create(@Body() jobData: CreateJobDto): Promise<Job> {
-        return this.jobsService.create(jobData);
-    }
+  @Post()
+  async create(@Body() jobData: CreateJobDto): Promise<Job> {
+    return this.jobsService.create(jobData);
+  }
 
-    @Put(':id')
-    async update(@Param('id') id: number, @Body() jobData: CreateJobDto): Promise<Job | null> {
-        return this.jobsService.update(id, jobData);
-    }
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() jobData: CreateJobDto,
+  ): Promise<Job | null> {
+    return this.jobsService.update(id, jobData);
+  }
 
-    @Delete(':id')
-    async remove(@Param('id') id: number): Promise<DeleteResult> {
-        return this.jobsService.remove(id);
-    }
-
+  @Delete(':id')
+  async remove(@Param('id') id: number): Promise<DeleteResult> {
+    return this.jobsService.remove(id);
+  }
 }

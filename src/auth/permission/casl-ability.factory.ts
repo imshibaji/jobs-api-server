@@ -1,8 +1,14 @@
-import { AbilityBuilder, createMongoAbility, ExtractSubjectType, InferSubjects, MongoAbility } from "@casl/ability";
-import { Action } from "./action.enum";
-import { User } from "src/users/users.entity";
-import { Injectable } from "@nestjs/common";
-import { Article } from "src/articles/article.entity";
+import {
+  AbilityBuilder,
+  createMongoAbility,
+  ExtractSubjectType,
+  InferSubjects,
+  MongoAbility,
+} from '@casl/ability';
+import { Action } from './action.enum';
+import { User } from 'src/users/users.entity';
+import { Injectable } from '@nestjs/common';
+import { Article } from 'src/articles/article.entity';
 
 type Subjects = InferSubjects<typeof Article | typeof User> | 'all';
 
@@ -29,4 +35,3 @@ export class CaslAbilityFactory {
     });
   }
 }
-

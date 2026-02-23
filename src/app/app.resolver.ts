@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { AppInfo } from './dto/app.types';
 import { UploadedFile } from '@nestjs/common';
 
-
-
 @Public()
 @Resolver()
 export class AppResolver {

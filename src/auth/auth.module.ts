@@ -41,6 +41,6 @@ import { AuthResolver } from './auth.resolver';
       useClass: RolesGuard,
     },
     AuthResolver,
-  ]
+  ],
 })
 export class AuthModule {}

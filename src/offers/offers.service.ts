@@ -6,7 +6,6 @@ import { Offer } from './entities/offer.entity';
 
 @Injectable()
 export class OffersService {
-
   constructor(
     @Inject('OFFER_REPOSITORY')
     private readonly offerRepository: Repository<Offer>,

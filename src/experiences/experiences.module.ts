@@ -7,10 +7,7 @@ import { ExperiencesResolver } from './experiences.resolver';
 import { ApplicantsModule } from 'src/applicants/applicants.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    forwardRef(() => ApplicantsModule),
-  ],
+  imports: [DatabaseModule, forwardRef(() => ApplicantsModule)],
   controllers: [ExperiencesController],
   providers: [...experiencesProvider, ExperiencesService, ExperiencesResolver],
   exports: [ExperiencesService],

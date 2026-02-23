@@ -11,12 +11,13 @@ export class FileResolver {
   @Public()
   @Query(() => [String])
   async listFiles(
-    @Args('directory', { nullable: true, defaultValue: 'pictures' }) directory: string,
+    @Args('directory', { nullable: true, defaultValue: 'pictures' })
+    directory: string,
   ): Promise<string[]> {
     try {
       const uploadPath = join(process.cwd(), 'uploads', directory);
       if (!fs.existsSync(uploadPath)) return [];
-      
+
       const files = await fs.promises.readdir(uploadPath);
       return files;
     } catch (err) {
@@ -27,7 +28,8 @@ export class FileResolver {
   @Public()
   @Query(() => [FileInfo]) // 👈 Changed from [String] to [FileInfo]
   async filesDetails(
-    @Args('directory', { nullable: true, defaultValue: 'pictures' }) directory: string,
+    @Args('directory', { nullable: true, defaultValue: 'pictures' })
+    directory: string,
   ): Promise<FileInfo[]> {
     try {
       const relativePath = directory || 'pictures';

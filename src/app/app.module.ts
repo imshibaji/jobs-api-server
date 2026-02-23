@@ -88,7 +88,9 @@ import { FileResolver } from './file.resolver';
   providers: [
     AppService,
     { provide: 'APP_INTERCEPTOR', useClass: LoggerInterceptor },
-    AppResolver, UploadResolver, FileResolver
+    AppResolver,
+    UploadResolver,
+    FileResolver,
   ],
 })
 export class AppModule implements NestModule {

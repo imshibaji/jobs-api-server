@@ -1,10 +1,14 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
-
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     let request;
 
@@ -23,7 +27,7 @@ export class LoggerInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((data) => {
         // 3. Safe check before reading properties
-        const body = request?.body || {}; 
+        const body = request?.body || {};
         // console.log('Request Body:', body); // Log the request body for both REST and GraphQL (if available)
         // Add your logging logic here
         // console.log('Response Data:', data); // Log the response data

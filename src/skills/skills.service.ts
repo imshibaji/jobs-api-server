@@ -6,28 +6,27 @@ import { CreateSkillDto } from './dto/create-skill.dto';
 
 @Injectable()
 export class SkillsService {
-    constructor(
-        @Inject('SKILL_REPOSITORY')
-        private skillRepository: Repository<Skill>,
-    ) {}
+  constructor(
+    @Inject('SKILL_REPOSITORY')
+    private skillRepository: Repository<Skill>,
+  ) {}
 
-    async findAll(): Promise<Skill[]> {
-        return this.skillRepository.find();
-    }
+  async findAll(): Promise<Skill[]> {
+    return this.skillRepository.find();
+  }
 
-    async findOne(id: number): Promise<Skill | null> {
-        return this.skillRepository.findOneBy({ id });
-    }
+  async findOne(id: number): Promise<Skill | null> {
+    return this.skillRepository.findOneBy({ id });
+  }
 
-    async create(skill: CreateSkillDto): Promise<Skill> {
-        return this.skillRepository.save(skill);
-    }
-    async update(id: number, skill: UpdateSkillDto): Promise<void> {
-        await this.skillRepository.update(id, {...skill, updatedAt: new Date() });
-    }
+  async create(skill: CreateSkillDto): Promise<Skill> {
+    return this.skillRepository.save(skill);
+  }
+  async update(id: number, skill: UpdateSkillDto): Promise<void> {
+    await this.skillRepository.update(id, { ...skill, updatedAt: new Date() });
+  }
 
-    async remove(id: number): Promise<void> {
-        await this.skillRepository.delete(id);
-    }
-
+  async remove(id: number): Promise<void> {
+    await this.skillRepository.delete(id);
+  }
 }

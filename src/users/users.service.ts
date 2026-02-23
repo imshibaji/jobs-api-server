@@ -5,42 +5,51 @@ import { hashPassword, verifyPassword } from 'src/auth/utils/encryption';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        @Inject('USER_REPOSITORY')
-        private usersRepository: Repository<User>
-    ) {}
+  constructor(
+    @Inject('USER_REPOSITORY')
+    private usersRepository: Repository<User>,
+  ) {}
 
-    async findAll(): Promise<User[]> {
-        return await this.usersRepository.find({ order: { createdAt: 'DESC' }, relations: ['applicants', 'companies', 'jobs'] });
+  async findAll(): Promise<User[]> {
+    return await this.usersRepository.find({
+      order: { createdAt: 'DESC' },
+      relations: ['applicants', 'companies', 'jobs'],
+    });
+  }
+
+  async findOne(id: number): Promise<User | null> {
+    return await this.usersRepository.findOne({
+      where: { id },
+      relations: ['applicants', 'companies', 'jobs'],
+    });
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.usersRepository.findOne({ where: { email } });
+  }
+
+  async findByPhoneNumber(phoneNumber: string): Promise<User | null> {
+    return await this.usersRepository.findOne({ where: { phoneNumber } });
+  }
+
+  async create(user: Partial<User>): Promise<User> {
+    user.role = user.role || 'user';
+    return await this.usersRepository.save(user);
+  }
+
+  async update(id: number, user: Partial<User>): Promise<UpdateResult> {
+    return await this.usersRepository.update(id, {
+      ...user,
+      updatedAt: new Date(),
+    });
+  }
+
+  async delete(id: number): Promise<DeleteResult> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('User not found');
     }
 
-    async findOne(id: number): Promise<User | null> {
-        return await this.usersRepository.findOne({ where: { id }, relations: ['applicants', 'companies', 'jobs'] });
-    }
-
-    async findByEmail(email: string): Promise<User | null> {
-        return await this.usersRepository.findOne({ where: { email } });
-    }
-    
-    async findByPhoneNumber(phoneNumber: string): Promise<User | null> {
-        return await this.usersRepository.findOne({ where: { phoneNumber } });
-    }
-
-    async create(user: Partial<User>): Promise<User> {
-        user.role = user.role || 'user';
-        return await this.usersRepository.save(user);
-    }
-
-    async update(id: number, user: Partial<User>): Promise<UpdateResult> {
-        return await this.usersRepository.update(id, {...user, updatedAt: new Date() });
-    }
-
-    async delete(id: number): Promise<DeleteResult> {
-        const user = await this.findOne(id);
-        if (!user) {
-            throw new Error('User not found');
-        }
-
-        return await this.usersRepository.delete(id);
-    }
+    return await this.usersRepository.delete(id);
+  }
 }

@@ -1,10 +1,11 @@
-import { DataSource } from "typeorm";
-import { Application } from "./application.entity";
+import { DataSource } from 'typeorm';
+import { Application } from './application.entity';
 
 export const applicationProviders = [
-    {
-        provide: 'APPLICATION_REPOSITORY',
-        useFactory: (dataSource: DataSource) => dataSource.getRepository(Application),
-        inject: ['DATA_SOURCE'],
-    },
+  {
+    provide: 'APPLICATION_REPOSITORY',
+    useFactory: (dataSource: DataSource) =>
+      dataSource.getRepository(Application),
+    inject: ['DATA_SOURCE'],
+  },
 ];

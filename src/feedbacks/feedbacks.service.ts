@@ -6,11 +6,10 @@ import { Feedback } from './entities/feedback.entity';
 
 @Injectable()
 export class FeedbacksService {
-
   constructor(
     @Inject('FEEDBACK_REPOSITORY')
     private feedbackRepository: Repository<Feedback>,
-  ) { }
+  ) {}
   create(createFeedbackDto: CreateFeedbackDto) {
     return this.feedbackRepository.save(createFeedbackDto);
   }

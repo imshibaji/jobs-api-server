@@ -8,6 +8,6 @@ import { TagsResolver } from './tags.resolver';
 @Module({
   imports: [DatabaseModule],
   controllers: [TagsController],
-  providers: [...tagsProvider, TagsService, TagsResolver]
+  providers: [...tagsProvider, TagsService, TagsResolver],
 })
 export class TagsModule {}

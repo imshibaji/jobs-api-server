@@ -6,21 +6,20 @@ import { Interview } from './entities/interview.entity';
 
 @Injectable()
 export class InterviewsService {
-
   constructor(
     @Inject('INTERVIEW_REPOSITORY')
     private readonly interviewRepository: Repository<Interview>,
   ) {}
 
-  create(createInterviewDto: CreateInterviewDto){
+  create(createInterviewDto: CreateInterviewDto) {
     return this.interviewRepository.save(createInterviewDto);
   }
 
   findAll() {
     return this.interviewRepository.find({
       order: {
-        updatedAt: 'DESC'
-      }
+        updatedAt: 'DESC',
+      },
     });
   }
 

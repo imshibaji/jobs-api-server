@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { IS_LOCKED, IS_PUBLIC_KEY } from './auth.decorator';
@@ -8,10 +13,9 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-
   constructor(
     private jwtService: JwtService,
-    private reflector: Reflector
+    private reflector: Reflector,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -19,7 +23,7 @@ export class AuthGuard implements CanActivate {
       context.getHandler(),
       context.getClass(),
     ]);
-    
+
     if (isPublic) return true;
 
     const isLocked = this.reflector.getAllAndOverride<boolean>(IS_LOCKED, [
@@ -39,7 +43,7 @@ export class AuthGuard implements CanActivate {
     } else {
       request = context.switchToHttp().getRequest();
     }
-    
+
     // Safety check: if request is missing (e.g. malformed context)
     if (!request) {
       throw new UnauthorizedException('No request context found');
@@ -63,10 +67,10 @@ export class AuthGuard implements CanActivate {
 
   private extractTokenFromHeader(request: Request): string | undefined {
     // console.log(request);
-    
+
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
     // console.log(type, token);
-    
+
     return type === 'Bearer' ? token : undefined;
   }
 }

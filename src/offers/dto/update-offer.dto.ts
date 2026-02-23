@@ -4,6 +4,5 @@ import { InputType, PartialType as InputPartialType } from '@nestjs/graphql';
 
 export class UpdateOfferDto extends PartialType(CreateOfferDto) {}
 
-
 @InputType()
 export class UpdateOfferInput extends InputPartialType(CreateOfferDto) {}

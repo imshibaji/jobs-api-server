@@ -6,7 +6,6 @@ import { Portfolio } from './entities/portfolio.entity';
 
 @Injectable()
 export class PortfoliosService {
-
   constructor(
     @Inject('PORTFOLIO_REPOSITORY')
     private readonly portfolioRepository: Repository<Portfolio>,

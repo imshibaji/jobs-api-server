@@ -8,7 +8,7 @@ export class LoggerMiddleware implements NestMiddleware {
     // Capture the response details
     res.on('finish', () => {
       this.logger.log({
-        request:{
+        request: {
           method: req.method,
           url: req.originalUrl,
           headers: req.headers,
@@ -19,7 +19,7 @@ export class LoggerMiddleware implements NestMiddleware {
           agent: req.headers['user-agent'],
           referer: req.headers.referer,
         },
-        response:{
+        response: {
           statusCode: res.statusCode,
           statusMessage: res.statusMessage,
           headers: res.getHeaders(),
@@ -27,7 +27,7 @@ export class LoggerMiddleware implements NestMiddleware {
         },
         timestamp: new Date().toISOString(),
       });
-    })
+    });
     next();
   }
 }

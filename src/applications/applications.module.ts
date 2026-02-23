@@ -16,7 +16,11 @@ import { JobsModule } from 'src/jobs/jobs.module';
     forwardRef(() => UsersModule),
   ],
   controllers: [ApplicationsController],
-  providers: [...applicationProviders, ApplicationsService, ApplicationsResolver],
+  providers: [
+    ...applicationProviders,
+    ApplicationsService,
+    ApplicationsResolver,
+  ],
   exports: [ApplicationsService],
 })
 export class ApplicationsModule {}

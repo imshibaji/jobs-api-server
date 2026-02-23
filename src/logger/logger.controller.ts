@@ -4,11 +4,11 @@ import { Public } from 'src/auth/auth.decorator';
 
 @Controller('logger')
 export class LoggerController {
-    constructor(private readonly loggerService: LoggerService) {}
+  constructor(private readonly loggerService: LoggerService) {}
 
-    @Public()
-    @Sse('events')
-    observe() {
-        return this.loggerService.observe();
-    }
+  @Public()
+  @Sse('events')
+  observe() {
+    return this.loggerService.observe();
+  }
 }

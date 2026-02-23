@@ -33,12 +33,12 @@ import configuration from 'src/config/configuration';
   ],
   controllers: [ChannelsController],
   providers: [
-    ...channelsProvider, 
+    ...channelsProvider,
     ChannelsService,
-    EmailService, 
+    EmailService,
     ScheduleProcessor,
-    ExecuteService
+    ExecuteService,
   ],
-  exports: [ChannelsService]
+  exports: [ChannelsService],
 })
 export class ChannelsModule {}

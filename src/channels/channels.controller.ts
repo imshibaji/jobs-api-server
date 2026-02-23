@@ -10,37 +10,36 @@ import { Public } from 'src/auth/auth.decorator';
 @ApiBearerAuth()
 @Controller('channels')
 export class ChannelsController {
-    constructor(private readonly channelsService: ChannelsService) {}
+  constructor(private readonly channelsService: ChannelsService) {}
 
-    @Public()
-    @Sse('notify')
-    events() {
-        return this.channelsService.notify();
-    }
+  @Public()
+  @Sse('notify')
+  events() {
+    return this.channelsService.notify();
+  }
 
-    @Post('sms')
-    async sendSms(@Body() body: MessageDto) {
-        return await this.channelsService.sendSms(body);
-    }
+  @Post('sms')
+  async sendSms(@Body() body: MessageDto) {
+    return await this.channelsService.sendSms(body);
+  }
 
-    @Post('whatsapp')
-    async sendWhatsApp(@Body() body: MessageDto) {
-        return await this.channelsService.sendWhatsApp(body);
-    }
+  @Post('whatsapp')
+  async sendWhatsApp(@Body() body: MessageDto) {
+    return await this.channelsService.sendWhatsApp(body);
+  }
 
-    @Post('email')
-    async sendEmail(@Body() body: EmailDto) {
-        return await this.channelsService.sendEmail(body);
-    }
+  @Post('email')
+  async sendEmail(@Body() body: EmailDto) {
+    return await this.channelsService.sendEmail(body);
+  }
 
-    @Post('push-notification')
-    async sendPushNotification(@Body() body: PushNotificationDto) {
-        return await this.channelsService.sendPushNotification(body);
-    }
+  @Post('push-notification')
+  async sendPushNotification(@Body() body: PushNotificationDto) {
+    return await this.channelsService.sendPushNotification(body);
+  }
 
-
-    @Post('webhook')
-    async sendWebhook(@Body() body: WebhookDto) {
-        return await this.channelsService.sendWebhook(body);
-    }
+  @Post('webhook')
+  async sendWebhook(@Body() body: WebhookDto) {
+    return await this.channelsService.sendWebhook(body);
+  }
 }

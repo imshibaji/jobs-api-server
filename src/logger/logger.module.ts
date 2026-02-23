@@ -4,8 +4,8 @@ import { LoggerController } from './logger.controller';
 import { LoggerInterceptor } from './logger.interceptor';
 
 @Module({
-    providers: [LoggerService, LoggerInterceptor],
-    controllers: [LoggerController],
-    exports: [LoggerService, LoggerInterceptor],
+  providers: [LoggerService, LoggerInterceptor],
+  controllers: [LoggerController],
+  exports: [LoggerService, LoggerInterceptor],
 })
 export class LoggerModule {}

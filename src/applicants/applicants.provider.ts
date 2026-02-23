@@ -1,5 +1,5 @@
-import { DataSource } from "typeorm";
-import { Applicant } from "./applicant.entity";
+import { DataSource } from 'typeorm';
+import { Applicant } from './applicant.entity';
 
 export const applicantProviders = [
   {

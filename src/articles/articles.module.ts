@@ -7,10 +7,7 @@ import { ArticlesResolver } from './articles.resolver';
 import { UsersModule } from 'src/users/users.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    forwardRef(() => UsersModule),
-  ],
+  imports: [DatabaseModule, forwardRef(() => UsersModule)],
   controllers: [ArticlesController],
   providers: [...articlesProvider, ArticlesService, ArticlesResolver],
   exports: [ArticlesService],

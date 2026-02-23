@@ -19,7 +19,7 @@ export default () => ({
     host: process.env.REDIS_HOST || 'localhost',
     port: Number(process.env.REDIS_PORT) || 6379,
     user: process.env.REDIS_USER || 'default',
-    pass: process.env.REDIS_PASS ||'password',
+    pass: process.env.REDIS_PASS || 'password',
     db: Number(process.env.REDIS_DB) || 0,
   },
 });
