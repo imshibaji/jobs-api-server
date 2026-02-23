@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Application } from 'src/applications/application.entity';
 import { Company } from 'src/companies/company.entity';
+import { Interview } from 'src/interviews/entities/interview.entity';
 import { Offer } from 'src/offers/entities/offer.entity';
 import { User } from 'src/users/users.entity';
 import {
@@ -131,6 +132,10 @@ export class Job {
   @Field(() => [Application], { nullable: 'itemsAndList' })
   @OneToMany(() => Application, (application) => application.job)
   applications?: Application[]; // This will be a relation to the Application entity, but we can keep it as any for now
+
+  @Field(() => [Interview], { nullable: true })
+  @OneToMany(() => Interview, (interview) => interview.job)
+  interviews?: Interview[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

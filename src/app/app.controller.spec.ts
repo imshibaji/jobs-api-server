@@ -15,8 +15,14 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "App Info"', () => {
+      expect(appController.getInfo()).toBe(`{
+        "appName": "jobs-api-server",
+        "appVersion": "1.0.0",
+        "appEnvironment": "development",
+        "appPort": 3300,
+        "appBaseUrl": "http://localhost:3300",
+        "appSecretKey": "app_key"}`);
     });
   });
 });

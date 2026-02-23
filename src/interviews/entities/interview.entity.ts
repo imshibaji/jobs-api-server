@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Application } from 'src/applications/application.entity';
+import { Job } from 'src/jobs/job.entity';
 import { User } from 'src/users/users.entity';
 import {
   Column,
@@ -15,6 +16,15 @@ export class Interview {
   @Field(() => Number, { nullable: true })
   @PrimaryGeneratedColumn()
   id?: number;
+
+  @Field(() => Number, { nullable: true })
+  @Column({ nullable: true })
+  jobId: number;
+
+  @Field(() => Job, { nullable: true })
+  @ManyToOne(() => Job, (job) => job.interviews)
+  @JoinColumn({ name: 'jobId' })
+  job: Job;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })

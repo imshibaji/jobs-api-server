@@ -30,6 +30,15 @@ export class CreateInterviewDto {
   })
   applicationId: number;
 
+  @Field(() => Number)
+  @ApiProperty({
+    type: Number,
+    required: true,
+    description: 'user id',
+    example: 1,
+  })
+  userId: number;
+
   @Field(() => Date)
   @ApiProperty({
     type: Date,

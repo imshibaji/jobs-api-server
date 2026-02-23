@@ -3,10 +3,7 @@ import {
   Header,
   Injectable,
   NotFoundException,
-  Post,
   StreamableFile,
-  UploadedFile,
-  UseInterceptors,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createReadStream } from 'node:fs';
@@ -18,14 +15,14 @@ import * as fs from 'fs';
 export class AppService {
   constructor(private readonly configService: ConfigService) {}
 
-  getInfo(): Object {
+  getInfo(): object {
     return {
-      appName: this.configService.get('APP_NAME'),
-      appVersion: this.configService.get('APP_VERSION'),
-      appEnvironment: this.configService.get('APP_ENVIRONMENT'),
-      appPort: this.configService.get('APP_PORT'),
-      appBaseUrl: this.configService.get('APP_BASE_URL'),
-      appSecretKey: this.configService.get('APP_SECRET_KEY'),
+      appName: this.configService.get('APP_NAME') as string,
+      appVersion: this.configService.get('APP_VERSION') as string,
+      appEnvironment: this.configService.get('APP_ENVIRONMENT') as string,
+      appPort: this.configService.get('APP_PORT') as number,
+      appBaseUrl: this.configService.get('APP_BASE_URL') as string,
+      appSecretKey: this.configService.get('APP_SECRET_KEY') as string,
     };
   }
 
@@ -64,7 +61,7 @@ export class AppService {
     const filePath = join(
       process.cwd(),
       'uploads/' + query.Folder,
-      query.Filename || 'package.json',
+      query.Filename || 'app.txt',
     );
 
     try {
