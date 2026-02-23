@@ -18,7 +18,7 @@ export class JobsService {
   async findAll(): Promise<Job[]> {
     return this.jobsRepository.find({
       where: { isDeleted: false },
-      relations: ['user', 'company', 'applications'],
+      relations: ['user', 'company', 'applications', 'interviews', 'offers'],
     });
   }
 
@@ -26,7 +26,7 @@ export class JobsService {
     return (
       this.jobsRepository.findOne({
         where: { id },
-        relations: ['user', 'company', 'applications'],
+        relations: ['user', 'company', 'applications', 'interviews', 'offers'],
       }) || null
     );
   }

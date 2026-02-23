@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Applicant } from 'src/applicants/applicant.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -31,6 +31,7 @@ export class Education {
 
   @Field(() => Applicant, { nullable: true })
   @ManyToOne(() => Applicant, (applicant) => applicant.educations)
+  @JoinColumn({ name: 'applicant_id' })
   applicant?: Applicant; // This will be a relation to the Applicant entity, but we can keep it as any for now
 
   @Column({ name: 'start_date', type: 'date' })
