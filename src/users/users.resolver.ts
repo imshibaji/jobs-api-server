@@ -10,12 +10,12 @@ import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserInput } from './dto/update-user.dto';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { Job } from 'src/jobs/job.entity';
-import { JobsService } from 'src/jobs/jobs.service';
-import { CompaniesService } from 'src/companies/companies.service';
-import { Company } from 'src/companies/company.entity';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { Applicant } from '../applicants/applicant.entity';
+import { Job } from '../jobs/job.entity';
+import { JobsService } from '../jobs/jobs.service';
+import { CompaniesService } from '../companies/companies.service';
+import { Company } from '../companies/company.entity';
 
 @Resolver(() => User)
 export class UsersResolver {

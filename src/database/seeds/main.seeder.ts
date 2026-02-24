@@ -18,7 +18,7 @@ export default class MainSeeder implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
     this.clear(dataSource);
-    
+
     const userFactory = factoryManager.get(User);
     const applicantFactory = factoryManager.get(Applicant);
     const educationFactory = factoryManager.get(Education);
@@ -37,24 +37,24 @@ export default class MainSeeder implements Seeder {
       const user = await userFactory.save();
 
       // Applicant seeder
-      const applicant = await applicantFactory.save({ 
+      const applicant = await applicantFactory.save({
         name: user.name,
         email: user.email,
         phoneNumber: user.phoneNumber,
         image: user.image,
-        userId: user.id
+        userId: user.id,
       });
       const education = await educationFactory.save({
-        applicantId: applicant.id
+        applicantId: applicant.id,
       });
       const experience = await experienceFactory.save({
-        applicantId: applicant.id
+        applicantId: applicant.id,
       });
       const portfolio = await portfolioFactory.save({
-        applicantId: applicant.id
+        applicantId: applicant.id,
       });
       const skill = await skillFactory.save({
-        applicantId: applicant.id
+        applicantId: applicant.id,
       });
 
       // Employer seeder
@@ -63,31 +63,33 @@ export default class MainSeeder implements Seeder {
       });
       const job = await jobFactory.save({
         userId: user.id,
-        companyId: company.id
+        companyId: company.id,
       });
 
       // Application seeder
       const application = await applicationFactory.save({
         jobId: job.id,
         applicantId: applicant.id,
-        userId: user.id
+        userId: user.id,
       });
       const interview = await interviewFactory.save({
         applicationId: application.id,
         userId: user.id,
-        jobId: job.id
+        jobId: job.id,
       });
       const offer = await offerFactory.save({
         applicantId: applicant.id,
         applicationId: application.id,
         userId: user.id,
-        jobId: job.id
+        jobId: job.id,
       });
     }
   }
 
   public async clear(dataSource: DataSource): Promise<any> {
     // 1. Disable foreign key checks (Postgres specific) to avoid dependency errors
-    await dataSource.query('TRUNCATE TABLE users, interview, companies, offer, jobs, applications, portfolios, applicants, articles, education, experiences, skills RESTART IDENTITY CASCADE;');
+    await dataSource.query(
+      'TRUNCATE TABLE users, interview, companies, offer, jobs, applications, portfolios, applicants, articles, education, experiences, skills RESTART IDENTITY CASCADE;',
+    );
   }
 }

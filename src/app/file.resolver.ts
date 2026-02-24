@@ -3,7 +3,7 @@ import { NotFoundException } from '@nestjs/common';
 import * as fs from 'fs';
 import { join } from 'path';
 import { FileInfo } from './dto/file.types';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from '../auth/auth.decorator';
 
 @Resolver()
 export class FileResolver {

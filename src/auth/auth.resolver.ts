@@ -1,9 +1,9 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { Public } from './auth.decorator';
 import { UpdateResult } from 'typeorm';
 import { AuthResponse, JwtToken } from './utils/auth.types';
-import { User } from 'src/users/users.entity';
+import { User } from '../users/users.entity';
 
 @Public()
 @Resolver()

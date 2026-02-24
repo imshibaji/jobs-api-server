@@ -10,8 +10,8 @@ import { EducationService } from './education.service';
 import { CreateEducationDto } from './dto/create-education.dto';
 import { Education } from './education.entity';
 import { UpdateEducationInput } from './dto/update-education.dto';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { Applicant } from 'src/applicants/applicant.entity';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { Applicant } from '../applicants/applicant.entity';
 
 @Resolver(() => Education)
 export class EducationResolver {

@@ -1,9 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { Interview } from 'src/interviews/entities/interview.entity';
-import { Job } from 'src/jobs/job.entity';
-import { Offer } from 'src/offers/entities/offer.entity';
-import { User } from 'src/users/users.entity';
+import { Applicant } from '../applicants/applicant.entity';
+import { Interview } from '../interviews/entities/interview.entity';
+import { Job } from '../jobs/job.entity';
+import { Offer } from '../offers/entities/offer.entity';
+import { User } from '../users/users.entity';
 import {
   Column,
   Entity,

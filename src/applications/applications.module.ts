@@ -1,12 +1,12 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { ApplicationsController } from './applications.controller';
 import { ApplicationsService } from './applications.service';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { applicationProviders } from './applications.provider';
 import { ApplicationsResolver } from './applications.resolver';
-import { UsersModule } from 'src/users/users.module';
-import { ApplicantsModule } from 'src/applicants/applicants.module';
-import { JobsModule } from 'src/jobs/jobs.module';
+import { UsersModule } from '../users/users.module';
+import { ApplicantsModule } from '../applicants/applicants.module';
+import { JobsModule } from '../jobs/jobs.module';
 
 @Module({
   imports: [

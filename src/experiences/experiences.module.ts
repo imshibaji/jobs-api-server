@@ -2,9 +2,9 @@ import { forwardRef, Module } from '@nestjs/common';
 import { ExperiencesController } from './experiences.controller';
 import { ExperiencesService } from './experiences.service';
 import { experiencesProvider } from './experiences.provider';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { ExperiencesResolver } from './experiences.resolver';
-import { ApplicantsModule } from 'src/applicants/applicants.module';
+import { ApplicantsModule } from '../applicants/applicants.module';
 
 @Module({
   imports: [DatabaseModule, forwardRef(() => ApplicantsModule)],

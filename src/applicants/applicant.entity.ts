@@ -1,11 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Application } from 'src/applications/application.entity';
-import { Education } from 'src/education/education.entity';
-import { Experience } from 'src/experiences/experience.entity';
-import { Offer } from 'src/offers/entities/offer.entity';
-import { Portfolio } from 'src/portfolios/entities/portfolio.entity';
-import { Skill } from 'src/skills/skill.entity';
-import { User } from 'src/users/users.entity';
+import { Application } from '../applications/application.entity';
+import { Education } from '../education/education.entity';
+import { Experience } from '../experiences/experience.entity';
+import { Offer } from '../offers/entities/offer.entity';
+import { Portfolio } from '../portfolios/entities/portfolio.entity';
+import { Skill } from '../skills/skill.entity';
+import { User } from '../users/users.entity';
 import {
   Column,
   Entity,

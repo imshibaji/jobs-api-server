@@ -10,8 +10,8 @@ import { ArticlesService } from './articles.service';
 import { Article } from './article.entity';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleInput } from './dto/update-article.dto';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/users.entity';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/users.entity';
 
 @Resolver(() => Article)
 export class ArticlesResolver {

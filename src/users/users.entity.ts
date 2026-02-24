@@ -1,17 +1,16 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { Application } from 'src/applications/application.entity';
-import { Article } from 'src/articles/article.entity';
-import { Company } from 'src/companies/company.entity';
-import { Interview } from 'src/interviews/entities/interview.entity';
-import { Job } from 'src/jobs/job.entity';
-import { Offer } from 'src/offers/entities/offer.entity';
-import { Portfolio } from 'src/portfolios/entities/portfolio.entity';
+import { Applicant } from '../applicants/applicant.entity';
+import { Application } from '../applications/application.entity';
+import { Article } from '../articles/article.entity';
+import { Company } from '../companies/company.entity';
+import { Interview } from '../interviews/entities/interview.entity';
+import { Job } from '../jobs/job.entity';
+import { Offer } from '../offers/entities/offer.entity';
+import { Portfolio } from '../portfolios/entities/portfolio.entity';
 import {
   Column,
   Entity,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 

@@ -1,6 +1,6 @@
 import { Controller, Sse } from '@nestjs/common';
 import { LoggerService } from './logger.service';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from '../auth/auth.decorator';
 
 @Controller('logger')
 export class LoggerController {

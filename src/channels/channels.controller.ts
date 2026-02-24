@@ -5,7 +5,7 @@ import { MessageDto } from './dto/message.dto';
 import { PushNotificationDto } from './dto/push-notification.dto';
 import { WebhookDto } from './dto/webhook.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from '../auth/auth.decorator';
 
 @ApiBearerAuth()
 @Controller('channels')

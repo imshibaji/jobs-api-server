@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { dateTime } from 'src/utils/dateTime';
+import { dateTime } from '../../utils/dateTime';
 
 export class Base {
   @ApiProperty({

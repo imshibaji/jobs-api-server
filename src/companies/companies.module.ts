@@ -2,10 +2,10 @@ import { forwardRef, Module } from '@nestjs/common';
 import { CompaniesController } from './companies.controller';
 import { CompaniesService } from './companies.service';
 import { companiesProvider } from './companies.provider';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { CompaniesResolver } from './companies.resolver';
-import { UsersModule } from 'src/users/users.module';
-import { JobsModule } from 'src/jobs/jobs.module';
+import { UsersModule } from '../users/users.module';
+import { JobsModule } from '../jobs/jobs.module';
 
 @Module({
   imports: [

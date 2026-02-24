@@ -6,10 +6,10 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { BullModule } from '@nestjs/bull';
 import { channelsProvider } from './channels.provider';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { ScheduleProcessor } from './services/schedule.processor';
 import { ExecuteService } from './services/execute.service';
-import configuration from 'src/config/configuration';
+import configuration from '../config/configuration';
 
 @Module({
   imports: [

@@ -10,10 +10,10 @@ import { InterviewsService } from './interviews.service';
 import { Interview } from './entities/interview.entity';
 import { CreateInterviewDto } from './dto/create-interview.dto';
 import { UpdateInterviewInput } from './dto/update-interview.dto';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/users.entity';
-import { ApplicationsService } from 'src/applications/applications.service';
-import { Application } from 'src/applications/application.entity';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/users.entity';
+import { ApplicationsService } from '../applications/applications.service';
+import { Application } from '../applications/application.entity';
 
 @Resolver(() => Interview)
 export class InterviewsResolver {

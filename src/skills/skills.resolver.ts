@@ -10,14 +10,14 @@ import { SkillsService } from './skills.service';
 import { Skill } from './skill.entity';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillInput } from './dto/update-skill.dto';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { JobsService } from 'src/jobs/jobs.service';
-import { ApplicationsService } from 'src/applications/applications.service';
-import { UsersService } from 'src/users/users.service';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { Application } from 'src/applications/application.entity';
-import { Job } from 'src/jobs/job.entity';
-import { User } from 'src/users/users.entity';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { JobsService } from '../jobs/jobs.service';
+import { ApplicationsService } from '../applications/applications.service';
+import { UsersService } from '../users/users.service';
+import { Applicant } from '../applicants/applicant.entity';
+import { Application } from '../applications/application.entity';
+import { Job } from '../jobs/job.entity';
+import { User } from '../users/users.entity';
 
 @Resolver(() => Skill)
 export class SkillsResolver {

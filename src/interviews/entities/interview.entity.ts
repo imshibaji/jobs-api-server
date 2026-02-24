@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Application } from 'src/applications/application.entity';
-import { Job } from 'src/jobs/job.entity';
-import { User } from 'src/users/users.entity';
+import { Application } from '../../applications/application.entity';
+import { Job } from '../../jobs/job.entity';
+import { User } from '../../users/users.entity';
 import {
   Column,
   Entity,

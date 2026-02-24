@@ -10,8 +10,8 @@ import { ApplicantsService } from './applicants.service';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantInput } from './dto/update-applicant.dto';
 import { Applicant } from './applicant.entity';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/users.entity';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/users.entity';
 
 @Resolver(() => Applicant)
 export class ApplicantsResolver {

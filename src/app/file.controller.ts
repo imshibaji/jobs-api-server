@@ -18,7 +18,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from '../auth/auth.decorator';
 
 // @ApiBearerAuth()
 @ApiTags('Files Management')

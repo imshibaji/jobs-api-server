@@ -10,14 +10,14 @@ import { OffersService } from './offers.service';
 import { Offer } from './entities/offer.entity';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferInput } from './dto/update-offer.dto';
-import { User } from 'src/users/users.entity';
-import { UsersService } from 'src/users/users.service';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { JobsService } from 'src/jobs/jobs.service';
-import { ApplicationsService } from 'src/applications/applications.service';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { Job } from 'src/jobs/job.entity';
-import { Application } from 'src/applications/application.entity';
+import { User } from '../users/users.entity';
+import { UsersService } from '../users/users.service';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { JobsService } from '../jobs/jobs.service';
+import { ApplicationsService } from '../applications/applications.service';
+import { Applicant } from '../applicants/applicant.entity';
+import { Job } from '../jobs/job.entity';
+import { Application } from '../applications/application.entity';
 
 @Resolver(() => Offer)
 export class OffersResolver {

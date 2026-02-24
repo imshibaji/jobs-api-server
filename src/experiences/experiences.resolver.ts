@@ -10,8 +10,8 @@ import { ExperiencesService } from './experiences.service';
 import { Experience } from './experience.entity';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceInput } from './dto/update-experience.dto';
-import { Applicant } from 'src/applicants/applicant.entity';
-import { ApplicantsService } from 'src/applicants/applicants.service';
+import { Applicant } from '../applicants/applicant.entity';
+import { ApplicantsService } from '../applicants/applicants.service';
 
 @Resolver(() => Experience)
 export class ExperiencesResolver {

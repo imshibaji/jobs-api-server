@@ -2,10 +2,10 @@ import { forwardRef, Module } from '@nestjs/common';
 import { PortfoliosService } from './portfolios.service';
 import { PortfoliosController } from './portfolios.controller';
 import { portfoliosProvider } from './portfolios.provider';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { PortfoliosResolver } from './portfolios.resolver';
-import { ApplicantsModule } from 'src/applicants/applicants.module';
-import { UsersModule } from 'src/users/users.module';
+import { ApplicantsModule } from '../applicants/applicants.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [

@@ -10,10 +10,10 @@ import { CompaniesService } from './companies.service';
 import { Company } from './company.entity';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyInput } from './dto/update-company.dto';
-import { User } from 'src/users/users.entity';
-import { UsersService } from 'src/users/users.service';
-import { Job } from 'src/jobs/job.entity';
-import { JobsService } from 'src/jobs/jobs.service';
+import { User } from '../users/users.entity';
+import { UsersService } from '../users/users.service';
+import { Job } from '../jobs/job.entity';
+import { JobsService } from '../jobs/jobs.service';
 
 @Resolver(() => Company)
 export class CompaniesResolver {

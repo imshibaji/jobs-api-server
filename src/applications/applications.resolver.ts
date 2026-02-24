@@ -10,12 +10,12 @@ import { ApplicationsService } from './applications.service';
 import { Application } from './application.entity';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { UpdateApplicationInput } from './dto/update-application.dto';
-import { User } from 'src/users/users.entity';
-import { UsersService } from 'src/users/users.service';
-import { JobsService } from 'src/jobs/jobs.service';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { Job } from 'src/jobs/job.entity';
-import { Applicant } from 'src/applicants/applicant.entity';
+import { User } from '../users/users.entity';
+import { UsersService } from '../users/users.service';
+import { JobsService } from '../jobs/jobs.service';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { Job } from '../jobs/job.entity';
+import { Applicant } from '../applicants/applicant.entity';
 
 @Resolver(() => Application)
 export class ApplicationsResolver {

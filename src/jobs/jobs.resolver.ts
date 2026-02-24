@@ -10,12 +10,12 @@ import { Job } from './job.entity';
 import { Query } from '@nestjs/graphql';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobInput } from './dto/update-job.dto';
-import { User } from 'src/users/users.entity';
-import { UsersService } from 'src/users/users.service';
-import { Company } from 'src/companies/company.entity';
-import { CompaniesService } from 'src/companies/companies.service';
-import { ApplicationsService } from 'src/applications/applications.service';
-import { Application } from 'src/applications/application.entity';
+import { User } from '../users/users.entity';
+import { UsersService } from '../users/users.service';
+import { Company } from '../companies/company.entity';
+import { CompaniesService } from '../companies/companies.service';
+import { ApplicationsService } from '../applications/applications.service';
+import { Application } from '../applications/application.entity';
 
 @Resolver(() => Job)
 export class JobsResolver {

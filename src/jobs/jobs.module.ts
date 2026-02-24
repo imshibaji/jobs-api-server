@@ -2,11 +2,11 @@ import { forwardRef, Module } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { JobsController } from './jobs.controller';
 import { jobsProvider } from './jobs.provider';
-import { DatabaseModule } from 'src/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 import { JobsResolver } from './jobs.resolver';
-import { UsersModule } from 'src/users/users.module';
-import { CompaniesModule } from 'src/companies/companies.module';
-import { ApplicationsModule } from 'src/applications/applications.module';
+import { UsersModule } from '../users/users.module';
+import { CompaniesModule } from '../companies/companies.module';
+import { ApplicationsModule } from '../applications/applications.module';
 
 @Module({
   imports: [

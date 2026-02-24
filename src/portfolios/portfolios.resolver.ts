@@ -10,9 +10,9 @@ import { PortfoliosService } from './portfolios.service';
 import { Portfolio } from './entities/portfolio.entity';
 import { CreatePortfolioDto } from './dto/create-portfolio.dto';
 import { UpdatePortfolioInput } from './dto/update-portfolio.dto';
-import { UsersService } from 'src/users/users.service';
-import { ApplicantsService } from 'src/applicants/applicants.service';
-import { Applicant } from 'src/applicants/applicant.entity';
+import { UsersService } from '../users/users.service';
+import { ApplicantsService } from '../applicants/applicants.service';
+import { Applicant } from '../applicants/applicant.entity';
 
 @Resolver(() => Portfolio)
 export class PortfoliosResolver {

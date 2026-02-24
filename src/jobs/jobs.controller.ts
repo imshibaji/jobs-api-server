@@ -11,7 +11,7 @@ import { JobsService } from './jobs.service';
 import { Job } from './job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from '../auth/auth.decorator';
 import { DeleteResult } from 'typeorm';
 
 @ApiBearerAuth()
