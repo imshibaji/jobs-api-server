@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Education } from './education.entity';
 import { CreateEducationDto } from './dto/create-education.dto';
 import { UpdateEducationDto } from './dto/update-education.dto';
@@ -10,6 +10,11 @@ export class EducationService {
     @Inject('EDUCATION_REPOSITORY')
     private educationRepository: Repository<Education>,
   ) {}
+
+
+  async searchBy(prop: string, value): Promise<Education[]>{
+    return this.educationRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   async findAll(): Promise<Education[]> {
     return this.educationRepository.find();

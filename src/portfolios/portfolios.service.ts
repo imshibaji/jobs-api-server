@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreatePortfolioDto } from './dto/create-portfolio.dto';
 import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Portfolio } from './entities/portfolio.entity';
 
 @Injectable()
@@ -10,6 +10,10 @@ export class PortfoliosService {
     @Inject('PORTFOLIO_REPOSITORY')
     private readonly portfolioRepository: Repository<Portfolio>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<Portfolio[]>{
+    return this.portfolioRepository.findBy({[prop]: ILike(`%${value}%`)});
+  }
 
   async create(createPortfolioDto: CreatePortfolioDto) {
     return await this.portfolioRepository.save(createPortfolioDto);

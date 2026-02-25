@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, ILike, Repository } from 'typeorm';
 import { Job } from './job.entity';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -11,8 +11,8 @@ export class JobsService {
     private jobsRepository: Repository<Job>,
   ) {}
 
-  async searchBy(prop: string, value: string): Promise<Job[]> {
-    return this.jobsRepository.findBy({ [prop]: value, isDeleted: false });
+  async searchBy(prop: string, value: any): Promise<Job[]> {
+    return this.jobsRepository.findBy({ [prop]: ILike(`%${value}%`), isDeleted: false });
   }
 
   async findAll(): Promise<Job[]> {

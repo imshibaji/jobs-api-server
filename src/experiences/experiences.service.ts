@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Experience } from './experience.entity';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
@@ -10,6 +10,10 @@ export class ExperiencesService {
     @Inject('EXPERIENCE_REPOSITORY')
     private experiencesRepository: Repository<Experience>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<Experience[]>{
+    return this.experiencesRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   // Service methods go here
   async findAll(): Promise<Experience[]> {

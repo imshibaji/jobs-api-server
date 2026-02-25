@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Applicant } from './applicant.entity';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class ApplicantsService {
   ) {}
 
   async searchBy(prop: string, value: string): Promise<Applicant[]> {
-    return this.applicantRepository.findBy({ [prop]: value });
+    return this.applicantRepository.findBy({ [prop]: ILike(`%${value}%`) });
   }
 
   create(createApplicantDto: CreateApplicantDto) {

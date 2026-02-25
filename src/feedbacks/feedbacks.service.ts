@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateFeedbackDto } from './dto/create-feedback.dto';
 import { UpdateFeedbackDto } from './dto/update-feedback.dto';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Feedback } from './entities/feedback.entity';
 
 @Injectable()
@@ -10,6 +10,12 @@ export class FeedbacksService {
     @Inject('FEEDBACK_REPOSITORY')
     private feedbackRepository: Repository<Feedback>,
   ) {}
+
+
+  searchBy(prop: string, value): Promise<Feedback[]>{
+    return this.feedbackRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
+
   create(createFeedbackDto: CreateFeedbackDto) {
     return this.feedbackRepository.save(createFeedbackDto);
   }

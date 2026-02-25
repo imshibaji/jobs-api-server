@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Skill } from './skill.entity';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
@@ -10,6 +10,10 @@ export class SkillsService {
     @Inject('SKILL_REPOSITORY')
     private skillRepository: Repository<Skill>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<Skill[]>{
+    return this.skillRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   async findAll(): Promise<Skill[]> {
     return this.skillRepository.find();

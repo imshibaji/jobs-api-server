@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, ILike, Repository, UpdateResult } from 'typeorm';
 import { User } from './users.entity';
 import { hashPassword, verifyPassword } from 'src/auth/utils/encryption';
 
@@ -9,6 +9,10 @@ export class UsersService {
     @Inject('USER_REPOSITORY')
     private usersRepository: Repository<User>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<User[]>{
+    return this.usersRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   async findAll(): Promise<User[]> {
     return await this.usersRepository.find({

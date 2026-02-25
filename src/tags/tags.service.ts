@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Tag } from './tag.entity';
 import { CreateTagDto } from './dto/create-tag.dto';
 import { UpdateTagDto } from './dto/update-tag.dto';
@@ -10,6 +10,10 @@ export class TagsService {
     @Inject('TAG_REPOSITORY')
     private readonly tagsRepository: Repository<Tag>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<Tag[]>{
+    return this.tagsRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   async findAll() {
     return await this.tagsRepository.find();

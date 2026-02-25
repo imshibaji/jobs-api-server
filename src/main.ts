@@ -37,7 +37,7 @@ async function bootstrap() {
       'https://shibajidebnath.com',
       'imshibaji@gmail.com',
     )
-    .setExternalDoc('Auth API Documentation', '/api/auth/docs')
+    // .setExternalDoc('Auth API Documentation', '/api/auth/docs')
     .addBearerAuth()
     .setVersion(packageJson.version || '1.0.0')
     .build();

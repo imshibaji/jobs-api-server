@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Article } from './article.entity';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -12,7 +12,7 @@ export class ArticlesService {
   ) {}
 
   async searchBy(prop: string, value: string): Promise<Article[]> {
-    return await this.articleRepository.findBy({ [prop]: value });
+    return await this.articleRepository.findBy({[prop]: ILike(`%${value}%`) });
   }
 
   async findAll(): Promise<Article[]> {

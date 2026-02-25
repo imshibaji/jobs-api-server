@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Offer } from './entities/offer.entity';
 
 @Injectable()
@@ -10,6 +10,10 @@ export class OffersService {
     @Inject('OFFER_REPOSITORY')
     private readonly offerRepository: Repository<Offer>,
   ) {}
+
+  async searchBy(prop: string, value): Promise<Offer[]>{
+    return this.offerRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   create(createOfferDto: CreateOfferDto) {
     return this.offerRepository.save(createOfferDto);

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, ILike } from 'typeorm';
 import { Application } from './application.entity';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { UpdateApplicationDto } from './dto/update-application.dto';
@@ -10,6 +10,10 @@ export class ApplicationsService {
     @Inject('APPLICATION_REPOSITORY')
     private readonly applicationRepository: Repository<Application>,
   ) {}
+
+  async searchBy(prop: string, value: any): Promise<Application[]>{
+    return this.applicationRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   async findAll(): Promise<Application[]> {
     return this.applicationRepository.find();

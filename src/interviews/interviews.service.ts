@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateInterviewDto } from './dto/create-interview.dto';
 import { UpdateInterviewDto } from './dto/update-interview.dto';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Interview } from './entities/interview.entity';
 
 @Injectable()
@@ -10,6 +10,11 @@ export class InterviewsService {
     @Inject('INTERVIEW_REPOSITORY')
     private readonly interviewRepository: Repository<Interview>,
   ) {}
+
+
+  async searchBy(prop: string, value): Promise<Interview[]>{
+    return this.interviewRepository.findBy({[prop]: ILike(`%${value}%`) });
+  }
 
   create(createInterviewDto: CreateInterviewDto) {
     return this.interviewRepository.save(createInterviewDto);
