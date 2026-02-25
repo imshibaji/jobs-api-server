@@ -10,7 +10,10 @@ import {
 import { PortfoliosService } from './portfolios.service';
 import { CreatePortfolioDto } from './dto/create-portfolio.dto';
 import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+
+@ApiBearerAuth()
 @Controller('portfolios')
 export class PortfoliosController {
   constructor(private readonly portfoliosService: PortfoliosService) {}
