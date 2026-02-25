@@ -17,11 +17,6 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class OffersController {
   constructor(private readonly offersService: OffersService) {}
 
-  @Post()
-  create(@Body() createOfferDto: CreateOfferDto) {
-    return this.offersService.create(createOfferDto);
-  }
-
   @Get()
   findAll() {
     return this.offersService.findAll();
@@ -30,6 +25,11 @@ export class OffersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.offersService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createOfferDto: CreateOfferDto) {
+    return this.offersService.create(createOfferDto);
   }
 
   @Put(':id')

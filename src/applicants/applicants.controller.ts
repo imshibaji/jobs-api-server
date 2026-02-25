@@ -17,11 +17,6 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class ApplicantsController {
   constructor(private readonly applicantsService: ApplicantsService) {}
 
-  @Post()
-  create(@Body() createApplicantDto: CreateApplicantDto) {
-    return this.applicantsService.create(createApplicantDto);
-  }
-
   @Get()
   findAll() {
     return this.applicantsService.findAll();
@@ -30,6 +25,11 @@ export class ApplicantsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.applicantsService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createApplicantDto: CreateApplicantDto) {
+    return this.applicantsService.create(createApplicantDto);
   }
 
   @Put(':id')

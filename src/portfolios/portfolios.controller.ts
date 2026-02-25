@@ -18,11 +18,6 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class PortfoliosController {
   constructor(private readonly portfoliosService: PortfoliosService) {}
 
-  @Post()
-  create(@Body() createPortfolioDto: CreatePortfolioDto) {
-    return this.portfoliosService.create(createPortfolioDto);
-  }
-
   @Get()
   findAll() {
     return this.portfoliosService.findAll();
@@ -31,6 +26,11 @@ export class PortfoliosController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.portfoliosService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createPortfolioDto: CreatePortfolioDto) {
+    return this.portfoliosService.create(createPortfolioDto);
   }
 
   @Patch(':id')

@@ -17,11 +17,6 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class InterviewsController {
   constructor(private readonly interviewsService: InterviewsService) {}
 
-  @Post()
-  create(@Body() createInterviewDto: CreateInterviewDto) {
-    return this.interviewsService.create(createInterviewDto);
-  }
-
   @Get()
   findAll() {
     return this.interviewsService.findAll();
@@ -30,6 +25,11 @@ export class InterviewsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.interviewsService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createInterviewDto: CreateInterviewDto) {
+    return this.interviewsService.create(createInterviewDto);
   }
 
   @Put(':id')
