@@ -31,7 +31,7 @@ export class ArticlesResolver {
   }
 
   @Query(() => [Article])
-  searchBy(@Args('prop') prop: string, @Args('value') value: string) {
+  searchArticles(@Args('prop') prop: string, @Args('value') value: string) {
     return this.articlesService.searchBy(prop, value);
   }
 

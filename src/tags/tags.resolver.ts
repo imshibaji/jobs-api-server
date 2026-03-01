@@ -18,6 +18,11 @@ export class TagsResolver {
     return await this.tagsService.findOne(id);
   }
 
+  @Query(() => [Tag])
+  async searchTags(@Args('prop') prop: string, @Args('value') value: string) {
+    return await this.tagsService.searchBy(prop, value);
+  }
+
   @Mutation(() => Tag)
   async createTag(@Args('tag') createTagInput: CreateTagDto) {
     return await this.tagsService.create(createTagInput);

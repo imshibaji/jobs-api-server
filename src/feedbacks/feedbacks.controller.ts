@@ -17,11 +17,6 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class FeedbacksController {
   constructor(private readonly feedbacksService: FeedbacksService) {}
 
-  @Post()
-  create(@Body() createFeedbackDto: CreateFeedbackDto) {
-    return this.feedbacksService.create(createFeedbackDto);
-  }
-
   @Get()
   findAll() {
     return this.feedbacksService.findAll();
@@ -30,6 +25,16 @@ export class FeedbacksController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.feedbacksService.findOne(+id);
+  }
+
+  @Get('/search/:prop/:value')
+  searchBy(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.feedbacksService.searchBy(prop, value);
+  }
+
+  @Post()
+  create(@Body() createFeedbackDto: CreateFeedbackDto) {
+    return this.feedbacksService.create(createFeedbackDto);
   }
 
   @Put(':id')

@@ -22,16 +22,9 @@ export class CompaniesController {
     return await this.companiesService.findAll();
   }
 
-  @Get('search')
-  @ApiQuery({ name: 'value', required: true, type: String })
-  @ApiQuery({
-    name: 'key',
-    required: true,
-    type: String,
-    enum: ['name', 'email', 'phoneNumber', 'recruiterName', 'website'],
-  })
-  async seachBy(@Query('key') key: string, @Query('value') value: string) {
-    return await this.companiesService.searchBy(key, value);
+  @Get('/search/:prop/:value')
+  async searchBy(@Param('prop') prop: string,@Param('value') value: string) {
+    return await this.companiesService.searchBy(prop, value);
   }
 
   @Get(':id')

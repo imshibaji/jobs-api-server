@@ -36,6 +36,11 @@ export class ApplicationsResolver {
     return this.applicationsService.findOne(id);
   }
 
+  @Query(() => [Application])
+  async searchApplications(@Args('prop') prop: string, @Args('value') value: string) {
+    return this.applicationsService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Job, { nullable: true })
   async job(@Parent() application: Application) {
     if (!application.jobId) return null;

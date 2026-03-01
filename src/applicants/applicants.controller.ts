@@ -27,6 +27,11 @@ export class ApplicantsController {
     return this.applicantsService.findOne(+id);
   }
 
+  @Get('search/:prop/:value')
+  search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.applicantsService.searchBy(prop, value);
+  }
+
   @Post()
   create(@Body() createApplicantDto: CreateApplicantDto) {
     return this.applicantsService.create(createApplicantDto);

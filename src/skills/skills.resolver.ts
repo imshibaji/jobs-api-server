@@ -39,6 +39,11 @@ export class SkillsResolver {
     return this.skillService.findOne(id);
   }
 
+  @Query(() => [Skill])
+  async searchSkills(@Args('prop') prop: string, @Args('value') value: string) {
+    return this.skillService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Applicant, { nullable: true })
   async applicant(@Parent() skill: Skill) {
     if (!skill.applicantId) return null;

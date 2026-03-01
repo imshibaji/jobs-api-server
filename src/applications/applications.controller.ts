@@ -27,6 +27,12 @@ export class ApplicationsController {
     return this.applicationsService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  async search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.applicationsService.searchBy(prop, value);
+  }
+
+  
   @Post()
   async create(@Body() applicationData: CreateApplicationDto) {
     return await this.applicationsService.create(applicationData);

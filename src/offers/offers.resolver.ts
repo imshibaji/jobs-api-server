@@ -39,6 +39,11 @@ export class OffersResolver {
     return this.offersService.findOne(id);
   }
 
+  @Query(() => [Offer])
+  async searchOffers(@Args('prop') prop: string, @Args('value') value: string) {
+    return this.offersService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Applicant, { nullable: true })
   async applicant(@Parent() offer: Offer) {
     if (!offer.applicantId) return null;

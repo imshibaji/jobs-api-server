@@ -30,6 +30,11 @@ export class EducationResolver {
     return this.educationService.findOne(id);
   }
 
+  @Query(() => [Education])
+  async searchEducations(@Args('prop') prop: string, @Args('value') value: string) {
+    return this.educationService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Applicant, { nullable: true })
   async applicant(@Parent() education: Education) {
     if (!education.applicantId) return null;

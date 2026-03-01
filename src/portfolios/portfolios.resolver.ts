@@ -32,6 +32,11 @@ export class PortfoliosResolver {
     return this.portfoliosService.findOne(id);
   }
 
+  @Query(() => [Portfolio])
+  async searchPortfolios(@Args('prop') prop: string, @Args('value') value: string) {
+    return this.portfoliosService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Applicant, { nullable: true })
   async applicant(@Parent() portfolio: Portfolio) {
     return this.applicantsService.findOne(portfolio.applicantId!);

@@ -31,6 +31,12 @@ export class JobsController {
     return this.jobsService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  @Public()
+  async search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.jobsService.searchBy(prop, value);
+  }
+
   @Post()
   async create(@Body() jobData: CreateJobDto): Promise<Job> {
     return this.jobsService.create(jobData);

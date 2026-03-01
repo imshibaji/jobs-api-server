@@ -33,6 +33,11 @@ export class CompaniesResolver {
     return (await this.companiesService.findOne(id)) || null;
   }
 
+  @Query(() => [Company])
+  async searchCompanies(@Args('prop') prop: string, @Args('value') value: string) {
+    return await this.companiesService.searchBy(prop, value);
+  }
+
   @ResolveField(() => User, { nullable: true })
   async user(@Parent() company: Company) {
     if (!company.userId) return null;

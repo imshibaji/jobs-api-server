@@ -31,6 +31,11 @@ export class ArticlesController {
     return this.articlesService.findBySlug(slug);
   }
 
+  @Get('search/:prop/:value')
+  searchBy(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.articlesService.searchBy(prop, value);
+  }
+
   @Post()
   create(@Body() createArticleDto: CreateArticleDto) {
     return this.articlesService.create(createArticleDto);

@@ -36,6 +36,11 @@ export class UsersResolver {
     return await this.usersService.findOne(id);
   }
 
+  @Query(() => User)
+  async searchUsers(@Args('prop') prop: string, @Args('value') value: string) {
+    return await this.usersService.searchBy(prop, value);
+  }
+
   @Mutation(() => User, { nullable: true })
   async createUser(@Args('user') user: CreateUserDto) {
     return await this.usersService.create(user);

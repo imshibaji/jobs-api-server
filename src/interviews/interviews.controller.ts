@@ -27,6 +27,11 @@ export class InterviewsController {
     return this.interviewsService.findOne(+id);
   }
 
+  @Get('search/:prop/:value')
+  search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.interviewsService.searchBy(prop, value);
+  }
+
   @Post()
   create(@Body() createInterviewDto: CreateInterviewDto) {
     return this.interviewsService.create(createInterviewDto);

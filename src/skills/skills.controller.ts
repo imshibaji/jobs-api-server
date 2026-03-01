@@ -27,6 +27,11 @@ export class SkillsController {
     return this.skillService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  async search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.skillService.searchBy(prop, value);
+  }
+
   @Post()
   async create(@Body() skillDto: CreateSkillDto) {
     return this.skillService.create(skillDto);

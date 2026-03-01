@@ -27,6 +27,11 @@ export class EducationController {
     return this.educationService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  async searchBy(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.educationService.searchBy(prop, value);
+  }
+
   @Post()
   async create(@Body() createEducationDto: CreateEducationDto) {
     return this.educationService.create(createEducationDto);

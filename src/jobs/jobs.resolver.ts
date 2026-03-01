@@ -37,10 +37,7 @@ export class JobsResolver {
   }
 
   @Query(() => [Job])
-  async searchJobs(
-    @Args('prop') prop: string,
-    @Args('value') value: string,
-  ): Promise<Job[]> {
+  async searchJobs(@Args('prop') prop: string, @Args('value') value: string): Promise<Job[]> {
     return this.jobsService.searchBy(prop, value);
   }
 

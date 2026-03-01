@@ -27,6 +27,11 @@ export class ExperiencesController {
     return this.experiencesService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  async searchBy(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.experiencesService.searchBy(prop, value);
+  }
+
   @Post()
   async create(@Body() createExperienceDto: CreateExperienceDto) {
     return this.experiencesService.create(createExperienceDto);

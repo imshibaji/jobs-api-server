@@ -27,6 +27,11 @@ export class OffersController {
     return this.offersService.findOne(+id);
   }
 
+  @Get('search/:prop/:value')
+  search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.offersService.searchBy(prop, value);
+  }
+
   @Post()
   create(@Body() createOfferDto: CreateOfferDto) {
     return this.offersService.create(createOfferDto);

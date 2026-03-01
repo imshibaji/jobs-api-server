@@ -29,6 +29,12 @@ export class UsersController {
     return await this.usersService.findOne(id);
   }
 
+  @ApiProperty({ type: String, required: true })
+  @Get('search/:prop/:value')
+  searchBy(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.usersService.searchBy(prop, value);
+  }
+
   @ApiProperty({ type: User })
   @Post()
   async create(@Body() user: User): Promise<User> {

@@ -33,6 +33,11 @@ export class InterviewsResolver {
     return this.interviewsService.findOne(id);
   }
 
+  @Query(() => [Interview])
+  async searchInterviews(@Args('prop') prop: string, @Args('value') value: string) {
+    return await this.interviewsService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Application)
   async application(@Parent() interview: Interview) {
     return this.applicationsService.findOne(interview.applicationId);

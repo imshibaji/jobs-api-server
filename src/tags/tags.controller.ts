@@ -27,6 +27,11 @@ export class TagsController {
     return await this.tagsService.findOne(id);
   }
 
+  @Get('search/:prop/:value')
+  async search(@Param('prop') prop: string, @Param('value') value: string) {
+    return await this.tagsService.searchBy(prop, value);
+  }
+
   @Post()
   async create(@Body() tag: CreateTagDto) {
     return await this.tagsService.create(tag);

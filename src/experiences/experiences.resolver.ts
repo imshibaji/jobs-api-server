@@ -30,6 +30,11 @@ export class ExperiencesResolver {
     return await this.experiencesService.findOne(id);
   }
 
+  @Query(() => [Experience])
+  async searchExperiences(@Args('prop') prop: string, @Args('value') value: string) {
+    return await this.experiencesService.searchBy(prop, value);
+  }
+
   @ResolveField(() => Applicant, { nullable: true })
   async applicant(@Parent() experience: Experience) {
     if (!experience.applicantId) return null;

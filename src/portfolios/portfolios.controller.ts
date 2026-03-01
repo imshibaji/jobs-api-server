@@ -28,6 +28,11 @@ export class PortfoliosController {
     return this.portfoliosService.findOne(+id);
   }
 
+  @Get('search/:prop/:value')
+  search(@Param('prop') prop: string, @Param('value') value: string) {
+    return this.portfoliosService.searchBy(prop, value);
+  }
+
   @Post()
   create(@Body() createPortfolioDto: CreatePortfolioDto) {
     return this.portfoliosService.create(createPortfolioDto);

@@ -30,6 +30,11 @@ export class ApplicantsResolver {
     return ((await this.applicantsService.findOne(id)) as Applicant) || null;
   }
 
+  @Query(() => [Applicant])
+  async searchApplicants(@Args('prop') prop: string, @Args('value') value: string): Promise<Applicant[]> {
+    return (await this.applicantsService.searchBy(prop, value)) as Applicant[];
+  }
+
   @ResolveField(() => User, { nullable: true })
   async user(@Parent() applicant: Applicant) {
     if (!applicant.userId) return null;
