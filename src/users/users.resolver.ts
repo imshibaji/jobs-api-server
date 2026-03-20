@@ -36,7 +36,7 @@ export class UsersResolver {
     return await this.usersService.findOne(id);
   }
 
-  @Query(() => User)
+  @Query(() => [User])
   async searchUsers(@Args('prop') prop: string, @Args('value') value: string) {
     return await this.usersService.searchBy(prop, value);
   }
