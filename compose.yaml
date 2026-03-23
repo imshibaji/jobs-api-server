@@ -83,7 +83,7 @@ services:
   db:
     image: postgres:17
     container_name: ${COMPOSE_PROJECT_NAME}_db
-    restart: always
+    restart: unless-stopped
     labels:
       - "traefik.enable=false"
     user: postgres
@@ -105,7 +105,7 @@ services:
   redis:
     image: redis:latest
     container_name: ${COMPOSE_PROJECT_NAME}_redis
-    restart: always
+    restart: unless-stopped
     labels:
       - "traefik.enable=false"
     ports:
