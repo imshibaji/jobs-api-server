@@ -73,7 +73,7 @@ export class AppService {
         type: query.Type || 'application/json',
         disposition: `attachment; filename="${query.OutputFileName || 'package.json'}"`,
       });
-    } catch (error) {
+    } catch (error: Error | any) {
       if (error.code === 'ENOENT') {
         throw new NotFoundException(`File not found at path: ${filePath}`);
       }
