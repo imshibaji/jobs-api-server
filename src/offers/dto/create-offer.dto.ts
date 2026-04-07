@@ -14,7 +14,7 @@ export class CreateOfferDto {
     nullable: true,
     default: 1,
   })
-  userId: number; // Maybe a recruiter ID
+  userId?: number; // Maybe a recruiter ID
 
   @Field(() => Number)
   @ApiProperty({
@@ -23,7 +23,7 @@ export class CreateOfferDto {
     nullable: true,
     default: 1,
   })
-  jobId: number;
+  jobId?: number;
 
   @Field(() => Number)
   @ApiProperty({
@@ -32,7 +32,7 @@ export class CreateOfferDto {
     nullable: false,
     default: 1,
   })
-  applicationId: number;
+  applicationId?: number;
 
   @Field(() => Number)
   @ApiProperty({
@@ -41,7 +41,7 @@ export class CreateOfferDto {
     nullable: false,
     default: 1,
   })
-  applicantId: number;
+  applicantId?: number;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({

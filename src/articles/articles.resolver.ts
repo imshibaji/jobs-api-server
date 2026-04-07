@@ -37,7 +37,7 @@ export class ArticlesResolver {
 
   @ResolveField(() => User)
   async user(@Parent() article: Article) {
-    return await this.usersService.findOne(article.userId);
+    return await this.usersService.findOne(article.userId!);
   }
 
   @Mutation(() => Article)

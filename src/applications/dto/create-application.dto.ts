@@ -12,11 +12,11 @@ export class CreateApplicationDto {
     description: 'ID of the user applying for the job',
     example: 42,
   })
-  userId: number;
+  userId?: number;
 
   @Field(() => Number)
   @ApiProperty({ description: 'ID of the applicant', example: 42 })
-  applicantId: number;
+  applicantId?: number;
 
   @Field(() => String)
   @ApiProperty({

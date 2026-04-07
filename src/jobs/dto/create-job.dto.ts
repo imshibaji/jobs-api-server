@@ -188,12 +188,12 @@ export class CreateJobDto {
     example: 1,
     description: 'The ID of the company posting the job',
   })
-  companyId: number;
+  companyId?: number;
 
   @Field(() => Number)
   @ApiProperty({
     example: 1,
     description: 'The ID of the user posting the job',
   })
-  userId: number;
+  userId?: number;
 }

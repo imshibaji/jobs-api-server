@@ -22,7 +22,7 @@ export class CreateSkillDto {
 
   @Field(() => Number)
   @ApiProperty({ example: 1 })
-  applicantId: number;
+  applicantId?: number;
 
   @Field(() => Boolean)
   @ApiProperty({ example: false })

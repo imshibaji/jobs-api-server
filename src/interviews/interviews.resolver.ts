@@ -40,12 +40,12 @@ export class InterviewsResolver {
 
   @ResolveField(() => Application)
   async application(@Parent() interview: Interview) {
-    return this.applicationsService.findOne(interview.applicationId);
+    return this.applicationsService.findOne(interview.applicationId!);
   }
 
   @ResolveField(() => User)
   async user(@Parent() interview: Interview) {
-    return this.usersService.findOne(interview.userId);
+    return this.usersService.findOne(interview.userId!);
   }
 
   @Mutation(() => Interview)

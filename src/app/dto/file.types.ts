@@ -11,3 +11,12 @@ export class FileInfo {
   @Field()
   fullPath: string; // Helpful for constructing the view/download URL
 }
+
+@ObjectType()
+export class Directory {
+  @Field(() => String)
+  folder?: string;
+
+  @Field(() => [String])
+  contents?: string[];
+}

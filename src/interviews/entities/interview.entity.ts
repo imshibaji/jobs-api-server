@@ -19,30 +19,30 @@ export class Interview {
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })
-  jobId: number;
+  jobId?: number;
 
   @Field(() => Job, { nullable: true })
   @ManyToOne(() => Job, (job) => job.interviews)
   @JoinColumn({ name: 'jobId' })
-  job: Job;
+  job?: Job;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })
-  applicationId: number;
+  applicationId?: number;
 
   @Field(() => Application, { nullable: true })
   @ManyToOne(() => Application, (application) => application.interviews)
   @JoinColumn({ name: 'applicationId' })
-  application: Application;
+  application?: Application;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })
-  userId: number; // Maybe a recruiter ID
+  userId?: number; // Maybe a recruiter ID
 
   @Field(() => User, { nullable: true })
   @ManyToOne(() => User, (user) => user.interviews)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user?: User;
 
   @Field(() => String, { nullable: true })
   @Column({ type: 'date', nullable: true })

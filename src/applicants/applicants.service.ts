@@ -56,6 +56,8 @@ export class ApplicantsService {
   }
 
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
+    console.log('Service',updateApplicantDto);
+    
     return this.applicantRepository.update(id, {
       ...updateApplicantDto,
       updatedAt: new Date(),

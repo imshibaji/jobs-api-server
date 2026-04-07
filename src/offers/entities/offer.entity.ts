@@ -43,7 +43,7 @@ export class Offer {
   @Field(() => User, { nullable: true })
   @ManyToOne(() => User, (user) => user.offers)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user?: User;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })
@@ -52,7 +52,7 @@ export class Offer {
   @Field(() => Job, { nullable: true })
   @ManyToOne(() => Job, (job) => job.offers)
   @JoinColumn({ name: 'jobId' })
-  job: Job;
+  job?: Job;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })

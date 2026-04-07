@@ -6,11 +6,13 @@ import {
   Param,
   Post,
   Put,
-  Query,
+  UploadedFile,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
-import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
+import { deleteFile, fileExists, UseAppFileInterceptor } from 'src/utils/app-file.interceptor';
+import { UpdateCompanyDto } from './dto/update-company.dto';
 
 @ApiBearerAuth()
 @Controller('companies')
@@ -33,12 +35,23 @@ export class CompaniesController {
   }
 
   @Post()
-  async create(@Body() createCompanyDto: CreateCompanyDto) {
+  @ApiConsumes('multipart/form-data')
+  @UseAppFileInterceptor('image', './uploads/pictures')
+  async create(@Body() createCompanyDto: CreateCompanyDto, @UploadedFile() file: Express.Multer.File) {
+    createCompanyDto.image = typeof file === 'string' ? file : file.filename;
     return await this.companiesService.create(createCompanyDto);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updateCompanyDto: any) {
+  @ApiConsumes('multipart/form-data')
+  @UseAppFileInterceptor('image', './uploads/pictures')
+  async update(@Param('id') id: number, @Body() updateCompanyDto: UpdateCompanyDto, @UploadedFile() file: Express.Multer.File) {
+    const prevCompany = await this.companiesService.findOne(id);
+    const checkImage = prevCompany?.image && await fileExists('./uploads/pictures/'+prevCompany!.image);
+    if (checkImage) {
+      deleteFile('./uploads/pictures/'+prevCompany.image);
+    }
+    updateCompanyDto.image = typeof file === 'string' ? file : file.filename;
     return await this.companiesService.update(id, updateCompanyDto);
   }
 
@@ -54,6 +67,11 @@ export class CompaniesController {
 
   @Delete(':id')
   async delete(@Param('id') id: number) {
+    const company = await this.companiesService.findOne(id);
+    const checkImage = company?.image && await fileExists('./uploads/pictures/'+company!.image);
+    if (checkImage) {
+      deleteFile('./uploads/pictures/'+company.image);
+    }
     return await this.companiesService.delete(id);
   }
 }

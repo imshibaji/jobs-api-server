@@ -1,17 +1,28 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { NotFoundException } from '@nestjs/common';
+import { Resolver, Query, Mutation, Args, ObjectType, Field } from '@nestjs/graphql';
+import { NotFoundException, StreamableFile } from '@nestjs/common';
 import * as fs from 'fs';
 import { join } from 'path';
-import { FileInfo } from './dto/file.types';
+import { Directory, FileInfo } from './dto/file.types';
 import { Public } from '../auth/auth.decorator';
+import { getDirectory, readFile } from 'src/utils/app-file.interceptor';
 
 @Resolver()
 export class FileResolver {
+
+  @Public()
+  @Query(()=> [Directory!])
+  async directory(
+    @Args('path', {nullable: true, defaultValue: 'uploads'})
+    pathName: string
+  ){
+    return getDirectory(pathName);
+  }
+
   // 1. List Files (Replaces @Get('list'))
   @Public()
   @Query(() => [String])
   async listFiles(
-    @Args('directory', { nullable: true, defaultValue: 'pictures' })
+    @Args('listFiles', { nullable: true, defaultValue: 'pictures' })
     directory: string,
   ): Promise<string[]> {
     try {
@@ -28,7 +39,7 @@ export class FileResolver {
   @Public()
   @Query(() => [FileInfo]) // 👈 Changed from [String] to [FileInfo]
   async filesDetails(
-    @Args('directory', { nullable: true, defaultValue: 'pictures' })
+    @Args('filesDetails', { nullable: true, defaultValue: 'pictures' })
     directory: string,
   ): Promise<FileInfo[]> {
     try {

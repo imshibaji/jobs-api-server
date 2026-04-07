@@ -41,7 +41,7 @@ export class Experience {
 
   @Field(() => String, { nullable: true })
   @Column()
-  applicantId: number;
+  applicantId?: number;
 
   @Field(() => Applicant, { nullable: true })
   @ManyToOne(() => Applicant, (applicant) => applicant.experiences)

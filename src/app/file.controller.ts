@@ -19,11 +19,25 @@ import {
 } from '@nestjs/swagger';
 import { stat } from 'node:fs/promises';
 import { Public } from '../auth/auth.decorator';
+import { getDirectory } from 'src/utils/app-file.interceptor';
 
 // @ApiBearerAuth()
 @ApiTags('Files Management')
 @Controller('file')
 export class FileController {
+
+  @ApiBearerAuth()
+  @Get('dirs')
+  @ApiQuery({
+    name: 'directory',
+    type: 'string',
+    required: false,
+    example: 'uploads',
+  })
+  async readDirectory(@Query('directory') directoryPath: string) {
+    return getDirectory(directoryPath);
+  }
+
   @ApiBearerAuth()
   @Get('list')
   @ApiQuery({
@@ -152,7 +166,7 @@ export class FileController {
         type: query.Type || 'application/json',
         disposition: `attachment; filename="${query.OutputFileName || 'package.json'}"`,
       });
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'ENOENT') {
         throw new NotFoundException(`File not found at path: ${filePath}`);
       }

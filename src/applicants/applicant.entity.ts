@@ -130,9 +130,9 @@ export class Applicant {
   @Column({ default: false })
   isDeleted?: boolean;
 
-  @Field(() => Number)
+  @Field(() => Number, { nullable: true })
   @Column()
-  userId: number;
+  userId?: number;
 
   @ManyToOne(() => User, (user) => user.applicants)
   @JoinColumn({ name: 'userId' })

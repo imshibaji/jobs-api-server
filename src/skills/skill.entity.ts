@@ -26,8 +26,8 @@ export class Skill {
   lastUsed?: Date;
 
   @Field(() => Number)
-  @Column()
-  applicantId: number;
+  @Column({ nullable: true })
+  applicantId?: number;
 
   @Field(() => Applicant, { nullable: true })
   @ManyToOne(() => Applicant, (applicant) => applicant.skillList)

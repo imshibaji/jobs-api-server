@@ -20,8 +20,8 @@ export class CreateEducationDto {
   grade?: string;
 
   @Field(() => Number, { nullable: true })
-  @ApiProperty({ default: 1 })
-  applicantId: number;
+  @ApiProperty({name: 'applicant_id', default: 1 })
+  applicantId?: number;
 
   @Field(() => Date)
   @ApiProperty()

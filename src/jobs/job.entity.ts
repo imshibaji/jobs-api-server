@@ -114,7 +114,7 @@ export class Job {
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true, name: 'company_id' })
-  companyId: number;
+  companyId?: number;
 
   @Field(() => Company, { nullable: true })
   @ManyToOne(() => Company, (company) => company.jobs)

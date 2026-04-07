@@ -19,7 +19,7 @@ export class CreateInterviewDto {
     description: 'job id',
     example: 1,
   })
-  jobId: number;
+  jobId?: number;
 
   @Field(() => Number)
   @ApiProperty({
@@ -28,7 +28,7 @@ export class CreateInterviewDto {
     description: 'application id',
     example: 1,
   })
-  applicationId: number;
+  applicationId?: number;
 
   @Field(() => Number)
   @ApiProperty({
@@ -37,7 +37,7 @@ export class CreateInterviewDto {
     description: 'user id',
     example: 1,
   })
-  userId: number;
+  userId?: number;
 
   @Field(() => Date)
   @ApiProperty({

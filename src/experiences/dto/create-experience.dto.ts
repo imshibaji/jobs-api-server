@@ -29,5 +29,5 @@ export class CreateExperienceDto {
 
   @Field(() => Number)
   @ApiProperty({ example: 1 })
-  applicantId: number;
+  applicantId?: number;
 }

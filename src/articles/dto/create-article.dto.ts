@@ -57,7 +57,7 @@ export class CreateArticleDto {
     example: 1,
     required: true,
   })
-  userId: number;
+  userId?: number;
 
   @Field(() => String)
   @ApiProperty({

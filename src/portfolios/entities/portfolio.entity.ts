@@ -23,7 +23,7 @@ export class Portfolio {
   @Field(() => User, { nullable: true })
   @ManyToOne(() => User, (user) => user.portfolios)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user?: User;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true })
@@ -32,7 +32,7 @@ export class Portfolio {
   @Field(() => Applicant, { nullable: true })
   @ManyToOne(() => Applicant, (applicant) => applicant.portfolios)
   @JoinColumn({ name: 'applicantId' })
-  applicant: Applicant;
+  applicant?: Applicant;
 
   @Field(() => String)
   @Column()
