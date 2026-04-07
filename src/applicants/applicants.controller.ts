@@ -13,7 +13,7 @@ import { ApplicantsService } from './applicants.service';
 import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
-import { AppFileInterceptor, deleteFile, fileExists, UseAppFileInterceptor } from 'src/utils/app-file.interceptor';
+import { deleteFile, fileExists, UseAppFileInterceptor } from 'src/utils/app-file.interceptor';
 
 @ApiBearerAuth()
 @Controller('applicants')
@@ -40,11 +40,7 @@ export class ApplicantsController {
   // @UseInterceptors(AppFileInterceptor('resume', './uploads/resumes'))
   @UseAppFileInterceptor('resume', './uploads/resumes')
   async create(@Body() createApplicantDto: CreateApplicantDto, @UploadedFile() file: Express.Multer.File) {
-    // console.log(createApplicantDto);
-    // console.log('File:', file);
     createApplicantDto.resume = typeof file === 'string' ? file : file.filename;
-    console.log(createApplicantDto);
-    
     return await this.applicantsService.create(createApplicantDto);
   }
 
@@ -60,8 +56,6 @@ export class ApplicantsController {
     // console.log(file);
     const prevApplicant = await this.applicantsService.findOne(+id);
     const checkFile = prevApplicant?.resume &&  await fileExists('./uploads/resumes/'+prevApplicant!.resume);
-    console.log(checkFile);
-    
     if(checkFile){
       await deleteFile('./uploads/resumes/'+prevApplicant.resume);
     }
