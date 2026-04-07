@@ -100,35 +100,35 @@ export class User {
   @Column({ default: false })
   isOnline: boolean;
 
-  @Field(() => [Applicant], { nullable: 'itemsAndList' })
+  @Field(() => [Applicant!], { nullable: 'itemsAndList' })
   @OneToMany(() => Applicant, (applicant) => applicant.user)
   applicants?: Applicant[]; // 👈 No "= []" here anymore!
 
-  @Field(() => [Job], { nullable: 'itemsAndList' })
+  @Field(() => [Job!], { nullable: 'itemsAndList' })
   @OneToMany(() => Job, (job) => job.user)
   jobs?: Job[];
 
-  @Field(() => [Application], { nullable: 'itemsAndList' })
+  @Field(() => [Application!], { nullable: 'itemsAndList' })
   @OneToMany(() => Application, (application) => application.user)
   applications?: Application[];
 
-  @Field(() => [Company], { nullable: 'itemsAndList' })
+  @Field(() => [Company!], { nullable: 'itemsAndList' })
   @OneToMany(() => Company, (company) => company.user)
   companies?: Company[];
 
-  @Field(() => [Offer], { nullable: 'itemsAndList' })
+  @Field(() => [Offer!], { nullable: 'itemsAndList' })
   @OneToMany(() => Offer, (offer) => offer.user)
   offers?: Offer[];
 
-  @Field(() => [Portfolio], { nullable: 'itemsAndList' })
+  @Field(() => [Portfolio!], { nullable: 'itemsAndList' })
   @OneToMany(() => Portfolio, (portfolio) => portfolio.user)
   portfolios?: Portfolio[];
 
-  @Field(() => [Interview], { nullable: 'itemsAndList' })
+  @Field(() => [Interview!], { nullable: 'itemsAndList' })
   @OneToMany(() => Interview, (interview) => interview.user)
   interviews?: Interview[];
 
-  @Field(() => [Article], { nullable: 'itemsAndList' })
+  @Field(() => [Article!], { nullable: 'itemsAndList' })
   @OneToMany(() => Article, (article) => article.user)
   articles?: Article[];
 

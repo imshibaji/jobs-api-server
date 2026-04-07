@@ -55,9 +55,7 @@ export class ApplicantsService {
     return this.applicantRepository.findBy(data);
   }
 
-  update(id: number, updateApplicantDto: UpdateApplicantDto) {
-    console.log('Service',updateApplicantDto);
-    
+  update(id: number, updateApplicantDto: UpdateApplicantDto) {    
     return this.applicantRepository.update(id, {
       ...updateApplicantDto,
       updatedAt: new Date(),

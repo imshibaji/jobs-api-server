@@ -130,28 +130,28 @@ export class Applicant {
   @Column({ default: false })
   isDeleted?: boolean;
 
-  @Field(() => Number, { nullable: true })
-  @Column()
+  @Field(() => Number!, { nullable: true })
+  @Column({ nullable: true })
   userId?: number;
 
-  @ManyToOne(() => User, (user) => user.applicants)
+  @ManyToOne(() => User!, (user) => user.applicants)
   @JoinColumn({ name: 'userId' })
-  @Field(() => User, { nullable: true })
+  @Field(() => User!, { nullable: true })
   user?: User;
 
-  @Field(() => [Application], { nullable: true })
+  @Field(() => [Application!], { nullable: true })
   @OneToMany(() => Application, (application) => application.applicant)
   applications?: Application[]; // This will be a relation to the Application entity, but we can keep it as any for now
 
-  @Field(() => [Education], { nullable: true })
+  @Field(() => [Education!], { nullable: true })
   @OneToMany(() => Education, (education) => education.applicant)
   educations?: Education[];
 
-  @Field(() => [Experience], { nullable: true })
+  @Field(() => [Experience!], { nullable: true })
   @OneToMany(() => Experience, (exp) => exp.applicant)
   experiences?: Experience[];
 
-  @Field(() => [Skill], { nullable: true })
+  @Field(() => [Skill!], { nullable: true })
   @OneToMany(() => Skill, (skill) => skill.applicant)
   skillList?: Skill[];
 

@@ -117,7 +117,7 @@ export class CreateApplicantDto {
   @ApiProperty({ example: false, default: false, nullable: true })
   isDeleted?: boolean;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Number!, { nullable: true })
   @ApiProperty({ example: 1, nullable: true })
   userId?: number;
 }
