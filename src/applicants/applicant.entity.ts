@@ -67,7 +67,7 @@ export class Applicant {
   email: string;
 
   @Field(() => String)
-  @Column()
+  @Column({ name: 'phone_number' })
   phoneNumber: string;
 
   @Field(() => String, { nullable: true })
@@ -127,16 +127,16 @@ export class Applicant {
   resume?: string;
 
   @Field(() => Boolean, { nullable: true })
-  @Column({ default: false })
+  @Column({ name: 'is_deleted', default: false })
   isDeleted?: boolean;
 
   @Field(() => Number!, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'user_id', nullable: true })
   userId?: number;
 
   @ManyToOne(() => User!, (user) => user.applicants)
-  @JoinColumn({ name: 'userId' })
-  @Field(() => User!, { nullable: true })
+  @JoinColumn({ name: 'user_id' })
+  @Field(() => User, { nullable: true })
   user?: User;
 
   @Field(() => [Application!], { nullable: true })

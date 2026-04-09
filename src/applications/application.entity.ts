@@ -20,7 +20,7 @@ export class Application {
   id?: number;
 
   @Field(() => Number!, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'user_id', nullable: true })
   userId?: number; // Recruiter
 
   @Field(() => User!, { nullable: true })
@@ -28,7 +28,7 @@ export class Application {
   user?: User;
 
   @Field(() => Number!, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'job_id', nullable: true })
   jobId?: number;
 
   @Field(() => Job!, { nullable: true })
@@ -36,7 +36,7 @@ export class Application {
   job?: Job; // This will be a relation to the Job entity, but we can keep it as any for now
 
   @Field(() => Number!, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'applicant_id', nullable: true })
   applicantId?: number;
 
   @Field(() => Applicant!, { nullable: true })
@@ -44,7 +44,7 @@ export class Application {
   applicant?: Applicant;
 
   @Field(() => String)
-  @Column()
+  @Column({ name: 'cover_letter' })
   coverLetter: string;
 
   @Field(() => String, { nullable: true })
@@ -59,10 +59,11 @@ export class Application {
   @Column()
   status: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   @Column({
+    name: 'updated_at',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',

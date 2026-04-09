@@ -44,16 +44,16 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Field(() => Boolean)
-  @Column({ default: false })
+  @Field(() => Boolean, { nullable: true })
+  @Column({ name: 'verified_email', default: false })
   verifiedEmail?: boolean;
 
   @Field(() => String, { nullable: true })
-  @Column({ unique: true, nullable: true })
+  @Column({ name: 'phone_number', unique: true, nullable: true })
   phoneNumber?: string;
 
   @Field(() => Boolean, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'verified_phone_number', default: false, nullable: true })
   verifiedPhoneNumber?: boolean;
 
   @Field(() => String)
@@ -81,23 +81,23 @@ export class User {
   facebookId?: string;
 
   @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'youtube_id', nullable: true })
   youtubeId?: string;
 
   @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'linkedin_id', nullable: true })
   linkedinId?: string;
 
   @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'github_id', nullable: true })
   githubId?: string;
 
   @Field(() => String, { nullable: true })
-  @Column({ nullable: true })
+  @Column({ name: 'twitter_id', nullable: true })
   twitterId?: string;
 
   @Field(() => Boolean)
-  @Column({ default: false })
+  @Column({ name: 'is_online', default: false })
   isOnline: boolean;
 
   @Field(() => [Applicant!], { nullable: 'itemsAndList' })
@@ -133,6 +133,7 @@ export class User {
   articles?: Article[];
 
   @Column({
+    name: 'created_at',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     nullable: true,
@@ -140,6 +141,7 @@ export class User {
   createdAt?: Date;
 
   @Column({
+    name: 'updated_at',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',

@@ -25,7 +25,7 @@ export class CreateUserDto {
   })
   email: string;
 
-  @Field(() => Boolean, { nullable: true })
+  @Field(() => String, { nullable: true })
   @ApiProperty({
     type: String,
     required: false,
