@@ -3,7 +3,7 @@ import { Base } from "./base.dto";
 
 export class EmailDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'email address', example: '3oFbV@example.com' })
-    to: string;
+    to!: string;
 
     @ApiProperty({ type: String, required: true, description: 'email address', example: '3oFbV@example.com' })
     cc?: string;
@@ -12,10 +12,10 @@ export class EmailDto extends Base {
     bcc?: string;
 
     @ApiProperty({ type: String, required: true, description: 'email subject', example: 'Welcome to Jobs Portal'})
-    subject: string;
+    subject!: string;
 
     @ApiProperty({ type: String, required: true, description: 'email body', example: 'Welcome to Jobs Portal'})
-    text: string;
+    text!: string;
 
     @ApiProperty({ type: String, required: false, description: 'email sender name', example: 'admin@example.com' })
     from?: string;

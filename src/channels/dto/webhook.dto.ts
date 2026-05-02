@@ -3,9 +3,9 @@ import { Base } from "./base.dto";
 
 export class WebhookDto extends Base{
     @ApiProperty({ type: String, required: true, description: 'webhook name', example: 'Jobs Portal' })
-    name: string;
+    name!: string;
     @ApiProperty({ type: String, required: true, description: 'webhook url', example: 'http://localhost:3300/auth/login' })
-    url: string;
+    url!: string;
 
     @ApiProperty({ type: String, required: false, description: 'webhook headers', example: JSON.parse('{"accept": "*/*", "Content-Type": "application/json"}') })
     headers?: any;

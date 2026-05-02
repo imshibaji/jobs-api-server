@@ -6,37 +6,37 @@ export class Article {
     id?: number;
 
     @Column()
-    title: string;
+    title!: string;
 
     @Column({ unique: true })
-    slug: string;
+    slug!: string;
 
     @Column()
-    content: string;
+    content!: string;
 
     @Column()
-    image: string;
+    image!: string;
 
     @Column()
-    summary: string;
+    summary!: string;
 
     @Column({ type: 'simple-array' })
-    tags: string[];
+    tags!: string[];
 
     @Column({ name: 'user_id' })
-    userId: number;
+    userId!: number;
 
     @Column({ name: 'type', default: 'post' })
-    type: string;
+    type!: string;
 
     @Column({ name: 'status', default: 'draft' })
-    status: string;
+    status!: string;
 
     @Column({ name: 'is_archived', default: false })
-    isArchived: boolean;
+    isArchived!: boolean;
 
     @Column({ name: 'is_deleted', default: false })
-    isDeleted: boolean;
+    isDeleted!: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     publishedAt?: Date;

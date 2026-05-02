@@ -3,6 +3,7 @@ import { CreateApplicantDto } from './dto/create-applicant.dto';
 import { UpdateApplicantDto } from './dto/update-applicant.dto';
 import { Repository } from 'typeorm';
 import { Applicant } from './applicant.entity';
+import { log } from 'console';
 
 @Injectable()
 export class ApplicantsService {
@@ -13,26 +14,46 @@ export class ApplicantsService {
   ) {}
 
   create(createApplicantDto: CreateApplicantDto) {
-    return this.applicantRepository.save(createApplicantDto);
+    try {
+      return this.applicantRepository.save(createApplicantDto);
+    } catch (error) {
+      log(error);
+    }
   }
 
   findAll() {
-    return this.applicantRepository.find({
-      order: {
-        id: 'DESC'
-      }
-    });
+    try {
+      return this.applicantRepository.find({
+        order: {
+          id: 'DESC'
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   findOne(id: number) {
-    return this.applicantRepository.findOneBy({ id });
+    try {
+      return this.applicantRepository.findOneBy({ id });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
-    return this.applicantRepository.update(id, {...updateApplicantDto, updatedAt: new Date() });
+    try {
+      return this.applicantRepository.update(id, {...updateApplicantDto, updatedAt: new Date() });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   remove(id: number) {
-    return this.applicantRepository.delete(id);
+    try {
+      return this.applicantRepository.delete(id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

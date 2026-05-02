@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateCompanyDto {
     @ApiProperty({ required: true, example: 'Tech Solutions Ltd.' })
-    name: string;
+    name!: string;
 
     @ApiProperty({ required: false, example: 'John Doe' })
     recruiterName?: string;
@@ -29,10 +29,10 @@ export class CreateCompanyDto {
     country?: string;
 
     @ApiProperty({ required: true, example: '+1234567890' })
-    phoneNumber: string;
+    phoneNumber!: string;
 
     @ApiProperty({ required: true, example: 'qTg9Y@example.com' })
-    email: string;
+    email!: string;
 
     @ApiProperty({ required: false, example: 'https://techsolutions.com' })
     website?: string;
@@ -53,7 +53,7 @@ export class CreateCompanyDto {
     isVerified?: boolean;
 
     @ApiProperty({ required: true, example: 1 })
-    userId: number;
+    userId!: number;
 
     @ApiProperty({ required: false, example: false })
     isDeleted?: boolean;

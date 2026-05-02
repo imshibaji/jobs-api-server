@@ -6,10 +6,10 @@ export class Tag{
     id?: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column({ unique: true })
-    slug: string;
+    slug!: string;
 
     @Column({ nullable: true })
     description?: string;
@@ -18,8 +18,8 @@ export class Tag{
     isDeleted?: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

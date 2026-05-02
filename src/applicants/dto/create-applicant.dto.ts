@@ -2,86 +2,86 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateApplicantDto {
     @ApiProperty({ example: 'Jane Doe' })
-    name: string;
+    name!: string;
 
     @ApiProperty({ example: 'https://example.com/image.jpg' })
-    image: string;
+    image!: string;
     
     @ApiProperty({ example: '123 Main St' })
-    address: string;
+    address!: string;
 
     @ApiProperty({ example: 'Springfield' })
-    city: string;
+    city!: string;
 
     @ApiProperty({ example: 'IL' })
-    state: string;
+    state!: string;
 
     @ApiProperty({ example: 'USA' })
-    country: string;
+    country!: string;
 
     @ApiProperty({ example: '12345' })
-    zipCode: string;
+    zipCode!: string;
 
     @ApiProperty({ example: 'I am a software developer with 5 years of experience.' })
-    bio: string;
+    bio!: string;
 
     @ApiProperty({ example: '1990-01-01' })
-    dob: string;
+    dob!: string;
 
     @ApiProperty({ example: 'Female' })
-    gender: string;
+    gender!: string;
 
     @ApiProperty({ example: 'jane@example.com' })
-    email: string;
+    email!: string;
 
     @ApiProperty({ example: '+1-555-1234' })
-    phoneNumber: string;
+    phoneNumber!: string;
 
     @ApiProperty({ example: 'JavaScript, React, Node.js' })
-    skills: string;
+    skills!: string;
 
     @ApiProperty({ example: '2 years' })
-    experience: string;
+    experience!: string;
 
     @ApiProperty({ example: '123 Main St' })
-    location: string;
+    location!: string;
 
     @ApiProperty({ example: 'Employed' })
-    professionalStatus: string;
+    professionalStatus!: string;
 
     @ApiProperty({ example: 'Bachelor\'s Degree in Computer Science' })
-    highestEducation: string;
+    highestEducation!: string;
 
     @ApiProperty({ example: 'Information Technology' })
-    interestedIndustry: string;
+    interestedIndustry!: string;
 
     @ApiProperty({ example: 'Remote' })
-    preferredWork: string;
+    preferredWork!: string;
 
     @ApiProperty({ example: 'Git, Docker' })
-    workTools: string;
+    workTools!: string;
 
     @ApiProperty({ example: 'Linux, Windows' })
-    workEnvironments: string;
+    workEnvironments!: string;
 
     @ApiProperty({ example: 'Agile, Scrum' })
-    companyCulture: string;
+    companyCulture!: string;
 
     @ApiProperty({ example: 'Email' })
-    preferredCommunication: string;
+    preferredCommunication!: string;
 
     @ApiProperty({ example: '2 weeks' })
-    joiningTime: string;
+    joiningTime!: string;
 
     @ApiProperty({ example: '5000' })
-    expectedMonthlySalary: string;
+    expectedMonthlySalary!: string;
 
     @ApiProperty({ example: 'https://example.com/resume.pdf' })
-    resume: string;
+    resume!: string;
 
     @ApiProperty({ example: false })
-    isDeleted: boolean;
+    isDeleted!: boolean;
 
     @ApiProperty({ example: 1 })
-    userId: number;
+    userId!: number;
 }

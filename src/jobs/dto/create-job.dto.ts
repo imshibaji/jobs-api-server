@@ -2,19 +2,19 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateJobDto {
     @ApiProperty({ example: 'Software Engineer', description: 'The title of the job' })
-    title: string;
+    title!: string;
 
     @ApiProperty({ example: 'Develop and maintain software applications.', description: 'The description of the job' })
-    description: string;
+    description!: string;
 
     @ApiProperty({ example: 'Bachelor\'s degree in Computer Science or related field.', description: 'The requirements for the job' })
-    requirements: string;
+    requirements!: string;
 
     @ApiProperty({ example: 'Design, code, test, and deploy software solutions.', description: 'The responsibilities of the job' })
-    responsibilities: string;
+    responsibilities!: string;
 
     @ApiProperty({ example: 'Health insurance, 401(k), paid time off.', description: 'The benefits of the job' })
-    benefits: string;
+    benefits!: string;
 
     @ApiProperty({ example: 'Software Engineer', description: 'The skills required for the job', required: false })
     skills?: string;
@@ -71,8 +71,8 @@ export class CreateJobDto {
     notes?: string;
 
     @ApiProperty({ example: 1, description: 'The ID of the company posting the job' })
-    companyId: number;
+    companyId!: number;
 
     @ApiProperty({ example: 1, description: 'The ID of the user posting the job' })
-    userId: number;
+    userId!: number;
 }

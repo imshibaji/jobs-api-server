@@ -4,16 +4,16 @@ import { CreateUserDto } from "src/users/dto/create-user.dto";
 
 export class SignUpDto {
     @ApiProperty({ type: String, required: true, description: 'user full name' })
-    name: string;
+    name!: string;
 
     @ApiProperty({ type: String, required: true, description: 'user email address' })
-    email: string;
+    email!: string;
 
     @ApiProperty({ type: String, required: false, description: 'user phone number' })
     phoneNumber?: string;
 
     @ApiProperty({ type: String, required: true, description: 'user password' })
-    password: string;
+    password!: string;
 
     @ApiProperty({ type: String, required: false, description: 'user profile image URL' })
     image?: string;
@@ -39,19 +39,19 @@ export class SignUpDto {
 
 export class LoginDto {
   @ApiProperty({ type: String, required: true , description: 'use the email as username' })
-  username: string;
+  username!: string;
   @ApiProperty({ type: String, required: true, description: 'user password' })
-  password: string;
+  password!: string;
 }
 
 
 export class JwtPayload {
   @ApiProperty({ type: Number, required: true, description: 'user id' })
-  sub: number;
+  sub!: number;
   @ApiProperty({ type: Object, required: true, description: 'user details' })
-  user: CreateUserDto;
+  user!: CreateUserDto;
 }
 
 export class JwtToken {
-  access_token: string;
+  access_token!: string;
 }

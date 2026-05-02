@@ -6,19 +6,19 @@ export class Interview {
     id?: number;
 
     @Column({ nullable: true })
-    applicationId: number;
+    applicationId!: number;
 
     @Column({ nullable: true })
-    userId: number; // Maybe a recruiter ID
+    userId!: number; // Maybe a recruiter ID
 
     @Column({ type: 'date', nullable: true })
-    date: Date;
+    date!: Date;
 
     @Column({ type: 'time', nullable: true })
-    time: string;
+    time!: string;
 
     @Column({ nullable: true })
-    location: string;
+    location!: string;
 
     @Column({ nullable: true })
     notes?: string;
@@ -30,8 +30,8 @@ export class Interview {
     status?: string;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

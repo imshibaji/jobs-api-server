@@ -6,7 +6,7 @@ export class Company {
     id?: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column({ nullable: true, name: 'recruiter_name' })
     recruiterName?: string;
@@ -36,10 +36,10 @@ export class Company {
     zipCode?: string;
 
     @Column()
-    phoneNumber: string;
+    phoneNumber!: string;
 
     @Column()
-    email: string;
+    email!: string;
 
     @Column({ nullable: true })
     website?: string;
@@ -57,17 +57,17 @@ export class Company {
     founded?: number;
 
     @Column({ default: false })
-    isVerified: boolean;
+    isVerified!: boolean;
 
     @Column({ default: false })
-    isDeleted: boolean;
+    isDeleted!: boolean;
 
     @Column({ nullable: true, name: 'user_id' })
     userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

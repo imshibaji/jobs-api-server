@@ -6,19 +6,19 @@ export class Job{
     id?: number;
 
     @Column()
-    title: string;
+    title!: string;
 
     @Column()
-    description: string;
+    description!: string;
 
     @Column()
-    requirements: string;
+    requirements!: string;
 
     @Column()
-    responsibilities: string;
+    responsibilities!: string;
 
     @Column()
-    benefits: string;
+    benefits!: string;
 
     @Column({ nullable: true })
     skills?: string;
@@ -75,16 +75,16 @@ export class Job{
     notes?: string;
 
     @Column({ nullable: true, name: 'company_id' })
-    companyId: number;
+    companyId!: number;
 
     @Column({ nullable: true, name: 'user_id' })
-    userId: number;
+    userId!: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 
     @Column({ type: 'boolean', default: false })
     isDeleted?: boolean;

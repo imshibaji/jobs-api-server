@@ -14,10 +14,10 @@ export class CreateFeedbackDto {
     tableId?: number;
 
     @ApiProperty({ type: String, example: 'Jane Doe' })
-    name: string;
+    name!: string;
 
     @ApiProperty({ type: String, example: 'jane@example.com' })
-    email: string;
+    email!: string;
 
     @ApiProperty({ type: String, example: '+1-555-1234' })
     phone?: string;
@@ -29,10 +29,10 @@ export class CreateFeedbackDto {
     avatar?: string;
 
     @ApiProperty({ type: Number, example: 5 })
-    rating: number;
+    rating!: number;
 
     @ApiProperty({ type: String, example: 'I love this job!' })
-    comment: string;
+    comment!: string;
 
     @ApiProperty({ type: String, example: 'active' })
     status?: string;

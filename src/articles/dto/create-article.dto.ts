@@ -2,13 +2,13 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateArticleDto {
     @ApiProperty({ description: 'The title of the article', example: 'How to write a blog post', required: true })
-    title: string;
+    title!: string;
 
     @ApiProperty({ description: 'The slug of the article', example: 'how-to-write-a-blog-post', required: true })
-    slug: string;
+    slug!: string;
 
     @ApiProperty({ description: 'The content of the article', example: 'This is the content of the article', required: true })
-    content: string;
+    content!: string;
     
     @ApiProperty({ description: 'The image of the article', example: 'https://example.com/image.jpg', required: false })
     image?: string;
@@ -20,10 +20,10 @@ export class CreateArticleDto {
     tags?: string[];
 
     @ApiProperty({ description: 'The ID of the user who created the article', example: 1, required: true })
-    userId: number;
+    userId!: number;
 
     @ApiProperty({ description: 'The type of the article', enum: ['post', 'page', 'article'], example: 'post', required: true })
-    type: string;
+    type!: string;
 
     @ApiProperty({ description: 'The status of the article', enum: ['draft', 'published', 'archived', 'deleted'], example: 'draft', required: true })
     status?: string;

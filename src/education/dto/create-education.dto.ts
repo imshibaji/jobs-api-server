@@ -2,22 +2,22 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateEducationDto {
     @ApiProperty()
-    institution: string;
+    institution!: string;
 
     @ApiProperty()
-    degree: string;
+    degree!: string;
 
     @ApiProperty()
-    fieldOfStudy: string;
+    fieldOfStudy!: string;
 
     @ApiProperty({ required: false })
     grade?: string;
 
     @ApiProperty({ default: 1 })
-    applicantId: number;
+    applicantId!: number;
 
     @ApiProperty()
-    startDate: Date;
+    startDate!: Date;
 
     @ApiProperty({ required: false })
     endDate?: Date;

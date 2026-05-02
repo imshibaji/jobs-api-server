@@ -3,10 +3,10 @@ import { Base } from "./base.dto";
 
 export class MessageDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'phone number', example: '1234567890' })
-    to: string;
+    to!: string;
 
     @ApiProperty({ type: String, required: true, description: 'message', example: 'Welcome to Jobs Portal'})
-    message: string;
+    message!: string;
 
     @ApiProperty({ type: String, required: false, description: 'message sender name', example: 'Jobs Portal' })
     name?: string;

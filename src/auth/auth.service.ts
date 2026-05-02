@@ -74,7 +74,7 @@ export class AuthService {
     }
 
     async signOut(request: Request): Promise<boolean> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         await this.usersService.update(userId, { isOnline: false });
         return true;
@@ -107,74 +107,74 @@ export class AuthService {
     }
 
     async changeEmail(request: Request, newEmail: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { email: newEmail, updatedAt: new Date() });
     }
 
     async changeName(request: Request, newName: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { name: newName, updatedAt: new Date() });
     }
 
     async changePhoneNumber(request: Request, newPhoneNumber: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { phoneNumber: newPhoneNumber, updatedAt: new Date() });
     }
 
     async changeImage(request: Request, newImage: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { image: newImage, updatedAt: new Date() });
     }
 
     async changeRole(request: Request, newRole: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { role: newRole, updatedAt: new Date() });
     }
 
     async changePasswordAndEmail(request: Request, newPassword: string, newEmail: string): Promise<UpdateResult> {
         const hashedPassword = await hashPassword(newPassword);
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { password: hashedPassword, email: newEmail, updatedAt: new Date() });
     }
 
     async changeInstagramId(request: Request, newInstagramId: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { instagramId: newInstagramId, updatedAt: new Date() });
     }
 
     async changeFacebookId(request: Request, newFacebookId: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { facebookId: newFacebookId, updatedAt: new Date() });
     }
 
     async changeYoutubeId(request: Request, newYoutubeId: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { youtubeId: newYoutubeId, updatedAt: new Date() });
     }
 
     async changeLinkedinId(request: Request, newLinkedinId: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { linkedinId: newLinkedinId, updatedAt: new Date() });
     }
 
     async changeGithubId(request: Request, newGithubId: string): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { githubId: newGithubId, updatedAt: new Date() });
     }
 
     async changeOnlineStatus(request: Request, newOnlineStatus: boolean): Promise<UpdateResult> {
-        const user = request.user as JwtPayload;
+        const user = (request as any).user as JwtPayload;
         const userId = user?.sub as number;
         return await this.usersService.update(userId, { isOnline: newOnlineStatus, updatedAt: new Date() });
     }

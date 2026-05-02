@@ -12,16 +12,16 @@ export class CreateUserDto {
     id?: number;
 
     @ApiProperty({ type: String, required: true, description: 'user full name' })
-    name: string;
+    name!: string;
 
     @ApiProperty({ type: String, required: true, description: 'user email address' })
-    email: string;
+    email!: string;
 
     @ApiProperty({ type: String, required: false, description: 'user phone number' })
     phoneNumber?: string;
 
     @ApiProperty({ type: String, required: true, description: 'user password' })
-    password: string;
+    password!: string;
 
     @ApiProperty({ type: String, required: false, description: 'user profile image URL' })
     image?: string;

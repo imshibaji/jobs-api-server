@@ -22,22 +22,22 @@ export class User{
     id?: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column({ unique: true })
-    email: string;
+    email!: string;
 
     @Column({ default: false })
     varifiedEmail?: boolean;
 
-    @Column({ unique: true, nullable: true })
+    @Column({ name: 'phone_number',  unique: true, nullable: true })
     phoneNumber?: string;
 
-    @Column({ nullable: true })
+    @Column({ name: 'varified_phone_number', nullable: true })
     varifiedPhoneNumber?: boolean;
 
     @Column()
-    password: string;
+    password!: string;
 
     @Column({ nullable: true })
     image?: string;
@@ -69,7 +69,7 @@ export class User{
     twitterId?: string;
 
     @Column({ default: false })
-    isOnline: boolean;
+    isOnline!: boolean;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: true })
     createdAt?: Date;

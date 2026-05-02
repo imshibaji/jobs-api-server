@@ -3,16 +3,16 @@ import { Base } from "./base.dto";
 
 export class PushNotificationDto extends Base {
     @ApiProperty({ type: String, required: true, description: 'phone number to send push notification', example: '1234567890' })
-    to: string;
+    to!: string;
 
     @ApiProperty({ type: String, required: true, description: 'push notification title', example: 'Welcome to Jobs Portal'})
-    title: string;
+    title!: string;
 
     @ApiProperty({ type: String, required: false, description: 'push notification subtitle', example: 'default' })
     subtitle?: string;
 
     @ApiProperty({ type: String, required: true, description: 'push notification body', example: 'Welcome to Jobs Portal'})
-    body: string;
+    body!: string;
 
     @ApiProperty({ type: String, required: false, description: 'push notification sender name', example: 'Jobs Portal' })
     name?: string;

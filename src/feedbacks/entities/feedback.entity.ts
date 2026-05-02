@@ -15,10 +15,10 @@ export class Feedback {
     tableId?: number;
 
     @Column({ nullable: false })
-    name: string;
+    name!: string;
 
     @Column({ nullable: false })
-    email: string;
+    email!: string;
 
     @Column({ nullable: true })
     phone?: string;
@@ -30,17 +30,17 @@ export class Feedback {
     avatar?: string;
 
     @Column({ nullable: false })
-    rating: number;
+    rating!: number;
 
     @Column({ nullable: false })
-    comment: string;
+    comment!: string;
 
     @Column({ name: 'status', nullable: true })
     status?: string;
 
     @Column({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: string;
+    createdAt!: string;
 
     @Column({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-    updatedAt: string;
+    updatedAt!: string;
 }

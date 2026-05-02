@@ -6,16 +6,16 @@ export class Application {
     id?: number;
 
     @Column()
-    userId: number; // Recruiter
+    userId!: number; // Recruiter
 
     @Column()
-    jobId: number;
+    jobId!: number;
 
     @Column()
-    applicantId: number;
+    applicantId!: number;
 
     @Column()
-    coverLetter: string;
+    coverLetter!: string;
 
     @Column()
     details?: string;
@@ -24,11 +24,11 @@ export class Application {
     resume?: string;
 
     @Column()
-    status: string;
+    status!: string;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

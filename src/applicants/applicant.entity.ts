@@ -6,7 +6,7 @@ export class Applicant {
     id?: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column({ nullable: true })
     image?: string;
@@ -36,10 +36,10 @@ export class Applicant {
     gender?: string;
 
     @Column()
-    email: string;
+    email!: string;
 
-    @Column()
-    phoneNumber: string;
+    @Column({ name: 'phone_number' })
+    phoneNumber!: string;
 
     @Column({ nullable: true })
     skills?: string;
@@ -83,15 +83,15 @@ export class Applicant {
     @Column({ nullable: true })
     resume?: string;
 
-    @Column({ default: false })
+    @Column({ name: 'is_deleted', default: false })
     isDeleted?: boolean;
 
     @Column({ nullable: true })
     userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date;
+    createdAt!: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date;
+    updatedAt!: Date;
 }

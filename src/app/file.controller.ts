@@ -73,7 +73,7 @@ export class FileController {
         disposition: `attachment; filename="${query.OutputFileName || "package.json"}"`,
       });
 
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'ENOENT') {
         throw new NotFoundException(`File not found at path: ${filePath}`);
       }
