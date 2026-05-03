@@ -5,8 +5,8 @@ import { Attachment } from 'nodemailer/lib/mailer';
 @Injectable()
 export class EmailService {
   private transporter: Transporter;
-  private attachments: Attachment[];
-  public fromName: string;
+  private attachments!: Attachment[];
+  public fromName!: string;
   public fromEmail: string = process.env.SMTP_USER || 'admin@localhost';
   constructor() {
     this.transporter = createTransport({

@@ -8,7 +8,7 @@ export class PushNotificationDto extends Base {
     description: 'phone number to send push notification',
     example: '1234567890',
   })
-  to: string;
+  to!: string;
 
   @ApiProperty({
     type: String,
@@ -16,7 +16,7 @@ export class PushNotificationDto extends Base {
     description: 'push notification title',
     example: 'Welcome to Jobs Portal',
   })
-  title: string;
+  title!: string;
 
   @ApiProperty({
     type: String,
@@ -32,7 +32,7 @@ export class PushNotificationDto extends Base {
     description: 'push notification body',
     example: 'Welcome to Jobs Portal',
   })
-  body: string;
+  body!: string;
 
   @ApiProperty({
     type: String,

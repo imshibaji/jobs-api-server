@@ -9,7 +9,7 @@ export class CreateApplicantDto {
 
   @Field(() => String)
   @ApiProperty({ example: 'Jane Doe' })
-  name: string;
+  name!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ example: 'https://example.com/image.jpg' })
@@ -51,11 +51,11 @@ export class CreateApplicantDto {
 
   @Field(() => String)
   @ApiProperty({ example: 'jane@example.com' })
-  email: string;
+  email!: string;
 
   @Field(() => String)
   @ApiProperty({ example: '+1-555-1234' })
-  phoneNumber: string;
+  phoneNumber!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ example: 'JavaScript, React, Node.js' })

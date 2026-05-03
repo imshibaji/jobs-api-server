@@ -8,7 +8,7 @@ export class MessageDto extends Base {
     description: 'phone number',
     example: '1234567890',
   })
-  to: string;
+  to!: string;
 
   @ApiProperty({
     type: String,
@@ -16,7 +16,7 @@ export class MessageDto extends Base {
     description: 'message',
     example: 'Welcome to Jobs Portal',
   })
-  message: string;
+  message!: string;
 
   @ApiProperty({
     type: String,

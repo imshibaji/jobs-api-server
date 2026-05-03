@@ -7,14 +7,14 @@ import { WebhookDto } from './dto/webhook.dto';
 @Entity('channels')
 export class Channel {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ type: 'json' })
   payload: MessageDto | PushNotificationDto | EmailDto | WebhookDto | any;
 
   @Column()
-  status: string;
+  status!: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 }

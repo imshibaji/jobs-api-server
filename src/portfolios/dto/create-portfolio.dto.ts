@@ -9,13 +9,13 @@ export class CreatePortfolioDto {
   applicantId?: number;
 
   @Field(() => String)
-  title: string;
+  title!: string;
 
   @Field(() => String)
-  description: string;
+  description!: string;
 
   @Field(() => String)
-  url: string;
+  url!: string;
 
   @Field(() => String, { nullable: true })
   image?: string;

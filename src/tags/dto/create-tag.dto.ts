@@ -10,7 +10,7 @@ export class CreateTagDto {
     description: 'tag name',
     example: 'tag name',
   })
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -19,7 +19,7 @@ export class CreateTagDto {
     description: 'tag slug',
     example: 'tag-slug',
   })
-  slug: string;
+  slug!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({

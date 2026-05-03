@@ -5,15 +5,15 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateEducationDto {
   @Field(() => String)
   @ApiProperty()
-  institution: string;
+  institution!: string;
 
   @Field(() => String)
   @ApiProperty()
-  degree: string;
+  degree!: string;
 
   @Field(() => String)
   @ApiProperty()
-  fieldOfStudy: string;
+  fieldOfStudy!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ required: false })
@@ -25,7 +25,7 @@ export class CreateEducationDto {
 
   @Field(() => Date)
   @ApiProperty()
-  startDate: Date;
+  startDate!: Date;
 
   @Field(() => Date, { nullable: true })
   @ApiProperty({ required: false })

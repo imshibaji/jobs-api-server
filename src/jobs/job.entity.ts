@@ -22,23 +22,23 @@ export class Job {
 
   @Field(() => String)
   @Column()
-  title: string;
+  title!: string;
 
   @Field(() => String)
   @Column()
-  description: string;
+  description!: string;
 
   @Field(() => String)
   @Column()
-  requirements: string;
+  requirements!: string;
 
   @Field(() => String)
   @Column()
-  responsibilities: string;
+  responsibilities!: string;
 
   @Field(() => String)
   @Column()
-  benefits: string;
+  benefits!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -138,10 +138,10 @@ export class Job {
   interviews?: Interview[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @Field(() => Boolean)
   @Column({ type: 'boolean', default: false })

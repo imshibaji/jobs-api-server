@@ -10,11 +10,11 @@ export class Tag {
 
   @Field(() => String)
   @Column()
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @Column({ unique: true })
-  slug: string;
+  slug!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -25,8 +25,8 @@ export class Tag {
   isDeleted?: boolean;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

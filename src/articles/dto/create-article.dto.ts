@@ -9,7 +9,7 @@ export class CreateArticleDto {
     example: 'How to write a blog post',
     required: true,
   })
-  title: string;
+  title!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -17,7 +17,7 @@ export class CreateArticleDto {
     example: 'how-to-write-a-blog-post',
     required: true,
   })
-  slug: string;
+  slug!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -25,7 +25,7 @@ export class CreateArticleDto {
     example: 'This is the content of the article',
     required: true,
   })
-  content: string;
+  content!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({
@@ -66,7 +66,7 @@ export class CreateArticleDto {
     example: 'post',
     required: true,
   })
-  type: string;
+  type!: string;
 
   @Field(() => String)
   @ApiProperty({

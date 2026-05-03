@@ -46,7 +46,7 @@ export class CreateInterviewDto {
     description: 'interview date',
     example: '2022-01-01',
   })
-  date: Date;
+  date!: Date;
 
   @Field(() => String)
   @ApiProperty({
@@ -55,7 +55,7 @@ export class CreateInterviewDto {
     description: 'interview time',
     example: '10:00',
   })
-  time: string;
+  time!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -64,7 +64,7 @@ export class CreateInterviewDto {
     description: 'interview location',
     example: 'New York',
   })
-  location: string;
+  location!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({

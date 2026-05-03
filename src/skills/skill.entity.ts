@@ -11,15 +11,15 @@ export class Skill {
 
   @Field(() => String)
   @Column()
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @Column()
-  proficiency: string;
+  proficiency!: string;
 
   @Field(() => String)
   @Column()
-  experience: string;
+  experience!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ name: 'last_used', type: 'timestamp', nullable: true })
@@ -38,8 +38,8 @@ export class Skill {
   isDeleted?: boolean;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

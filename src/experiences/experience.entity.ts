@@ -17,11 +17,11 @@ export class Experience {
 
   @Field(() => String)
   @Column()
-  company: string;
+  company!: string;
 
   @Field(() => String)
   @Column()
-  position: string;
+  position!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ name: 'used_skills' })
@@ -33,7 +33,7 @@ export class Experience {
 
   @Field(() => Date)
   @Column({ name: 'start_date', type: 'date' })
-  startDate: Date;
+  startDate!: Date;
 
   @Field(() => Date, { nullable: true })
   @Column({ name: 'end_date', type: 'date', nullable: true })

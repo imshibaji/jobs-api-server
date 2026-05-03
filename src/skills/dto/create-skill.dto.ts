@@ -6,15 +6,15 @@ import { Applicant } from 'src/applicants/applicant.entity';
 export class CreateSkillDto {
   @Field(() => String)
   @ApiProperty({ example: 'JavaScript' })
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @ApiProperty({ example: 'Advanced' })
-  proficiency: string;
+  proficiency!: string;
 
   @Field(() => String)
   @ApiProperty({ example: '3 years' })
-  experience: string;
+  experience!: string;
 
   @Field(() => Date, { nullable: true })
   @ApiProperty({ example: '2022-01-01' })
@@ -26,5 +26,5 @@ export class CreateSkillDto {
 
   @Field(() => Boolean)
   @ApiProperty({ example: false })
-  isDeleted: boolean;
+  isDeleted!: boolean;
 }

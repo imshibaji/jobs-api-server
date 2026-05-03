@@ -36,23 +36,23 @@ export class Portfolio {
 
   @Field(() => String)
   @Column()
-  title: string;
+  title!: string;
 
   @Field(() => String)
   @Column()
-  description: string;
+  description!: string;
 
   @Field(() => String)
   @Column()
-  url: string;
+  url!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
   image?: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

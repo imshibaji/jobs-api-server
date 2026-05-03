@@ -22,11 +22,11 @@ export class Feedback {
 
   @Field(() => String)
   @Column({ nullable: false })
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @Column({ nullable: false })
-  email: string;
+  email!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -42,11 +42,11 @@ export class Feedback {
 
   @Field(() => Number)
   @Column({ nullable: false })
-  rating: number;
+  rating!: number;
 
   @Field(() => String)
   @Column({ nullable: false })
-  comment: string;
+  comment!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ name: 'status', nullable: true })
@@ -57,7 +57,7 @@ export class Feedback {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  createdAt: string;
+  createdAt!: string;
 
   @Column({
     name: 'updated_at',
@@ -65,5 +65,5 @@ export class Feedback {
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updatedAt: string;
+  updatedAt!: string;
 }

@@ -79,7 +79,7 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req: ExpressRequest) {
-    return req.user;
+    return (req as any).user;
   }
 
   @HttpCode(HttpStatus.OK)

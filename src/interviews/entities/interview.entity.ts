@@ -46,15 +46,15 @@ export class Interview {
 
   @Field(() => String, { nullable: true })
   @Column({ type: 'date', nullable: true })
-  date: Date;
+  date!: Date;
 
   @Field(() => String, { nullable: true })
   @Column({ type: 'time', nullable: true })
-  time: string;
+  time!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  location: string;
+  location!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -69,12 +69,8 @@ export class Interview {
   status?: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
-  })
-  updatedAt: Date;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt!: Date;
 }

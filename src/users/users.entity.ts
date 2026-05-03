@@ -38,11 +38,11 @@ export class User {
 
   @Field(() => String)
   @Column()
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @Field(() => Boolean, { nullable: true })
   @Column({ name: 'verified_email', default: false })
@@ -58,7 +58,7 @@ export class User {
 
   @Field(() => String)
   @Column()
-  password: string;
+  password!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -98,7 +98,7 @@ export class User {
 
   @Field(() => Boolean)
   @Column({ name: 'is_online', default: false })
-  isOnline: boolean;
+  isOnline!: boolean;
 
   @Field(() => [Applicant!], { nullable: 'itemsAndList' })
   @OneToMany(() => Applicant, (applicant) => applicant.user)

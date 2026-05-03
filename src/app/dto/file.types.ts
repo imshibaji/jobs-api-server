@@ -3,13 +3,13 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class FileInfo {
   @Field()
-  filename: string;
+  filename!: string;
 
   @Field()
-  directory: string;
+  directory!: string;
 
   @Field()
-  fullPath: string; // Helpful for constructing the view/download URL
+  fullPath!: string; // Helpful for constructing the view/download URL
 }
 
 @ObjectType()

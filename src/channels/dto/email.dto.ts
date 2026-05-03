@@ -8,7 +8,7 @@ export class EmailDto extends Base {
     description: 'email address',
     example: '3oFbV@example.com',
   })
-  to: string;
+  to!: string;
 
   @ApiProperty({
     type: String,
@@ -32,7 +32,7 @@ export class EmailDto extends Base {
     description: 'email subject',
     example: 'Welcome to Jobs Portal',
   })
-  subject: string;
+  subject!: string;
 
   @ApiProperty({
     type: String,
@@ -40,7 +40,7 @@ export class EmailDto extends Base {
     description: 'email body',
     example: 'Welcome to Jobs Portal',
   })
-  text: string;
+  text!: string;
 
   @ApiProperty({
     type: String,

@@ -8,14 +8,14 @@ export class WebhookDto extends Base {
     description: 'webhook name',
     example: 'Jobs Portal',
   })
-  name: string;
+  name!: string;
   @ApiProperty({
     type: String,
     required: true,
     description: 'webhook url',
     example: 'http://localhost:3300/auth/login',
   })
-  url: string;
+  url!: string;
 
   @ApiProperty({
     type: String,

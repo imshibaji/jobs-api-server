@@ -24,7 +24,7 @@ export class Applicant {
 
   @Field(() => String)
   @Column()
-  name: string;
+  name!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -64,11 +64,11 @@ export class Applicant {
 
   @Field(() => String)
   @Column()
-  email: string;
+  email!: string;
 
   @Field(() => String)
   @Column({ name: 'phone_number' })
-  phoneNumber: string;
+  phoneNumber!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -156,10 +156,10 @@ export class Applicant {
   skillList?: Skill[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @Field(() => [Offer], { nullable: true })
   @OneToMany(() => Offer, (offer) => offer.applicant)

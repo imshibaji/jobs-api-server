@@ -15,7 +15,7 @@ export class CreateUserDto {
 
   @Field(() => String)
   @ApiProperty({ type: String, required: true, description: 'user full name' })
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -23,7 +23,7 @@ export class CreateUserDto {
     required: true,
     description: 'user email address',
   })
-  email: string;
+  email!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({
@@ -35,7 +35,7 @@ export class CreateUserDto {
 
   @Field(() => String)
   @ApiProperty({ type: String, required: true, description: 'user password' })
-  password: string;
+  password!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({

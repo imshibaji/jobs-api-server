@@ -50,7 +50,7 @@ export class CreateOfferDto {
     required: true,
     default: 'Offer letter',
   })
-  message: string;
+  message!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -59,7 +59,7 @@ export class CreateOfferDto {
     required: true,
     default: '2022-01-01',
   })
-  date: string;
+  date!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -68,7 +68,7 @@ export class CreateOfferDto {
     required: true,
     default: 'Pending',
   })
-  status: string;
+  status!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -77,7 +77,7 @@ export class CreateOfferDto {
     required: true,
     default: 'Offer',
   })
-  type: string;
+  type!: string;
 
   @Field(() => String)
   @ApiProperty({
@@ -86,5 +86,5 @@ export class CreateOfferDto {
     required: true,
     default: 'Offer letter pdf',
   })
-  attachment: string;
+  attachment!: string;
 }

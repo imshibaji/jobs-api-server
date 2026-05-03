@@ -5,7 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateCompanyDto {
   @Field(() => String)
   @ApiProperty({ required: true, example: 'Tech Solutions Ltd.' })
-  name: string;
+  name!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ required: false, example: 'John Doe' })
@@ -41,11 +41,11 @@ export class CreateCompanyDto {
 
   @Field(() => String)
   @ApiProperty({ required: true, example: '+1234567890' })
-  phoneNumber: string;
+  phoneNumber!: string;
 
   @Field(() => String)
   @ApiProperty({ required: true, example: 'qTg9Y@example.com' })
-  email: string;
+  email!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ required: false, example: 'https://techsolutions.com' })

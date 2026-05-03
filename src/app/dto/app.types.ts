@@ -3,15 +3,15 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class AppInfo {
   @Field(() => String, { nullable: true })
-  appName: string;
+  appName!: string;
   @Field(() => String, { nullable: true })
-  appVersion: string;
+  appVersion!: string;
   @Field(() => String, { nullable: true })
-  appEnvironment: string;
+  appEnvironment!: string;
   @Field(() => Number, { nullable: true })
-  appPort: number;
+  appPort!: number;
   @Field(() => String, { nullable: true })
-  appBaseUrl: string;
+  appBaseUrl!: string;
   @Field(() => String, { nullable: true })
-  appSecretKey: string;
+  appSecretKey!: string;
 }

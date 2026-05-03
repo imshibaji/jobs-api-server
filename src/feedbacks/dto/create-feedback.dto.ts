@@ -21,11 +21,11 @@ export class CreateFeedbackDto {
 
   @Field(() => String)
   @ApiProperty({ type: String, example: 'Jane Doe' })
-  name: string;
+  name!: string;
 
   @Field(() => String)
   @ApiProperty({ type: String, example: 'jane@example.com' })
-  email: string;
+  email!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ type: String, example: '+1-555-1234' })
@@ -41,11 +41,11 @@ export class CreateFeedbackDto {
 
   @Field(() => Number)
   @ApiProperty({ type: Number, example: 5 })
-  rating: number;
+  rating!: number;
 
   @Field(() => String)
   @ApiProperty({ type: String, example: 'I love this job!' })
-  comment: string;
+  comment!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({ type: String, example: 'active' })

@@ -56,31 +56,31 @@ export class Offer {
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  message: string;
+  message!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  date: string;
+  date!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  status: string;
+  status!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  type: string;
+  type!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  attachment: string;
+  attachment!: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

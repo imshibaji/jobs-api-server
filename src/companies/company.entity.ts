@@ -19,7 +19,7 @@ export class Company {
 
   @Field(() => String)
   @Column()
-  name: string;
+  name!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true, name: 'recruiter_name' })
@@ -59,11 +59,11 @@ export class Company {
 
   @Field(() => String)
   @Column()
-  phoneNumber: string;
+  phoneNumber!: string;
 
   @Field(() => String)
   @Column()
-  email: string;
+  email!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -87,11 +87,11 @@ export class Company {
 
   @Field(() => Boolean)
   @Column({ default: false })
-  isVerified: boolean;
+  isVerified!: boolean;
 
   @Field(() => Boolean)
   @Column({ default: false })
-  isDeleted: boolean;
+  isDeleted!: boolean;
 
   @Field(() => Number, { nullable: true })
   @Column({ nullable: true, name: 'user_id' })
@@ -104,11 +104,11 @@ export class Company {
 
   @Field(() => [Job], { nullable: true })
   @OneToMany(() => Job, (job) => job.company)
-  jobs: Job[];
+  jobs!: Job[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
+  updatedAt!: Date;
 }

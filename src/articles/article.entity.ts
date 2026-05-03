@@ -17,15 +17,15 @@ export class Article {
 
   @Field(() => String)
   @Column()
-  title: string;
+  title!: string;
 
   @Field(() => String)
   @Column({ unique: true })
-  slug: string;
+  slug!: string;
 
   @Field(() => String)
   @Column()
-  content: string;
+  content!: string;
 
   @Field(() => String, { nullable: true })
   @Column()
@@ -33,11 +33,11 @@ export class Article {
 
   @Field(() => String)
   @Column()
-  summary: string;
+  summary!: string;
 
   @Field(() => [String])
   @Column({ type: 'simple-array' })
-  tags: string[];
+  tags!: string[];
 
   @Field(() => Number)
   @Column({ name: 'user_id', nullable: true })
@@ -50,19 +50,19 @@ export class Article {
 
   @Field(() => String)
   @Column({ name: 'type', default: 'post' })
-  type: string;
+  type!: string;
 
   @Field(() => String)
   @Column({ name: 'status', default: 'draft' })
-  status: string;
+  status!: string;
 
   @Field(() => Boolean)
   @Column({ name: 'is_archived', default: false })
-  isArchived: boolean;
+  isArchived!: boolean;
 
   @Field(() => Boolean)
   @Column({ name: 'is_deleted', default: false })
-  isDeleted: boolean;
+  isDeleted!: boolean;
 
   @Field(() => Date, { nullable: true })
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

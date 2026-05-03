@@ -8,35 +8,35 @@ export class CreateJobDto {
     example: 'Software Engineer',
     description: 'The title of the job',
   })
-  title: string;
+  title!: string;
 
   @Field(() => String)
   @ApiProperty({
     example: 'Develop and maintain software applications.',
     description: 'The description of the job',
   })
-  description: string;
+  description!: string;
 
   @Field(() => String)
   @ApiProperty({
     example: "Bachelor's degree in Computer Science or related field.",
     description: 'The requirements for the job',
   })
-  requirements: string;
+  requirements!: string;
 
   @Field(() => String)
   @ApiProperty({
     example: 'Design, code, test, and deploy software solutions.',
     description: 'The responsibilities of the job',
   })
-  responsibilities: string;
+  responsibilities!: string;
 
   @Field(() => String)
   @ApiProperty({
     example: 'Health insurance, 401(k), paid time off.',
     description: 'The benefits of the job',
   })
-  benefits: string;
+  benefits!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({

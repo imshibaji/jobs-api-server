@@ -5,7 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateApplicationDto {
   @Field(() => Number)
   @ApiProperty({ description: 'ID of the job being applied for', example: 1 })
-  jobId: number;
+  jobId!: number;
 
   @Field(() => Number)
   @ApiProperty({
@@ -23,7 +23,7 @@ export class CreateApplicationDto {
     description: 'Cover letter of the application',
     example: 'I am very interested in this position because...',
   })
-  coverLetter: string;
+  coverLetter!: string;
 
   @Field(() => String, { nullable: true })
   @ApiProperty({
@@ -46,5 +46,5 @@ export class CreateApplicationDto {
     description: 'Current status of the application',
     example: 'Under Review',
   })
-  status: string;
+  status!: string;
 }

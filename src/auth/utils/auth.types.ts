@@ -5,14 +5,14 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 export class SignUpDto {
   @ApiProperty({ type: String, required: true, description: 'user full name' })
-  name: string;
+  name!: string;
 
   @ApiProperty({
     type: String,
     required: true,
     description: 'user email address',
   })
-  email: string;
+  email!: string;
 
   @ApiProperty({
     type: String,
@@ -22,7 +22,7 @@ export class SignUpDto {
   phoneNumber?: string;
 
   @ApiProperty({ type: String, required: true, description: 'user password' })
-  password: string;
+  password!: string;
 
   @ApiProperty({
     type: String,
@@ -78,26 +78,26 @@ export class LoginDto {
     required: true,
     description: 'use the email as username',
   })
-  username: string;
+  username!: string;
   @ApiProperty({ type: String, required: true, description: 'user password' })
-  password: string;
+  password!: string;
 }
 
 export class JwtPayload {
   @ApiProperty({ type: Number, required: true, description: 'user id' })
-  sub: number;
+  sub!: number;
   @ApiProperty({ type: Object, required: true, description: 'user details' })
-  user: CreateUserDto;
+  user!: CreateUserDto;
 }
 
 export class JwtToken {
   @ApiProperty({ type: String, required: true, description: 'access token' })
-  access_token: string;
+  access_token!: string;
 }
 
 @ObjectType()
 export class AuthResponse {
   @Field(() => String, { nullable: true })
   @ApiProperty({ type: String, required: true, description: 'access token' })
-  access_token: string;
+  access_token!: string;
 }

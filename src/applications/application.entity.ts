@@ -45,7 +45,7 @@ export class Application {
 
   @Field(() => String)
   @Column({ name: 'cover_letter' })
-  coverLetter: string;
+  coverLetter!: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
@@ -57,10 +57,10 @@ export class Application {
 
   @Field(() => String)
   @Column()
-  status: string;
+  status!: string;
 
   @Column({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({
     name: 'updated_at',
@@ -68,7 +68,7 @@ export class Application {
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
   })
-  updatedAt: Date;
+  updatedAt!: Date;
 
   @Field(() => [Offer!], { nullable: true })
   @OneToMany(() => Offer, (offer) => offer.application)
