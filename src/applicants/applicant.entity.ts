@@ -86,7 +86,7 @@ export class Applicant {
     @Column({ name: 'is_deleted', default: false })
     isDeleted?: boolean;
 
-    @Column({ nullable: true })
+    @Column({ name: 'user_id', nullable: true })
     userId?: number;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

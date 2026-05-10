@@ -28,31 +28,31 @@ export class ApplicantsService {
           id: 'DESC'
         }
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      log(error);
     }
   }
 
   findOne(id: number) {
     try {
       return this.applicantRepository.findOneBy({ id });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      log(error);
     }
   }
 
   update(id: number, updateApplicantDto: UpdateApplicantDto) {
     try {
       return this.applicantRepository.update(id, {...updateApplicantDto, updatedAt: new Date() });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      log(error);
     }
   }
 
   remove(id: number) {
     try {
       return this.applicantRepository.delete(id);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     }
   }
